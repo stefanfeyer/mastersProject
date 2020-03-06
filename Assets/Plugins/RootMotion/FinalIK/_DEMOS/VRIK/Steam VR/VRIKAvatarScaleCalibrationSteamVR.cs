@@ -10,6 +10,7 @@ namespace RootMotion.Demos
     public class VRIKAvatarScaleCalibrationSteamVR : MonoBehaviour
     {
         public VRIK ik;
+        public VRIK teacherIk;
         public float scaleMlp = 1f;
 
         public SteamVR_Action_Boolean grabPinch;
@@ -49,8 +50,10 @@ namespace RootMotion.Demos
             calibrateFlag = false;
 
             // Compare the height of the head target to the height of the head bone, multiply scale by that value.
-            float sizeF = (ik.solver.spine.headTarget.position.y - ik.references.root.position.y) / (ik.references.head.position.y - ik.references.root.position.y);
-            ik.references.root.localScale *= sizeF * scaleMlp;
+            //float sizeF = (ik.solver.spine.headTarget.position.y - ik.references.root.position.y) / (ik.references.head.position.y - ik.references.root.position.y);
+            float sizeF = (ik.solver.spine.headTarget.position.y - teacherIk.references.root.position.y) / (teacherIk.references.head.position.y - teacherIk.references.root.position.y);
+            //ik.references.root.localScale *= sizeF * scaleMlp;
+            teacherIk.references.root.localScale *= sizeF * scaleMlp;
         }
     }
 }

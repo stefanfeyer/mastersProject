@@ -3,7 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - RecorderHip
+  - RecorderRH
+  - RecorderLH
+  - RecorderRF
+  - RecorderLF
+  - RecorderTable
+  - RecorderBox
+  - StudentHip
+  - StudentRH
+  - StudentLH
+  - StudentRF
+  - StudentLF
+  - StudentTable
+  - StudentBox
   layers:
   - Default
   - TransparentFX

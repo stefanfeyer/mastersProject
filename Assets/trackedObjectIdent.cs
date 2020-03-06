@@ -17,6 +17,14 @@ public class trackedObjectIdent : MonoBehaviour
     // B9: LHR-31D0CDF2 LHand
     // B10: LHR-CAC69A3C RHand
 
+    public GameObject studentHip;
+    public GameObject studentRH;
+    public GameObject studentLH;
+    public GameObject studentRF;
+    public GameObject studentLF;
+    public GameObject studentBox;
+    public GameObject studentTable;
+
     void Start()
     {
         for(uint i = 0; i <= 16; i++){
@@ -32,31 +40,31 @@ public class trackedObjectIdent : MonoBehaviour
             // Hip
             case "LHR-67E402D1":
                 Debug.Log("Found device with ID LHR-67E402D1 (Hip). I assing Hip with device index: " + i);
-                GameObject.Find("Hip").GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
+                studentHip.GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
                 break;
             case "LHR-32C38603":
-                GameObject.Find("RightFootTracker").GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
+                studentRF.GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
                 Debug.Log("Found device with ID LHR-32C38603 (RFoot). I assing RFoot with device index: " + i);
                 break;
             case "LHR-4E4C94A4":
-                GameObject.Find("LeftFootTracker").GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
+                studentLF.GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
                 Debug.Log("Found device with ID LHR-4E4C94A4 (LFoot). I assing LFoot with device index: " + i);
                 break;
             case "LHR-89131158":
-                GameObject.Find("Box1").GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
+                studentBox.GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
                 Debug.Log("Found device with ID LHR-89131158 (Box1). I assing Box1 with device index: " + i);
                 break;
             case "LHR-31D0CDF2":
-                GameObject.Find("LeftHandTracker").GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
+                studentLH.GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
                 Debug.Log("Found device with ID LHR-31D0CDF2 (LHand). I assing LHand with device index: " + i);
                 break;
             case "LHR-CAC69A3C":
-                GameObject.Find("RightHandTracker").GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
+                studentRH.GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
                 Debug.Log("Found device with ID LHR-CAC69A3C (RHand). I assing RHand with device index: " + i);
                 break;
             case "LHR-30899C17":
-                GameObject.Find("Table").GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
-                Debug.Log("Found device with ID LHR-30899C17 (RHand). I assing Table with device index: " + i);
+                studentTable.GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
+                Debug.Log("Found device with ID LHR-30899C17 (Table). I assing Table with device index: " + i);
                 break;
             default:
                 break;
