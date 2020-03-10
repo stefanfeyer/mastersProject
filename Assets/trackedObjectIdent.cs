@@ -12,8 +12,9 @@ public class trackedObjectIdent : MonoBehaviour
     // B1: LHR-67E402D1 Hip
     // B3: LHR-32C38603 RFoot
     // B5: LHR-4E4C94A4 LFoot
+    // B6: LHR-B925C963 Table
     // B8: LHR-89131158 BOX
-    // B7: LHR-30899C17 Table
+    // B7: LHR-30899C17 null
     // B9: LHR-31D0CDF2 LHand
     // B10: LHR-CAC69A3C RHand
 
@@ -62,7 +63,7 @@ public class trackedObjectIdent : MonoBehaviour
                 studentRH.GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
                 Debug.Log("Found device with ID LHR-CAC69A3C (RHand). I assing RHand with device index: " + i);
                 break;
-            case "LHR-30899C17":
+            case "LHR-B925C963":
                 studentTable.GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)i);
                 Debug.Log("Found device with ID LHR-30899C17 (Table). I assing Table with device index: " + i);
                 break;

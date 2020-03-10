@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Plugins/RootMotion/FinalIK/_DEMOS/VRIK/Steam VR/VRIK (Steam VR).unity
+- path: Assets/VRIK (Steam VR) 1.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

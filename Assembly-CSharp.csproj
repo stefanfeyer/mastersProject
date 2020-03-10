@@ -181,6 +181,7 @@
      <Compile Include="Assets\HTC.UnityPlugin\ViveInputUtility\Scripts\ViveRole\ViveRoleProperty.cs" />
      <Compile Include="Assets\HTC.UnityPlugin\ViveInputUtility\Scripts\ViveRole\ViveRoleSetter.cs" />
      <Compile Include="Assets\Samples\Unity Recorder\2.1.0-preview.1\Multiple Recordings Sample\MultipleRecordingsExample.cs" />
+     <Compile Include="Assets\scaleToStudent.cs" />
      <Compile Include="Assets\setPosition.cs" />
      <Compile Include="Assets\trackedObjectIdent.cs" />
      <None Include="Assets\HTC.UnityPlugin\ViveInputUtility\Resources\Unlit-AlphaWithFade.shader" />

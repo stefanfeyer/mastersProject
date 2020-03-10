@@ -20,12 +20,17 @@ namespace RootMotion.Demos
         [Header("Data stored by Calibration")]
         public VRIKCalibrator.CalibrationData data = new VRIKCalibrator.CalibrationData();
 
+        public GameObject toResize;
+
         void LateUpdate()
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
                 // Calibrate the character, store data of the calibration
                 data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
+                toResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+                data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
+
             }
 
             /*
