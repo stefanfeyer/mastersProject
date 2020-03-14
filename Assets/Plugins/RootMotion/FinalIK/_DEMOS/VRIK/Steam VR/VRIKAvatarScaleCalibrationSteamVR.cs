@@ -84,8 +84,8 @@ namespace RootMotion.Demos
         public void resize(){
             float sizeF = (ik.solver.spine.headTarget.position.y - ik.references.root.position.y) / (ik.references.head.position.y - ik.references.root.position.y);
             teacherReference.transform.localScale *= sizeF;
-            box.transform.localScale *= -sizeF;
-            table.transform.localScale *= sizeF;
+            box.transform.localScale *= 1/sizeF;
+            table.transform.localScale *= 1/sizeF;
         }
     }
 }
