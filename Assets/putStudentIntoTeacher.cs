@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PutTeacherIntoStudent : MonoBehaviour
+public class putStudentIntoTeacher : MonoBehaviour
 {
+    // Start is called before the first frame update
     public GameObject studentZero;
     public GameObject studentHip;
     public GameObject teacherZero;
@@ -13,12 +14,12 @@ public class PutTeacherIntoStudent : MonoBehaviour
     public GameObject teacher2;
     public GameObject teacher3;
     public GameObject teacher4;
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    // Update is called once per frame
     float stopDistance = 0.3f;
     float fullSpeedDistance = 0.15f;
 
