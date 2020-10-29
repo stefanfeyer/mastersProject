@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 16
+  controlID: 67
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 17
+  controlID: 68
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 18
+  controlID: 69
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -267,8 +267,8 @@ MonoBehaviour:
     y: 0
     width: 278
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -322,8 +322,8 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
     m_HBaseRangeMin: -715.5
     m_HBaseRangeMax: 715.5
-    m_VBaseRangeMin: -317
-    m_VBaseRangeMax: 317
+    m_VBaseRangeMin: -327.5
+    m_VBaseRangeMax: 327.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -340,11 +340,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 1431
-      height: 634
+      height: 655
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 715.5, y: 317}
+    m_Translation: {x: 715.5, y: 327.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -352,9 +352,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -715.5
-      y: -317
+      y: -327.5
       width: 1431
-      height: 634
+      height: 655
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1431, y: 655}
@@ -392,9 +392,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 7cfaffff72fbffff3a53000096530000365500007255000094550000
+      m_SelectedIDs: ca6a0000
+      m_LastClickedID: 27338
+      m_ExpandedIDs: 52e9ffff4aefffff08f2ffff00f8ffff72fbffff586b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 0.4624086, y: -0.6203079, z: 0.05813047}
     speed: 2
-    m_Value: {x: 0.4624086, y: -0.6203079, z: 0.05813046}
+    m_Value: {x: 0.4624086, y: -0.6203079, z: 0.05813047}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -504,11 +504,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.44354102, y: -0.064549565, z: 0.0322945, w: -0.8934488}
     speed: 2
-    m_Value: {x: -0.44483864, y: -0.06449494, z: 0.032388262, w: -0.8926981}
+    m_Value: {x: -0.44354102, y: -0.06454957, z: 0.0322945, w: -0.8934489}
   m_Size:
-    m_Target: 4.673881
+    m_Target: 6.0779138
     speed: 2
-    m_Value: 4.9738812
+    m_Value: 6.377914
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -679,19 +679,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/CrowArt - PBR Cardboard Box/Textures
+    - Assets/perspectives
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/CrowArt - PBR Cardboard Box/Textures
+  - Assets/perspectives
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\FEYER\mastersProject
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 664b0000
-    m_LastClickedID: 19302
+    scrollPos: {x: 0, y: 378}
+    m_SelectedIDs: 9a4b0000
+    m_LastClickedID: 19354
     m_ExpandedIDs: 00000000b63c0000da3c0000203d0000343d0000363d0000de3d0000943e0000984000009c40000002410000f84200006a4300004c480000e6480000004a0000124a0000fa4c0000084d0000764d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
