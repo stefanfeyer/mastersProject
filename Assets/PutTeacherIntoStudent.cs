@@ -13,7 +13,10 @@ public class PutTeacherIntoStudent : MonoBehaviour
     public GameObject teacher2;
     public GameObject teacher3;
     public GameObject teacher4;
+    
+    public bool enableSpeedMechanic = true;
     // Start is called before the first frame update
+
     void Start()
     {
         
@@ -25,9 +28,13 @@ public class PutTeacherIntoStudent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enableSpeedMechanic == false)
+        {
+            stopDistance = 5f;
+        }
         Vector3 deltaStudentTeacher = studentHip.transform.position - (teacherHip.transform.position - teacherZero.transform.position);
         //teacherZero.transform.position = deltaStudentTeacher;
-        if(deltaStudentTeacher.magnitude > stopDistance){
+        if(deltaStudentTeacher.magnitude >= stopDistance){
             teacherZero.GetComponent<Animator>().speed = 0;
             teacher1.GetComponent<Animator>().speed = 0;
             teacher2.GetComponent<Animator>().speed = 0;
