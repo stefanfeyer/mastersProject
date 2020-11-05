@@ -7,7 +7,7 @@ using LitJson;
 
 public class RiskMetricsCalculator : MonoBehaviour
 {
-    JSONReader jsonData;
+    //JSONReader jsonData;
 
     public GameObject trackedL5PelvisHip; //This is the same as pelvis and hip location
     public GameObject trackedT8;
@@ -56,8 +56,8 @@ public class RiskMetricsCalculator : MonoBehaviour
     {
         remoteErrorTable = new Hashtable();
         //remoteErrorTable.Add(69, 11);
-        jsonData = new JSONReader(); //Class object
-        allComparisonValues = jsonData.GetAllRiskMetrics("fully", "bedtochair", "gold");
+        //jsonData = new JSONReader(); //Class object yxc
+        //allComparisonValues = jsonData.GetAllRiskMetrics("fully", "bedtochair", "gold");yxc
         //Debug.Log("JSON comparison values: " + allComparisonValues[0]);
     }
 
@@ -78,7 +78,7 @@ public class RiskMetricsCalculator : MonoBehaviour
             checkSpineBend(angleOfSpineBending);
             checkSpineTwist(angleOfSpineTwist);
         }
-       
+
         //bendAngleArc.GetComponent<Image>().fillAmount = angleOfSpineBending / 360f;
         // bendAngleArc.transform.position = trackedL5PelvisHip.transform.position;
     }
@@ -116,7 +116,7 @@ public class RiskMetricsCalculator : MonoBehaviour
     {
         float baseDistance;
         baseDistance = Vector3.Distance(trackedLeftFoot.transform.position, trackedRightFoot.transform.position);
-   
+
         // dataDisplay.SetText("Distance between the feet is: {0:2} metres \n Squat distance from floor is: {1:2}", Distance_, Distance2_);
         //Debug.Log("Distance between the feet is: " + Distance_);
         return baseDistance;
@@ -238,9 +238,9 @@ public class RiskMetricsCalculator : MonoBehaviour
 
     void LogError()
     {
-        
+
         logStartTime++;
-        if(feetErrorFlag == true && squatErrorFlag == true && spineBendErrorFlag == true && spineTwistErrorFlag == true) //1 & 2 & 3 & 4
+        if (feetErrorFlag == true && squatErrorFlag == true && spineBendErrorFlag == true && spineTwistErrorFlag == true) //1 & 2 & 3 & 4
         {
             //errorLogForPlayer.Add(20);
             remoteErrorTable.Add(logStartTime, 15);
@@ -261,7 +261,7 @@ public class RiskMetricsCalculator : MonoBehaviour
         {
             remoteErrorTable.Add(logStartTime, 11);
         }
-        else if(spineBendErrorFlag == true && spineTwistErrorFlag == true) // 3 & 4
+        else if (spineBendErrorFlag == true && spineTwistErrorFlag == true) // 3 & 4
         {
             remoteErrorTable.Add(logStartTime, 10);
         }
