@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 using LitJson;
 
 public class RiskMetricsCalculator : MonoBehaviour
@@ -18,8 +17,12 @@ public class RiskMetricsCalculator : MonoBehaviour
 
     public GameObject trackedLeftShoulder;
     public GameObject trackedRightShoulder;
+
+    public GameObject referenceLine;
     public GameObject leftHipReference;
     public GameObject rightHipReference;
+
+    public GameObject insideSphere;
     private Vector3 shoulderVector;
     private Vector3 hipVector;
 
@@ -64,8 +67,11 @@ public class RiskMetricsCalculator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (recordingGameObjects == true)
-        {
+            if(Input.GetKeyDown(KeyCode.C)){
+                alignHipSensors();
+            }
+            
+
             //Assign values to global variables
             distanceBetweenFeet = CalculateDistanceBetweenFeet();
             distanceOfSquat = CalculateSquatDistance();
@@ -77,7 +83,7 @@ public class RiskMetricsCalculator : MonoBehaviour
             checkSquatDistance(distanceOfSquat);
             checkSpineBend(angleOfSpineBending);
             checkSpineTwist(angleOfSpineTwist);
-        }
+
 
         //bendAngleArc.GetComponent<Image>().fillAmount = angleOfSpineBending / 360f;
         // bendAngleArc.transform.position = trackedL5PelvisHip.transform.position;
@@ -149,7 +155,7 @@ public class RiskMetricsCalculator : MonoBehaviour
             if (currentDistance > 0.70 || currentDistance < 0.40)
             {
                 //FindObjectOfType<AudioManager>().Play("Error"); yxc
-                feetMesh.GetComponent<SkinnedMeshRenderer>().material = errorMaterial; //Replace this line with writing it to log file
+                Debug.Log("Error in base distance found");
                 feetErrorFlag = true;
             }
         }
@@ -157,7 +163,7 @@ public class RiskMetricsCalculator : MonoBehaviour
         {
             if (currentDistance < 0.70 && currentDistance > 0.40)
             {
-                feetMesh.GetComponent<SkinnedMeshRenderer>().material = defaultMaterial;
+                Debug.Log("Error in base distance fixed");
                 feetErrorFlag = false;
             }
         }
@@ -170,7 +176,7 @@ public class RiskMetricsCalculator : MonoBehaviour
             if (currentDistance > 1.20 || currentDistance < 0.90)
             {
                 //FindObjectOfType<AudioManager>().Play("Error");
-                hipsMesh.GetComponent<SkinnedMeshRenderer>().material = errorMaterial;
+                Debug.Log("Error in squat distance found");
                 squatErrorFlag = true;
             }
         }
@@ -178,7 +184,7 @@ public class RiskMetricsCalculator : MonoBehaviour
         {
             if (currentDistance < 1.20 && currentDistance > 0.90)
             {
-                hipsMesh.GetComponent<SkinnedMeshRenderer>().material = defaultMaterial;
+                Debug.Log("Error in squat distance fixed");
                 squatErrorFlag = false;
             }
         }
@@ -191,7 +197,7 @@ public class RiskMetricsCalculator : MonoBehaviour
             if (currentAngle > 39.0)
             {
                 //FindObjectOfType<AudioManager>().Play("Error");
-                lowerbackMesh.GetComponent<SkinnedMeshRenderer>().material = errorMaterial;
+                Debug.Log("Error in Spine bend found");
                 spineBendErrorFlag = true;
             }
         }
@@ -199,7 +205,7 @@ public class RiskMetricsCalculator : MonoBehaviour
         {
             if (currentAngle < 39.0)
             {
-                lowerbackMesh.GetComponent<SkinnedMeshRenderer>().material = defaultMaterial;
+                Debug.Log("Error in Spine bend fixed");
                 spineBendErrorFlag = false;
             }
         }
@@ -212,7 +218,7 @@ public class RiskMetricsCalculator : MonoBehaviour
             if (currentAngle > 24.0)
             {
                 //FindObjectOfType<AudioManager>().Play("Error");
-                shouldersMesh.GetComponent<SkinnedMeshRenderer>().material = errorMaterial;
+                Debug.Log("Error in Spine twist found");
                 spineTwistErrorFlag = true;
             }
         }
@@ -220,7 +226,7 @@ public class RiskMetricsCalculator : MonoBehaviour
         {
             if (currentAngle < 24.0)
             {
-                shouldersMesh.GetComponent<SkinnedMeshRenderer>().material = defaultMaterial;
+                Debug.Log("Error in Spine twist fixed");
                 spineTwistErrorFlag = false;
             }
         }
@@ -235,7 +241,21 @@ public class RiskMetricsCalculator : MonoBehaviour
     {
         CancelInvoke();
     }
+    void alignHipSensors()
+    {
+        Vector3 left = new Vector3(-0.2f, 0, 0);
+        Vector3 right = new Vector3(0.2f, 0, 0);
 
+       // leftHipSensor.transform.position = trackedPelvis.transform.position + left;
+       // RightHipSensor.transform.position = trackedPelvis.transform.position + right;
+        referenceLine.transform.position = trackedL5PelvisHip.transform.position;
+        
+       // leftHipSensor.transform.parent = insideSphere.transform;
+        //RightHipSensor.transform.parent = insideSphere.transform;
+        referenceLine.transform.parent = insideSphere.transform;
+        //savedLocationOfPelvis.transform.rotation = referenceLine.transform.rotation;
+        //savedLocationOfPelvis.transform.localScale = referenceLine.transform.localScale;
+    }
     void LogError()
     {
 
