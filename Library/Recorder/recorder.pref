@@ -36,14 +36,14 @@ MonoBehaviour:
   m_Name: Animation Clip
   m_EditorClassIdentifier: 
   enabled: 1
-  take: 13
+  take: 1
   captureEveryNthFrame: 1
   fileNameGenerator:
     m_Path:
       m_Root: 1
       m_Leaf: Recordings
       m_ForceAssetFolder: 1
-    m_FileName: animation_<GameObject>_<Take>
+    m_FileName: A1is
   m_AnimationInputSettings:
     m_BindingId: 78003f70369f78c40903fd2b14a7b832
     recursive: 1
