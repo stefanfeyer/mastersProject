@@ -20,6 +20,8 @@ namespace RootMotion.Demos
 
         private bool calibrateFlag;
 
+        bool flag = true;
+
 
         void OnEnable()
         {
@@ -50,16 +52,19 @@ namespace RootMotion.Demos
         private void LateUpdate()
         {
             // Making sure calibration is done in LateUpdate
-            if (!calibrateFlag) return;
-            calibrateFlag = false;
+            //if (!calibrateFlag) return;
+            //calibrateFlag = false;
 
-
+            if(flag){
             // Compare the height of the head target to the height of the head bone, multiply scale by that value.
             float sizeF = (ik.solver.spine.headTarget.position.y - ik.references.root.position.y) / (ik.references.head.position.y - ik.references.root.position.y);
             teacherReference.transform.localScale *= sizeF;
             //ik.references.root.localScale *= sizeF * scaleMlp;
-            Debug.Log(sizeF);
             
+            Debug.Log("Calculated sizeF: ");
+            Debug.Log(sizeF);
+            flag = false;
+            }
             //float sizeF = (ik.solver.spine.headTarget.position.y - teacherIk.references.root.position.y) / (teacherIk.references.head.position.y - teacherIk.references.root.position.y);
             //Debug.Log(sizeF);
             //Debug.Log(ik.solver.spine.headTarget.position.y);

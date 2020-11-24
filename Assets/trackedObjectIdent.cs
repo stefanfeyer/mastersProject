@@ -111,7 +111,7 @@ public class trackedObjectIdent : MonoBehaviour
                     Debug.Log("Found device with ID LHR-6C32F5E5 (B14, upper hip). I assing upper hip with device index: " +i);
                     break;
                 case "LHR-249568A0":
-                    Debug.Log("Found device with ID LHR-249568A0 (HTC Vive). It has device index: " +i);
+                    Debug.Log("Found device with ID LHR-249568A0 (Valve Index). It has device index: " +i);
                     break;
                 case "LHB-303A3DA5":
                     Debug.Log("Found device with ID LHB-303A3DA5 (LightHouse 1). It has device index: " +i);

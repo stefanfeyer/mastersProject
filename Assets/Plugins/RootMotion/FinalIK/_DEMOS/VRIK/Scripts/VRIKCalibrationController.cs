@@ -28,8 +28,8 @@ namespace RootMotion.Demos
             {
                 // Calibrate the character, store data of the calibration
                 data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
-                toResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
-                data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
+                //toResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+                //data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
 
             }
 
