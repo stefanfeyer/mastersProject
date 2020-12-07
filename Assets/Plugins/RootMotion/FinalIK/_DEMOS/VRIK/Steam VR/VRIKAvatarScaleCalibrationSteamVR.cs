@@ -87,12 +87,12 @@ namespace RootMotion.Demos
             // Compare the height of the head target to the height of the head bone, multiply scale by that value.
             float sizeF = (ik.solver.spine.headTarget.position.y - ik.references.root.position.y) / (ik.references.head.position.y - ik.references.root.position.y);
             //teacherReference.transform.localScale *= sizeF;
-            //ik.references.root.localScale *= sizeF * scaleMlp;
+            ik.references.root.localScale *= sizeF * scaleMlp;
             
             Debug.Log("Calculated sizeF: ");
             Debug.Log(sizeF);
-            box.transform.localScale *= 1/sizeF;
-            table.transform.localScale *= 1/sizeF;
+            //box.transform.localScale *= 1/sizeF;
+            //table.transform.localScale *= 1/sizeF;
             return sizeF;
         }
     }

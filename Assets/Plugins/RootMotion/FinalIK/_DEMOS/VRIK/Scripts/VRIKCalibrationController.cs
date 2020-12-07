@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using RootMotion.FinalIK;
+using Valve.VR;
 
 namespace RootMotion.Demos
 {
@@ -31,6 +32,8 @@ namespace RootMotion.Demos
         public GameObject teacherBox;
         public GameObject teacherTable;
 
+        public GameObject studentTable;
+
         public GameObject eyesStudent;
         public GameObject eyesTeacher;
         
@@ -59,6 +62,8 @@ namespace RootMotion.Demos
                     teacherCalibrationController.GetComponent<VRIKCalibrationController>().calibrate();
                     teacherBox.transform.localScale *= 1/scale;
                     teacherTable.transform.localScale *= 1/scale;
+                    avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+                    studentTable.GetComponent<SteamVR_TrackedObject>().enabled = false;
                     
                     
                     //teacherCalibrationController.GetComponent<VRIKCalibrationController>().data = data;
@@ -105,7 +110,7 @@ namespace RootMotion.Demos
 
         void calibrate(){
             VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
-            //avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+            avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
         }
     }
 }
