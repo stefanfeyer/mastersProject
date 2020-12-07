@@ -10,7 +10,6 @@ namespace RootMotion.Demos
     public class VRIKAvatarScaleCalibrationSteamVR : MonoBehaviour
     {
         public VRIK ik;
-        public GameObject teacherReference;
         public GameObject box;
         public GameObject table;
         public float scaleMlp = 1f;
@@ -20,7 +19,7 @@ namespace RootMotion.Demos
 
         private bool calibrateFlag;
 
-        bool flag = true;
+        
 
 
         void OnEnable()
@@ -45,7 +44,7 @@ namespace RootMotion.Demos
             if (!newState) return;
 
             // You can calibrate directly here only if you have "Input Update Mode" set to "OnLateUpdate" in the SteamVR_Settings file.
-            calibrateFlag = true;
+            calibrateFlag = false;
         }
 
 
@@ -55,16 +54,14 @@ namespace RootMotion.Demos
             //if (!calibrateFlag) return;
             //calibrateFlag = false;
 
-            if(flag){
+            
             // Compare the height of the head target to the height of the head bone, multiply scale by that value.
-            float sizeF = (ik.solver.spine.headTarget.position.y - ik.references.root.position.y) / (ik.references.head.position.y - ik.references.root.position.y);
-            teacherReference.transform.localScale *= sizeF;
+            
+            //float sizeF = (ik.solver.spine.headTarget.position.y - ik.references.root.position.y) / (ik.references.head.position.y - ik.references.root.position.y);
+            //teacherReference.transform.localScale *= sizeF;
             //ik.references.root.localScale *= sizeF * scaleMlp;
             
-            Debug.Log("Calculated sizeF: ");
-            Debug.Log(sizeF);
-            flag = false;
-            }
+            
             //float sizeF = (ik.solver.spine.headTarget.position.y - teacherIk.references.root.position.y) / (teacherIk.references.head.position.y - teacherIk.references.root.position.y);
             //Debug.Log(sizeF);
             //Debug.Log(ik.solver.spine.headTarget.position.y);
@@ -86,11 +83,17 @@ namespace RootMotion.Demos
             //teacherIk.references.root.position.z);
         }
 
-        public void resize(){
+        public float resize(){
+            // Compare the height of the head target to the height of the head bone, multiply scale by that value.
             float sizeF = (ik.solver.spine.headTarget.position.y - ik.references.root.position.y) / (ik.references.head.position.y - ik.references.root.position.y);
-            teacherReference.transform.localScale *= sizeF;
+            //teacherReference.transform.localScale *= sizeF;
+            //ik.references.root.localScale *= sizeF * scaleMlp;
+            
+            Debug.Log("Calculated sizeF: ");
+            Debug.Log(sizeF);
             box.transform.localScale *= 1/sizeF;
             table.transform.localScale *= 1/sizeF;
+            return sizeF;
         }
     }
 }

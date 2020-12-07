@@ -20,14 +20,54 @@ namespace RootMotion.Demos
         [Header("Data stored by Calibration")]
         public VRIKCalibrator.CalibrationData data = new VRIKCalibrator.CalibrationData();
 
-        public GameObject toResize;
+        public GameObject teacherCalibrationController;
+
+        public bool isStudent;
+        public GameObject avatarToResize;
+        
+        float scale;
+        public GameObject teacherReference;
+       
+        public GameObject teacherBox;
+        public GameObject teacherTable;
+
+        public GameObject eyesStudent;
+        public GameObject eyesTeacher;
+        
+        
+
+
 
         void LateUpdate()
         {
+           
             if (Input.GetKeyDown(KeyCode.C))
             {
                 // Calibrate the character, store data of the calibration
-                data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
+                if (isStudent)
+                {
+                    data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
+                    scale = eyesStudent.transform.position.y / eyesTeacher.transform.position.y;
+                    Debug.Log("teacherEye:");
+                    Debug.Log(eyesTeacher.transform.position.y);
+                    Debug.Log("studentEye:");
+                    Debug.Log(eyesStudent.transform.position.y);
+                    Debug.Log("scale");
+                    Debug.Log(scale);
+                    //scale = avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+                    teacherReference.transform.localScale = new Vector3(1f, scale, 1f);
+                    teacherCalibrationController.GetComponent<VRIKCalibrationController>().calibrate();
+                    teacherBox.transform.localScale *= 1/scale;
+                    teacherTable.transform.localScale *= 1/scale;
+                    
+                    
+                    //teacherCalibrationController.GetComponent<VRIKCalibrationController>().data = data;
+                    //teacherCalibrationController.GetComponent<VRIKCalibrationController>().calibrate();
+                    //avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+                        
+                }
+                //data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
+                
                 //toResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
                 //data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
 
@@ -61,6 +101,11 @@ namespace RootMotion.Demos
                 }
                 VRIKCalibrator.RecalibrateScale(ik, settings);
             }
+        }
+
+        void calibrate(){
+            VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
+            //avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
         }
     }
 }
