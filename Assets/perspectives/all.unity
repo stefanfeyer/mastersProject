@@ -536,7 +536,31 @@ MonoBehaviour:
     pelvisTargetRight: {x: 0, y: 0, z: 0}
     pelvisPositionWeight: 0
     pelvisRotationWeight: 0
-  toResize: {fileID: 73710560}
+  teacherCalibrationController: {fileID: 0}
+  teacherCalibrationController1: {fileID: 0}
+  teacherCalibrationController2: {fileID: 0}
+  teacherCalibrationController3: {fileID: 0}
+  teacherCalibrationController4: {fileID: 0}
+  isStudent: 0
+  avatarToResize: {fileID: 1601521231}
+  teacherReference: {fileID: 0}
+  teacherReference1: {fileID: 0}
+  teacherReference2: {fileID: 0}
+  teacherReference3: {fileID: 0}
+  teacherReference4: {fileID: 0}
+  teacherBox: {fileID: 0}
+  teacherBox1: {fileID: 0}
+  teacherBox2: {fileID: 0}
+  teacherBox3: {fileID: 0}
+  teacherBox4: {fileID: 0}
+  teacherTable: {fileID: 0}
+  teacherTable1: {fileID: 0}
+  teacherTable2: {fileID: 0}
+  teacherTable3: {fileID: 0}
+  teacherTable4: {fileID: 0}
+  studentTable: {fileID: 0}
+  eyesStudent: {fileID: 0}
+  eyesTeacher: {fileID: 0}
 --- !u!4 &22959540
 Transform:
   m_ObjectHideFlags: 0
@@ -1280,7 +1304,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ik: {fileID: 73710562}
-  teacherReference: {fileID: 2128405024}
   box: {fileID: 1808788973}
   table: {fileID: 2047628118}
   scaleMlp: 1
@@ -2901,6 +2924,26 @@ MonoBehaviour:
       onRightFootstep:
         m_PersistentCalls:
           m_Calls: []
+--- !u!114 &196728583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196728581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0c41edb12fbcd43a5086847ceec806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ik: {fileID: 196728582}
+  box: {fileID: 0}
+  table: {fileID: 0}
+  scaleMlp: 1.03
+  grabPinch:
+    actionPath: 
+    needsReinit: 0
+  inputSource: 0
 --- !u!1 &197286949
 GameObject:
   m_ObjectHideFlags: 0
@@ -3362,6 +3405,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 224074440}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &224074442 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1824519365176864, guid: a8b466cf32c6b7a49832b2d706b33923,
+    type: 3}
+  m_PrefabInstance: {fileID: 224074440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &237834190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400014, guid: 959d14bf134f54a6e993fe6ca6e063c0,
@@ -3503,6 +3552,40 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1135739256}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &256138321
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &260532312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4375,7 +4458,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ik: {fileID: 322933516}
-  teacherReference: {fileID: 2128405024}
   box: {fileID: 1808788973}
   table: {fileID: 2047628118}
   scaleMlp: 1
@@ -5841,169 +5923,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8b466cf32c6b7a49832b2d706b33923, type: 3}
---- !u!43 &456937948
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 10
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 24
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 8
-    localAABB:
-      m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 8
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 28
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 288
-    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    offset: 0
-    size: 0
-    path: 
 --- !u!1 &460000162 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100118, guid: 959d14bf134f54a6e993fe6ca6e063c0,
@@ -6029,7 +5948,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ik: {fileID: 460000165}
-  teacherReference: {fileID: 2128405024}
   box: {fileID: 1808788973}
   table: {fileID: 2047628118}
   scaleMlp: 1
@@ -7010,6 +6928,26 @@ MonoBehaviour:
       onRightFootstep:
         m_PersistentCalls:
           m_Calls: []
+--- !u!114 &487348675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487348673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0c41edb12fbcd43a5086847ceec806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ik: {fileID: 487348674}
+  box: {fileID: 0}
+  table: {fileID: 0}
+  scaleMlp: 1
+  grabPinch:
+    actionPath: 
+    needsReinit: 0
+  inputSource: 0
 --- !u!4 &497664416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4648916280100144, guid: a8b466cf32c6b7a49832b2d706b33923,
@@ -7583,6 +7521,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8b466cf32c6b7a49832b2d706b33923, type: 3}
+--- !u!1 &551747089 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1824519365176864, guid: a8b466cf32c6b7a49832b2d706b33923,
+    type: 3}
+  m_PrefabInstance: {fileID: 551747088}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &557118982
 GameObject:
   m_ObjectHideFlags: 0
@@ -7851,7 +7795,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ik: {fileID: 571868588}
-  teacherReference: {fileID: 0}
   box: {fileID: 0}
   table: {fileID: 0}
   scaleMlp: 1.03
@@ -8791,6 +8734,26 @@ MonoBehaviour:
       onRightFootstep:
         m_PersistentCalls:
           m_Calls: []
+--- !u!114 &598678400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598678398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0c41edb12fbcd43a5086847ceec806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ik: {fileID: 598678399}
+  box: {fileID: 0}
+  table: {fileID: 0}
+  scaleMlp: 1
+  grabPinch:
+    actionPath: 
+    needsReinit: 0
+  inputSource: 0
 --- !u!1 &613479445
 GameObject:
   m_ObjectHideFlags: 0
@@ -9230,7 +9193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ik: {fileID: 613948131}
-  teacherReference: {fileID: 0}
   box: {fileID: 0}
   table: {fileID: 0}
   scaleMlp: 1.03
@@ -10066,7 +10028,31 @@ MonoBehaviour:
     pelvisTargetRight: {x: 0, y: 0, z: 0}
     pelvisPositionWeight: 0
     pelvisRotationWeight: 0
-  toResize: {fileID: 73710560}
+  teacherCalibrationController: {fileID: 0}
+  teacherCalibrationController1: {fileID: 0}
+  teacherCalibrationController2: {fileID: 0}
+  teacherCalibrationController3: {fileID: 0}
+  teacherCalibrationController4: {fileID: 0}
+  isStudent: 0
+  avatarToResize: {fileID: 1670159625}
+  teacherReference: {fileID: 0}
+  teacherReference1: {fileID: 0}
+  teacherReference2: {fileID: 0}
+  teacherReference3: {fileID: 0}
+  teacherReference4: {fileID: 0}
+  teacherBox: {fileID: 0}
+  teacherBox1: {fileID: 0}
+  teacherBox2: {fileID: 0}
+  teacherBox3: {fileID: 0}
+  teacherBox4: {fileID: 0}
+  teacherTable: {fileID: 0}
+  teacherTable1: {fileID: 0}
+  teacherTable2: {fileID: 0}
+  teacherTable3: {fileID: 0}
+  teacherTable4: {fileID: 0}
+  studentTable: {fileID: 0}
+  eyesStudent: {fileID: 0}
+  eyesTeacher: {fileID: 0}
 --- !u!4 &680422420
 Transform:
   m_ObjectHideFlags: 0
@@ -10187,7 +10173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ik: {fileID: 698123768}
-  teacherReference: {fileID: 2128405024}
   box: {fileID: 1808788973}
   table: {fileID: 2047628118}
   scaleMlp: 1
@@ -10862,6 +10847,26 @@ MonoBehaviour:
       onRightFootstep:
         m_PersistentCalls:
           m_Calls: []
+--- !u!114 &698366572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698366570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0c41edb12fbcd43a5086847ceec806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ik: {fileID: 698366571}
+  box: {fileID: 0}
+  table: {fileID: 0}
+  scaleMlp: 1.03
+  grabPinch:
+    actionPath: 
+    needsReinit: 0
+  inputSource: 0
 --- !u!1 &700770049
 GameObject:
   m_ObjectHideFlags: 0
@@ -11023,6 +11028,12 @@ PrefabInstance:
 --- !u!4 &711163651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4648916280100144, guid: a8b466cf32c6b7a49832b2d706b33923,
+    type: 3}
+  m_PrefabInstance: {fileID: 711163650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &711163652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1824519365176864, guid: a8b466cf32c6b7a49832b2d706b33923,
     type: 3}
   m_PrefabInstance: {fileID: 711163650}
   m_PrefabAsset: {fileID: 0}
@@ -12905,7 +12916,31 @@ MonoBehaviour:
     pelvisTargetRight: {x: 0, y: 0, z: 0}
     pelvisPositionWeight: 0
     pelvisRotationWeight: 0
-  toResize: {fileID: 0}
+  teacherCalibrationController: {fileID: 0}
+  teacherCalibrationController1: {fileID: 0}
+  teacherCalibrationController2: {fileID: 0}
+  teacherCalibrationController3: {fileID: 0}
+  teacherCalibrationController4: {fileID: 0}
+  isStudent: 0
+  avatarToResize: {fileID: 1568856382}
+  teacherReference: {fileID: 0}
+  teacherReference1: {fileID: 0}
+  teacherReference2: {fileID: 0}
+  teacherReference3: {fileID: 0}
+  teacherReference4: {fileID: 0}
+  teacherBox: {fileID: 0}
+  teacherBox1: {fileID: 0}
+  teacherBox2: {fileID: 0}
+  teacherBox3: {fileID: 0}
+  teacherBox4: {fileID: 0}
+  teacherTable: {fileID: 0}
+  teacherTable1: {fileID: 0}
+  teacherTable2: {fileID: 0}
+  teacherTable3: {fileID: 0}
+  teacherTable4: {fileID: 0}
+  studentTable: {fileID: 0}
+  eyesStudent: {fileID: 0}
+  eyesTeacher: {fileID: 0}
 --- !u!4 &929843472
 Transform:
   m_ObjectHideFlags: 0
@@ -13204,7 +13239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ik: {fileID: 978810087}
-  teacherReference: {fileID: 2128405024}
   box: {fileID: 1808788973}
   table: {fileID: 2047628118}
   scaleMlp: 1
@@ -14128,6 +14162,26 @@ MonoBehaviour:
       onRightFootstep:
         m_PersistentCalls:
           m_Calls: []
+--- !u!114 &996965495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996965493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0c41edb12fbcd43a5086847ceec806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ik: {fileID: 996965494}
+  box: {fileID: 0}
+  table: {fileID: 0}
+  scaleMlp: 1.03
+  grabPinch:
+    actionPath: 
+    needsReinit: 0
+  inputSource: 0
 --- !u!4 &1000524884 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4648916280100144, guid: a8b466cf32c6b7a49832b2d706b33923,
@@ -14603,6 +14657,26 @@ MonoBehaviour:
       onRightFootstep:
         m_PersistentCalls:
           m_Calls: []
+--- !u!114 &1004987795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004987793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0c41edb12fbcd43a5086847ceec806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ik: {fileID: 1004987794}
+  box: {fileID: 0}
+  table: {fileID: 0}
+  scaleMlp: 1
+  grabPinch:
+    actionPath: 
+    needsReinit: 0
+  inputSource: 0
 --- !u!4 &1012724996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400052, guid: 959d14bf134f54a6e993fe6ca6e063c0,
@@ -16716,6 +16790,26 @@ MonoBehaviour:
       onRightFootstep:
         m_PersistentCalls:
           m_Calls: []
+--- !u!114 &1170462887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170462885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0c41edb12fbcd43a5086847ceec806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ik: {fileID: 1170462886}
+  box: {fileID: 0}
+  table: {fileID: 0}
+  scaleMlp: 1.03
+  grabPinch:
+    actionPath: 
+    needsReinit: 0
+  inputSource: 0
 --- !u!1 &1173443252
 GameObject:
   m_ObjectHideFlags: 0
@@ -16837,7 +16931,31 @@ MonoBehaviour:
     pelvisTargetRight: {x: 0, y: 0, z: 0}
     pelvisPositionWeight: 0
     pelvisRotationWeight: 0
-  toResize: {fileID: 73710560}
+  teacherCalibrationController: {fileID: 0}
+  teacherCalibrationController1: {fileID: 0}
+  teacherCalibrationController2: {fileID: 0}
+  teacherCalibrationController3: {fileID: 0}
+  teacherCalibrationController4: {fileID: 0}
+  isStudent: 0
+  avatarToResize: {fileID: 598678398}
+  teacherReference: {fileID: 0}
+  teacherReference1: {fileID: 0}
+  teacherReference2: {fileID: 0}
+  teacherReference3: {fileID: 0}
+  teacherReference4: {fileID: 0}
+  teacherBox: {fileID: 0}
+  teacherBox1: {fileID: 0}
+  teacherBox2: {fileID: 0}
+  teacherBox3: {fileID: 0}
+  teacherBox4: {fileID: 0}
+  teacherTable: {fileID: 0}
+  teacherTable1: {fileID: 0}
+  teacherTable2: {fileID: 0}
+  teacherTable3: {fileID: 0}
+  teacherTable4: {fileID: 0}
+  studentTable: {fileID: 0}
+  eyesStudent: {fileID: 0}
+  eyesTeacher: {fileID: 0}
 --- !u!4 &1175803475
 Transform:
   m_ObjectHideFlags: 0
@@ -20112,7 +20230,31 @@ MonoBehaviour:
     pelvisTargetRight: {x: 0, y: 0, z: 0}
     pelvisPositionWeight: 0
     pelvisRotationWeight: 0
-  toResize: {fileID: 0}
+  teacherCalibrationController: {fileID: 0}
+  teacherCalibrationController1: {fileID: 0}
+  teacherCalibrationController2: {fileID: 0}
+  teacherCalibrationController3: {fileID: 0}
+  teacherCalibrationController4: {fileID: 0}
+  isStudent: 0
+  avatarToResize: {fileID: 996965493}
+  teacherReference: {fileID: 0}
+  teacherReference1: {fileID: 0}
+  teacherReference2: {fileID: 0}
+  teacherReference3: {fileID: 0}
+  teacherReference4: {fileID: 0}
+  teacherBox: {fileID: 0}
+  teacherBox1: {fileID: 0}
+  teacherBox2: {fileID: 0}
+  teacherBox3: {fileID: 0}
+  teacherBox4: {fileID: 0}
+  teacherTable: {fileID: 0}
+  teacherTable1: {fileID: 0}
+  teacherTable2: {fileID: 0}
+  teacherTable3: {fileID: 0}
+  teacherTable4: {fileID: 0}
+  studentTable: {fileID: 0}
+  eyesStudent: {fileID: 0}
+  eyesTeacher: {fileID: 0}
 --- !u!4 &1467011024
 Transform:
   m_ObjectHideFlags: 0
@@ -20288,7 +20430,31 @@ MonoBehaviour:
     pelvisTargetRight: {x: 0, y: 0, z: 0}
     pelvisPositionWeight: 0
     pelvisRotationWeight: 0
-  toResize: {fileID: 0}
+  teacherCalibrationController: {fileID: 0}
+  teacherCalibrationController1: {fileID: 0}
+  teacherCalibrationController2: {fileID: 0}
+  teacherCalibrationController3: {fileID: 0}
+  teacherCalibrationController4: {fileID: 0}
+  isStudent: 0
+  avatarToResize: {fileID: 1170462885}
+  teacherReference: {fileID: 0}
+  teacherReference1: {fileID: 0}
+  teacherReference2: {fileID: 0}
+  teacherReference3: {fileID: 0}
+  teacherReference4: {fileID: 0}
+  teacherBox: {fileID: 0}
+  teacherBox1: {fileID: 0}
+  teacherBox2: {fileID: 0}
+  teacherBox3: {fileID: 0}
+  teacherBox4: {fileID: 0}
+  teacherTable: {fileID: 0}
+  teacherTable1: {fileID: 0}
+  teacherTable2: {fileID: 0}
+  teacherTable3: {fileID: 0}
+  teacherTable4: {fileID: 0}
+  studentTable: {fileID: 0}
+  eyesStudent: {fileID: 0}
+  eyesTeacher: {fileID: 0}
 --- !u!4 &1475174946
 Transform:
   m_ObjectHideFlags: 0
@@ -21790,6 +21956,26 @@ MonoBehaviour:
       onRightFootstep:
         m_PersistentCalls:
           m_Calls: []
+--- !u!114 &1568856384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568856382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0c41edb12fbcd43a5086847ceec806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ik: {fileID: 1568856383}
+  box: {fileID: 0}
+  table: {fileID: 0}
+  scaleMlp: 1.03
+  grabPinch:
+    actionPath: 
+    needsReinit: 0
+  inputSource: 0
 --- !u!4 &1569984069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4648916280100144, guid: a8b466cf32c6b7a49832b2d706b33923,
@@ -22288,7 +22474,31 @@ MonoBehaviour:
     pelvisTargetRight: {x: 0, y: 0, z: 0}
     pelvisPositionWeight: 0
     pelvisRotationWeight: 0
-  toResize: {fileID: 73710560}
+  teacherCalibrationController: {fileID: 0}
+  teacherCalibrationController1: {fileID: 0}
+  teacherCalibrationController2: {fileID: 0}
+  teacherCalibrationController3: {fileID: 0}
+  teacherCalibrationController4: {fileID: 0}
+  isStudent: 0
+  avatarToResize: {fileID: 487348673}
+  teacherReference: {fileID: 0}
+  teacherReference1: {fileID: 0}
+  teacherReference2: {fileID: 0}
+  teacherReference3: {fileID: 0}
+  teacherReference4: {fileID: 0}
+  teacherBox: {fileID: 0}
+  teacherBox1: {fileID: 0}
+  teacherBox2: {fileID: 0}
+  teacherBox3: {fileID: 0}
+  teacherBox4: {fileID: 0}
+  teacherTable: {fileID: 0}
+  teacherTable1: {fileID: 0}
+  teacherTable2: {fileID: 0}
+  teacherTable3: {fileID: 0}
+  teacherTable4: {fileID: 0}
+  studentTable: {fileID: 0}
+  eyesStudent: {fileID: 0}
+  eyesTeacher: {fileID: 0}
 --- !u!4 &1592053507
 Transform:
   m_ObjectHideFlags: 0
@@ -22770,6 +22980,26 @@ MonoBehaviour:
       onRightFootstep:
         m_PersistentCalls:
           m_Calls: []
+--- !u!114 &1601521233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601521231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0c41edb12fbcd43a5086847ceec806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ik: {fileID: 1601521232}
+  box: {fileID: 0}
+  table: {fileID: 0}
+  scaleMlp: 1
+  grabPinch:
+    actionPath: 
+    needsReinit: 0
+  inputSource: 0
 --- !u!1001 &1612662565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23578,6 +23808,26 @@ MonoBehaviour:
       onRightFootstep:
         m_PersistentCalls:
           m_Calls: []
+--- !u!114 &1670159627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670159625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0c41edb12fbcd43a5086847ceec806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ik: {fileID: 1670159626}
+  box: {fileID: 0}
+  table: {fileID: 0}
+  scaleMlp: 1
+  grabPinch:
+    actionPath: 
+    needsReinit: 0
+  inputSource: 0
 --- !u!4 &1671028167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 458974, guid: 4d293c8e162f3874b982baadd71153d2,
@@ -24636,6 +24886,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1764252004}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1764252006 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1824519365176864, guid: a8b466cf32c6b7a49832b2d706b33923,
+    type: 3}
+  m_PrefabInstance: {fileID: 1764252004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1767730462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 959d14bf134f54a6e993fe6ca6e063c0,
@@ -24834,11 +25090,11 @@ PrefabInstance:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1785313967}
+      objectReference: {fileID: 256138321}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 456937948}
+      objectReference: {fileID: 1915074329}
     - target: {fileID: 4000013889601590, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -24948,7 +25204,31 @@ MonoBehaviour:
     pelvisTargetRight: {x: 0, y: 0, z: 0}
     pelvisPositionWeight: 0
     pelvisRotationWeight: 0
-  toResize: {fileID: 0}
+  teacherCalibrationController: {fileID: 0}
+  teacherCalibrationController1: {fileID: 0}
+  teacherCalibrationController2: {fileID: 0}
+  teacherCalibrationController3: {fileID: 0}
+  teacherCalibrationController4: {fileID: 0}
+  isStudent: 0
+  avatarToResize: {fileID: 598678398}
+  teacherReference: {fileID: 0}
+  teacherReference1: {fileID: 0}
+  teacherReference2: {fileID: 0}
+  teacherReference3: {fileID: 0}
+  teacherReference4: {fileID: 0}
+  teacherBox: {fileID: 0}
+  teacherBox1: {fileID: 0}
+  teacherBox2: {fileID: 0}
+  teacherBox3: {fileID: 0}
+  teacherBox4: {fileID: 0}
+  teacherTable: {fileID: 0}
+  teacherTable1: {fileID: 0}
+  teacherTable2: {fileID: 0}
+  teacherTable3: {fileID: 0}
+  teacherTable4: {fileID: 0}
+  studentTable: {fileID: 0}
+  eyesStudent: {fileID: 0}
+  eyesTeacher: {fileID: 0}
 --- !u!4 &1775645020
 Transform:
   m_ObjectHideFlags: 0
@@ -25050,40 +25330,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1934786823}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1785313967
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1789072233
 GameObject:
   m_ObjectHideFlags: 0
@@ -25270,7 +25516,31 @@ MonoBehaviour:
     pelvisTargetRight: {x: 0, y: 0, z: 0}
     pelvisPositionWeight: 0
     pelvisRotationWeight: 0
-  toResize: {fileID: 73710560}
+  teacherCalibrationController: {fileID: 0}
+  teacherCalibrationController1: {fileID: 0}
+  teacherCalibrationController2: {fileID: 0}
+  teacherCalibrationController3: {fileID: 0}
+  teacherCalibrationController4: {fileID: 0}
+  isStudent: 0
+  avatarToResize: {fileID: 1004987793}
+  teacherReference: {fileID: 0}
+  teacherReference1: {fileID: 0}
+  teacherReference2: {fileID: 0}
+  teacherReference3: {fileID: 0}
+  teacherReference4: {fileID: 0}
+  teacherBox: {fileID: 0}
+  teacherBox1: {fileID: 0}
+  teacherBox2: {fileID: 0}
+  teacherBox3: {fileID: 0}
+  teacherBox4: {fileID: 0}
+  teacherTable: {fileID: 0}
+  teacherTable1: {fileID: 0}
+  teacherTable2: {fileID: 0}
+  teacherTable3: {fileID: 0}
+  teacherTable4: {fileID: 0}
+  studentTable: {fileID: 0}
+  eyesStudent: {fileID: 0}
+  eyesTeacher: {fileID: 0}
 --- !u!4 &1790229345
 Transform:
   m_ObjectHideFlags: 0
@@ -26470,6 +26740,169 @@ Transform:
   m_Father: {fileID: 1570684839}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!43 &1915074329
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 24
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 8
+    localAABB:
+      m_Center: {x: 0, y: 0.01, z: 0}
+      m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 8
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 288
+    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0.01, z: 0}
+    m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    offset: 0
+    size: 0
+    path: 
 --- !u!1001 &1917584851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27255,7 +27688,31 @@ MonoBehaviour:
     pelvisTargetRight: {x: 0, y: 0, z: 0}
     pelvisPositionWeight: 0
     pelvisRotationWeight: 0
-  toResize: {fileID: 0}
+  teacherCalibrationController: {fileID: 22959538}
+  teacherCalibrationController1: {fileID: 1790229343}
+  teacherCalibrationController2: {fileID: 1175803473}
+  teacherCalibrationController3: {fileID: 1592053505}
+  teacherCalibrationController4: {fileID: 680422418}
+  isStudent: 1
+  avatarToResize: {fileID: 196728581}
+  teacherReference: {fileID: 2128405024}
+  teacherReference1: {fileID: 1762953544}
+  teacherReference2: {fileID: 1451302860}
+  teacherReference3: {fileID: 298677050}
+  teacherReference4: {fileID: 1627594409}
+  teacherBox: {fileID: 1808788973}
+  teacherBox1: {fileID: 817706464}
+  teacherBox2: {fileID: 1478392312}
+  teacherBox3: {fileID: 1612662567}
+  teacherBox4: {fileID: 1197619827}
+  teacherTable: {fileID: 2047628118}
+  teacherTable1: {fileID: 551747089}
+  teacherTable2: {fileID: 1764252006}
+  teacherTable3: {fileID: 711163652}
+  teacherTable4: {fileID: 224074442}
+  studentTable: {fileID: 891213700}
+  eyesStudent: {fileID: 1355803616}
+  eyesTeacher: {fileID: 1285173291}
 --- !u!4 &1992415294
 Transform:
   m_ObjectHideFlags: 0

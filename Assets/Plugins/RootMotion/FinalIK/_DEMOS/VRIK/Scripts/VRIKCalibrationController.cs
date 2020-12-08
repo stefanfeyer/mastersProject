@@ -22,25 +22,38 @@ namespace RootMotion.Demos
         public VRIKCalibrator.CalibrationData data = new VRIKCalibrator.CalibrationData();
 
         public GameObject teacherCalibrationController;
+        public GameObject teacherCalibrationController1;
+        public GameObject teacherCalibrationController2;
+        public GameObject teacherCalibrationController3;
+        public GameObject teacherCalibrationController4;
 
         public bool isStudent;
         public GameObject avatarToResize;
         
         float scale;
         public GameObject teacherReference;
-       
+        public GameObject teacherReference1;
+        public GameObject teacherReference2;
+        public GameObject teacherReference3;
+        public GameObject teacherReference4;
+
         public GameObject teacherBox;
+        public GameObject teacherBox1;
+        public GameObject teacherBox2;
+        public GameObject teacherBox3;
+        public GameObject teacherBox4;
+
         public GameObject teacherTable;
+        public GameObject teacherTable1;
+        public GameObject teacherTable2;
+        public GameObject teacherTable3;
+        public GameObject teacherTable4;
 
         public GameObject studentTable;
 
         public GameObject eyesStudent;
         public GameObject eyesTeacher;
-        
-        
-
-
-
+ 
         void LateUpdate()
         {
            
@@ -58,10 +71,31 @@ namespace RootMotion.Demos
                     Debug.Log("scale");
                     Debug.Log(scale);
                     //scale = avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+
                     teacherReference.transform.localScale = new Vector3(1f, scale, 1f);
+                    teacherReference1.transform.localScale = new Vector3(1f, scale, 1f);
+                    teacherReference2.transform.localScale = new Vector3(1f, scale, 1f);
+                    teacherReference3.transform.localScale = new Vector3(1f, scale, 1f);
+                    teacherReference4.transform.localScale = new Vector3(1f, scale, 1f);
+
                     teacherCalibrationController.GetComponent<VRIKCalibrationController>().calibrate();
-                    teacherBox.transform.localScale *= 1/scale;
-                    teacherTable.transform.localScale *= 1/scale;
+                    teacherCalibrationController1.GetComponent<VRIKCalibrationController>().calibrate();
+                    teacherCalibrationController2.GetComponent<VRIKCalibrationController>().calibrate();
+                    teacherCalibrationController3.GetComponent<VRIKCalibrationController>().calibrate();
+                    teacherCalibrationController4.GetComponent<VRIKCalibrationController>().calibrate();
+
+                    teacherBox.transform.localScale *= 1 / scale;
+                    teacherBox1.transform.localScale *= 1 / scale;
+                    teacherBox2.transform.localScale *= 1 / scale;
+                    teacherBox3.transform.localScale *= 1 / scale;
+                    teacherBox4.transform.localScale *= 1 / scale;
+
+                    teacherTable.transform.localScale *= 1 / scale;
+                    teacherTable1.transform.localScale *= 1 / scale;
+                    teacherTable2.transform.localScale *= 1 / scale;
+                    teacherTable3.transform.localScale *= 1 / scale;
+                    teacherTable4.transform.localScale *= 1 / scale;
+
                     avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
                     studentTable.GetComponent<SteamVR_TrackedObject>().enabled = false;
                     
