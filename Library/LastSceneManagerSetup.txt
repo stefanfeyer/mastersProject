@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/perspectives/all.unity
+- path: Assets/perspectives/exo.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

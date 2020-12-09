@@ -27,6 +27,11 @@ namespace RootMotion.Demos
         public GameObject teacherCalibrationController3;
         public GameObject teacherCalibrationController4;
 
+        public GameObject studentCalibrationController1;
+        public GameObject studentCalibrationController2;
+        public GameObject studentCalibrationController3;
+        public GameObject studentCalibrationController4;
+
         public bool isStudent;
         public GameObject avatarToResize;
         
@@ -64,37 +69,90 @@ namespace RootMotion.Demos
                 {
                     data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
                     scale = eyesStudent.transform.position.y / eyesTeacher.transform.position.y;
-                    Debug.Log("teacherEye:");
-                    Debug.Log(eyesTeacher.transform.position.y);
-                    Debug.Log("studentEye:");
-                    Debug.Log(eyesStudent.transform.position.y);
-                    Debug.Log("scale");
-                    Debug.Log(scale);
+                    //Debug.Log("teacherEye:");
+                    //Debug.Log(eyesTeacher.transform.position.y);
+                    //Debug.Log("studentEye:");
+                    //Debug.Log(eyesStudent.transform.position.y);
+                    //Debug.Log("scale");
+                    //Debug.Log(scale);
                     //scale = avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+                    
+                    GameObject[] teacherReferences = {teacherReference,teacherReference1,teacherReference2,teacherReference3,teacherReference4};
+                    GameObject[] callibrationControllers = {teacherCalibrationController,teacherCalibrationController1,teacherCalibrationController2,teacherCalibrationController3,teacherCalibrationController4};
+                    GameObject[] boxes = {teacherBox,teacherBox1,teacherBox2,teacherBox3,teacherBox4};
+                    GameObject[] tables = {teacherTable,teacherTable1,teacherTable2,teacherTable3,teacherTable4};
+                    GameObject[] studentCalibrationControllers = {studentCalibrationController1,studentCalibrationController2,studentCalibrationController3,studentCalibrationController4};
+                    
+                    
 
-                    teacherReference.transform.localScale = new Vector3(1f, scale, 1f);
-                    teacherReference1.transform.localScale = new Vector3(1f, scale, 1f);
-                    teacherReference2.transform.localScale = new Vector3(1f, scale, 1f);
-                    teacherReference3.transform.localScale = new Vector3(1f, scale, 1f);
-                    teacherReference4.transform.localScale = new Vector3(1f, scale, 1f);
+                    foreach (var item in teacherReferences)
+                    {
+                        if (item != null)
+                        {
+                            item.transform.localScale = new Vector3(1f, scale, 1f);
+                        }
+                    }
 
-                    teacherCalibrationController.GetComponent<VRIKCalibrationController>().calibrate();
-                    teacherCalibrationController1.GetComponent<VRIKCalibrationController>().calibrate();
-                    teacherCalibrationController2.GetComponent<VRIKCalibrationController>().calibrate();
-                    teacherCalibrationController3.GetComponent<VRIKCalibrationController>().calibrate();
-                    teacherCalibrationController4.GetComponent<VRIKCalibrationController>().calibrate();
+                    foreach (var item in callibrationControllers)
+                    {
+                        if (item != null)
+                        {
+                            Debug.Log("TEACHER cal contr calibrate");
+                            item.GetComponent<VRIKCalibrationController>().calibrate();
+                        }
+                    }
 
-                    teacherBox.transform.localScale *= 1 / scale;
-                    teacherBox1.transform.localScale *= 1 / scale;
-                    teacherBox2.transform.localScale *= 1 / scale;
-                    teacherBox3.transform.localScale *= 1 / scale;
-                    teacherBox4.transform.localScale *= 1 / scale;
+                    foreach (var item in boxes)
+                    {
+                        if (item != null)
+                        {
+                            Debug.Log("BOX");
+                            item.transform.localScale *= (1 / scale);
+                        }
+                    }
+                    
+                    foreach (var item in tables)
+                    {
+                        if (item != null)
+                        {
+                            Debug.Log("TABLE");
+                            item.transform.localScale *= (1 / scale);
+                        }
+                    }
 
-                    teacherTable.transform.localScale *= 1 / scale;
-                    teacherTable1.transform.localScale *= 1 / scale;
-                    teacherTable2.transform.localScale *= 1 / scale;
-                    teacherTable3.transform.localScale *= 1 / scale;
-                    teacherTable4.transform.localScale *= 1 / scale;
+                    foreach (var item in studentCalibrationControllers)
+                    {
+                        if (item != null)
+                        {
+                            Debug.Log("STUDENT cal contr calibrate");
+                            item.GetComponent<VRIKCalibrationController>().calibrate();
+                        }
+                    }
+                    
+                    
+                    //teacherReference.transform.localScale = new Vector3(1f, scale, 1f);
+                    //teacherReference1.transform.localScale = new Vector3(1f, scale, 1f);
+                    //teacherReference2.transform.localScale = new Vector3(1f, scale, 1f);
+                    //teacherReference3.transform.localScale = new Vector3(1f, scale, 1f);
+                    //teacherReference4.transform.localScale = new Vector3(1f, scale, 1f);
+
+                    //teacherCalibrationController.GetComponent<VRIKCalibrationController>().calibrate();
+                    //teacherCalibrationController1.GetComponent<VRIKCalibrationController>().calibrate();
+                    //teacherCalibrationController2.GetComponent<VRIKCalibrationController>().calibrate();
+                    //teacherCalibrationController3.GetComponent<VRIKCalibrationController>().calibrate();
+                    //teacherCalibrationController4.GetComponent<VRIKCalibrationController>().calibrate();
+
+                    //teacherBox.transform.localScale *= 1 / scale;
+                    //teacherBox1.transform.localScale *= 1 / scale;
+                    //teacherBox2.transform.localScale *= 1 / scale;
+                    //teacherBox3.transform.localScale *= 1 / scale;
+                    //teacherBox4.transform.localScale *= 1 / scale;
+
+                    //teacherTable.transform.localScale *= 1 / scale;
+                    //teacherTable1.transform.localScale *= 1 / scale;
+                    //teacherTable2.transform.localScale *= 1 / scale;
+                    //teacherTable3.transform.localScale *= 1 / scale;
+                    //teacherTable4.transform.localScale *= 1 / scale;
 
                     avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
                     studentTable.GetComponent<SteamVR_TrackedObject>().enabled = false;
@@ -143,7 +201,8 @@ namespace RootMotion.Demos
         }
 
         void calibrate(){
-            VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
+            Debug.Log("calibrate teacher or student");
+            data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
             avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
         }
     }
