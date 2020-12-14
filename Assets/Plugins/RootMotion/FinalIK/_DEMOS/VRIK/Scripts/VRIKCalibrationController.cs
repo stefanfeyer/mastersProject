@@ -21,6 +21,8 @@ namespace RootMotion.Demos
         [Header("Data stored by Calibration")]
         public VRIKCalibrator.CalibrationData data = new VRIKCalibrator.CalibrationData();
 
+        public bool showTrackers = true;
+
         public GameObject teacherCalibrationController;
         public GameObject teacherCalibrationController1;
         public GameObject teacherCalibrationController2;
@@ -64,6 +66,7 @@ namespace RootMotion.Demos
            
             if (Input.GetKeyDown(KeyCode.C))
             {
+                
                 // Calibrate the character, store data of the calibration
                 if (isStudent)
                 {
@@ -89,7 +92,7 @@ namespace RootMotion.Demos
                     {
                         if (item != null)
                         {
-                            item.transform.localScale = new Vector3(1f, scale, 1f);
+                            item.transform.localScale *= scale;//new Vector3(1f, scale, 1f);
                         }
                     }
 
@@ -161,6 +164,8 @@ namespace RootMotion.Demos
                     //teacherCalibrationController.GetComponent<VRIKCalibrationController>().data = data;
                     //teacherCalibrationController.GetComponent<VRIKCalibrationController>().calibrate();
                     //avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+
+                    removeTrackerRendering();
                         
                 }
                 //data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
@@ -204,6 +209,17 @@ namespace RootMotion.Demos
             Debug.Log("calibrate teacher or student");
             data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
             avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+        }
+
+        void removeTrackerRendering(){
+            if (showTrackers)
+            {
+                foreach (GameObject tracker in GameObject.FindGameObjectsWithTag("tracker"))
+                {
+                    tracker.transform.localScale = new Vector3(0f,0f,0f);
+                }
+                
+            }
         }
     }
 }

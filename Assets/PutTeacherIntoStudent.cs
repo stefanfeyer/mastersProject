@@ -32,7 +32,12 @@ public class PutTeacherIntoStudent : MonoBehaviour
         {
             stopDistance = 5f;
         }
-        Vector3 deltaStudentTeacher = studentHip.transform.position - (teacherHip.transform.position - teacherZero.transform.position);
+        Vector3 studentHipPositionOnFloor = new Vector3(studentHip.transform.position.x, 0, studentHip.transform.position.z);
+        Vector3 teacherHipPositionOnFloor = new Vector3(teacherHip.transform.position.x, 0, teacherHip.transform.position.z);
+        Vector3 teacherZeroPositionOnFloor = new Vector3(teacherZero.transform.position.x, 0, teacherZero.transform.position.z);
+        // distance on the flor: 
+        Vector3 deltaStudentTeacher = studentHipPositionOnFloor - (teacherHipPositionOnFloor - teacherZeroPositionOnFloor);
+        // the original with hip distance: Vector3 deltaStudentTeacher = studentHip.transform.position - (teacherHip.transform.position - teacherZero.transform.position);
         //teacherZero.transform.position = deltaStudentTeacher;
         if(deltaStudentTeacher.magnitude >= stopDistance){
             teacherZero.GetComponent<Animator>().speed = 0;
