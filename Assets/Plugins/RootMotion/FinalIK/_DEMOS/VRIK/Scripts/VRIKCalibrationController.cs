@@ -111,6 +111,7 @@ namespace RootMotion.Demos
                         {
                             Debug.Log("BOX");
                             item.transform.localScale *= (1 / scale);
+                            item.transform.position *= (1 / scale);
                         }
                     }
                     
@@ -120,6 +121,7 @@ namespace RootMotion.Demos
                         {
                             Debug.Log("TABLE");
                             item.transform.localScale *= (1 / scale);
+                            item.transform.position *= (1 / scale);
                         }
                     }
 
