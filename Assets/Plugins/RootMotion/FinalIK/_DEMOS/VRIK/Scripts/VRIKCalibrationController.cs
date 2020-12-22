@@ -21,7 +21,7 @@ namespace RootMotion.Demos
         [Header("Data stored by Calibration")]
         public VRIKCalibrator.CalibrationData data = new VRIKCalibrator.CalibrationData();
 
-        public bool showTrackers = true;
+        public bool showTrackers = false;
 
         public GameObject teacherCalibrationController;
         public GameObject teacherCalibrationController1;
@@ -34,32 +34,24 @@ namespace RootMotion.Demos
         public GameObject studentCalibrationController3;
         public GameObject studentCalibrationController4;
 
+        public GameObject teacherBody0;
+        public GameObject teacherBody1;
+        public GameObject teacherBody2;
+        public GameObject teacherBody3;
+        public GameObject teacherBody4;
+
         public bool isStudent;
         public GameObject avatarToResize;
         
         float scale;
-        public GameObject teacherReference;
-        public GameObject teacherReference1;
-        public GameObject teacherReference2;
-        public GameObject teacherReference3;
-        public GameObject teacherReference4;
-
-        public GameObject teacherBox;
-        public GameObject teacherBox1;
-        public GameObject teacherBox2;
-        public GameObject teacherBox3;
-        public GameObject teacherBox4;
-
-        public GameObject teacherTable;
-        public GameObject teacherTable1;
-        public GameObject teacherTable2;
-        public GameObject teacherTable3;
-        public GameObject teacherTable4;
+        
 
         public GameObject studentTable;
 
-        public GameObject eyesStudent;
-        public GameObject eyesTeacher;
+        public GameObject neckStudent;
+        public GameObject neckTeacher;
+
+        public GameObject mirror;
  
         void LateUpdate()
         {
@@ -71,7 +63,7 @@ namespace RootMotion.Demos
                 if (isStudent)
                 {
                     data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
-                    scale = eyesStudent.transform.position.y / eyesTeacher.transform.position.y;
+                    scale = neckStudent.transform.position.y / neckTeacher.transform.position.y;
                     //Debug.Log("teacherEye:");
                     //Debug.Log(eyesTeacher.transform.position.y);
                     //Debug.Log("studentEye:");
@@ -80,15 +72,10 @@ namespace RootMotion.Demos
                     //Debug.Log(scale);
                     //scale = avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
                     
-                    GameObject[] teacherReferences = {teacherReference,teacherReference1,teacherReference2,teacherReference3,teacherReference4};
-                    GameObject[] callibrationControllers = {teacherCalibrationController,teacherCalibrationController1,teacherCalibrationController2,teacherCalibrationController3,teacherCalibrationController4};
-                    GameObject[] boxes = {teacherBox,teacherBox1,teacherBox2,teacherBox3,teacherBox4};
-                    GameObject[] tables = {teacherTable,teacherTable1,teacherTable2,teacherTable3,teacherTable4};
+                    GameObject[] teacherReferences = {teacherBody0,teacherBody1,teacherBody2,teacherBody3,teacherBody4};
+                    GameObject[] callibrationControllers = {teacherCalibrationController,teacherCalibrationController1,teacherCalibrationController2,teacherCalibrationController3,teacherCalibrationController4};                    
                     GameObject[] studentCalibrationControllers = {studentCalibrationController1,studentCalibrationController2,studentCalibrationController3,studentCalibrationController4};
          
-                    teacherTable.transform.parent = new GameObject().transform;
-                    teacherTable.transform.localScale *=scale;
-                    teacherBox.transform.position *= scale;
                     foreach (var item in teacherReferences)
                     {
                         if (item != null)
@@ -97,34 +84,12 @@ namespace RootMotion.Demos
                         }
                     }
 
-                    teacherTable.transform.parent = teacherReference.transform;
-
                     foreach (var item in callibrationControllers)
                     {
                         if (item != null)
                         {
                             Debug.Log("TEACHER cal contr calibrate");
                             item.GetComponent<VRIKCalibrationController>().calibrate();
-                        }
-                    }
-
-                    foreach (var item in boxes)
-                    {
-                        if (item != null)
-                        {
-                            Debug.Log("BOX");
-                            item.transform.localScale *= (1 / scale);
-                            item.transform.position *= (1 / scale);
-                        }
-                    }
-                    
-                    foreach (var item in tables)
-                    {
-                        if (item != null)
-                        {
-                            Debug.Log("TABLE");
-                            item.transform.localScale *= (1 / scale);
-                            item.transform.position *= (1 / scale );
                         }
                     }
 
@@ -171,6 +136,7 @@ namespace RootMotion.Demos
                     //avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
 
                     removeTrackerRendering();
+                    removeMirror();
                         
                 }
                 //data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
@@ -186,7 +152,7 @@ namespace RootMotion.Demos
              * Calibration data still depends on bone orientations though, so the data is valid only for the character that it was calibrated to or characters with identical bone structures.
              * If you wish to use more than one character, it would be best to calibrate them all at once and store the CalibrationData for each one.
              * */
-            if (Input.GetKeyDown(KeyCode.D))
+            if (false)
             {
                 if (data.scale == 0f)
                 {
@@ -200,7 +166,7 @@ namespace RootMotion.Demos
             }
 
             // Recalibrates avatar scale only. Can be called only if the avatar has been calibrated already.
-            if (Input.GetKeyDown(KeyCode.S))
+            if (false)
             {
                 if (data.scale == 0f)
                 {
@@ -217,7 +183,7 @@ namespace RootMotion.Demos
         }
 
         void removeTrackerRendering(){
-            if (showTrackers)
+            if (!showTrackers)
             {
                 foreach (GameObject tracker in GameObject.FindGameObjectsWithTag("tracker"))
                 {
@@ -225,6 +191,9 @@ namespace RootMotion.Demos
                 }
                 
             }
+        }
+        void removeMirror(){
+            mirror.SetActive(false);
         }
     }
 }

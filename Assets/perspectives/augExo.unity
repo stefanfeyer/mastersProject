@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 22959540}
   - component: {fileID: 22959539}
   m_Layer: 0
-  m_Name: Teacher Calibration Controller
+  m_Name: teacherCalibrationController0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,26 +485,17 @@ MonoBehaviour:
   studentCalibrationController2: {fileID: 0}
   studentCalibrationController3: {fileID: 0}
   studentCalibrationController4: {fileID: 0}
+  teacherBody0: {fileID: 0}
+  teacherBody1: {fileID: 0}
+  teacherBody2: {fileID: 0}
+  teacherBody3: {fileID: 0}
+  teacherBody4: {fileID: 0}
   isStudent: 0
   avatarToResize: {fileID: 409549465}
-  teacherReference: {fileID: 0}
-  teacherReference1: {fileID: 0}
-  teacherReference2: {fileID: 0}
-  teacherReference3: {fileID: 0}
-  teacherReference4: {fileID: 0}
-  teacherBox: {fileID: 0}
-  teacherBox1: {fileID: 0}
-  teacherBox2: {fileID: 0}
-  teacherBox3: {fileID: 0}
-  teacherBox4: {fileID: 0}
-  teacherTable: {fileID: 0}
-  teacherTable1: {fileID: 0}
-  teacherTable2: {fileID: 0}
-  teacherTable3: {fileID: 0}
-  teacherTable4: {fileID: 0}
   studentTable: {fileID: 0}
-  eyesStudent: {fileID: 0}
-  eyesTeacher: {fileID: 0}
+  neckStudent: {fileID: 0}
+  neckTeacher: {fileID: 0}
+  mirror: {fileID: 0}
 --- !u!4 &22959540
 Transform:
   m_ObjectHideFlags: 0
@@ -4074,12 +4065,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 224074440}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &224074442 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1824519365176864, guid: a8b466cf32c6b7a49832b2d706b33923,
-    type: 3}
-  m_PrefabInstance: {fileID: 224074440}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &237834190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400014, guid: 959d14bf134f54a6e993fe6ca6e063c0,
@@ -4245,6 +4230,169 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8b466cf32c6b7a49832b2d706b33923, type: 3}
+--- !u!43 &263038415
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 24
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 8
+    localAABB:
+      m_Center: {x: 0, y: 0.01, z: 0}
+      m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 8
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 288
+    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0.01, z: 0}
+    m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    offset: 0
+    size: 0
+    path: 
 --- !u!1001 &264014636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5447,169 +5595,6 @@ Transform:
   m_Father: {fileID: 742143988}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &338499640
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 10
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 24
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 8
-    localAABB:
-      m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 8
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 28
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 288
-    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    offset: 0
-    size: 0
-    path: 
 --- !u!4 &343825550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400052, guid: 959d14bf134f54a6e993fe6ca6e063c0,
@@ -8382,40 +8367,6 @@ Transform:
   m_Father: {fileID: 191094291}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &487559941
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &497664416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4648916280100144, guid: a8b466cf32c6b7a49832b2d706b33923,
@@ -8623,10 +8574,15 @@ MonoBehaviour:
   studentHip: {fileID: 2112102226}
   teacherZero: {fileID: 1627594409}
   teacherHip: {fileID: 888782478}
-  teacher1: {fileID: 2128405024}
-  teacher2: {fileID: 1451302860}
-  teacher3: {fileID: 298677050}
-  teacher4: {fileID: 1762953544}
+  teacherZeroProps: {fileID: 0}
+  exoTeacherBody1: {fileID: 0}
+  exoTeacherBody2: {fileID: 0}
+  exoTeacherBody3: {fileID: 0}
+  exoTeacherBody4: {fileID: 0}
+  exoTeacherProps1: {fileID: 0}
+  exoTeacherProps2: {fileID: 0}
+  exoTeacherProps3: {fileID: 0}
+  exoTeacherProps4: {fileID: 0}
   enableSpeedMechanic: 1
 --- !u!4 &521627193 stripped
 Transform:
@@ -8798,12 +8754,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8b466cf32c6b7a49832b2d706b33923, type: 3}
---- !u!1 &551747089 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1824519365176864, guid: a8b466cf32c6b7a49832b2d706b33923,
-    type: 3}
-  m_PrefabInstance: {fileID: 551747088}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &557118982
 GameObject:
   m_ObjectHideFlags: 0
@@ -10961,7 +10911,7 @@ GameObject:
   - component: {fileID: 680422420}
   - component: {fileID: 680422419}
   m_Layer: 0
-  m_Name: Teacher Calibration Controller (4)
+  m_Name: teacherCalibrationController4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11050,26 +11000,17 @@ MonoBehaviour:
   studentCalibrationController2: {fileID: 0}
   studentCalibrationController3: {fileID: 0}
   studentCalibrationController4: {fileID: 0}
+  teacherBody0: {fileID: 0}
+  teacherBody1: {fileID: 0}
+  teacherBody2: {fileID: 0}
+  teacherBody3: {fileID: 0}
+  teacherBody4: {fileID: 0}
   isStudent: 0
   avatarToResize: {fileID: 65624623}
-  teacherReference: {fileID: 0}
-  teacherReference1: {fileID: 0}
-  teacherReference2: {fileID: 0}
-  teacherReference3: {fileID: 0}
-  teacherReference4: {fileID: 0}
-  teacherBox: {fileID: 0}
-  teacherBox1: {fileID: 0}
-  teacherBox2: {fileID: 0}
-  teacherBox3: {fileID: 0}
-  teacherBox4: {fileID: 0}
-  teacherTable: {fileID: 0}
-  teacherTable1: {fileID: 0}
-  teacherTable2: {fileID: 0}
-  teacherTable3: {fileID: 0}
-  teacherTable4: {fileID: 0}
   studentTable: {fileID: 0}
-  eyesStudent: {fileID: 0}
-  eyesTeacher: {fileID: 0}
+  neckStudent: {fileID: 0}
+  neckTeacher: {fileID: 0}
+  mirror: {fileID: 0}
 --- !u!4 &680422420
 Transform:
   m_ObjectHideFlags: 0
@@ -11596,12 +11537,6 @@ PrefabInstance:
 --- !u!4 &711163651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4648916280100144, guid: a8b466cf32c6b7a49832b2d706b33923,
-    type: 3}
-  m_PrefabInstance: {fileID: 711163650}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &711163652 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1824519365176864, guid: a8b466cf32c6b7a49832b2d706b33923,
     type: 3}
   m_PrefabInstance: {fileID: 711163650}
   m_PrefabAsset: {fileID: 0}
@@ -14532,7 +14467,7 @@ GameObject:
   - component: {fileID: 929843472}
   - component: {fileID: 929843471}
   m_Layer: 0
-  m_Name: Student Calibration Controller (4)
+  m_Name: studentCalibrationController4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14621,26 +14556,17 @@ MonoBehaviour:
   studentCalibrationController2: {fileID: 0}
   studentCalibrationController3: {fileID: 0}
   studentCalibrationController4: {fileID: 0}
+  teacherBody0: {fileID: 0}
+  teacherBody1: {fileID: 0}
+  teacherBody2: {fileID: 0}
+  teacherBody3: {fileID: 0}
+  teacherBody4: {fileID: 0}
   isStudent: 1
   avatarToResize: {fileID: 65624623}
-  teacherReference: {fileID: 0}
-  teacherReference1: {fileID: 0}
-  teacherReference2: {fileID: 0}
-  teacherReference3: {fileID: 0}
-  teacherReference4: {fileID: 0}
-  teacherBox: {fileID: 0}
-  teacherBox1: {fileID: 0}
-  teacherBox2: {fileID: 0}
-  teacherBox3: {fileID: 0}
-  teacherBox4: {fileID: 0}
-  teacherTable: {fileID: 0}
-  teacherTable1: {fileID: 0}
-  teacherTable2: {fileID: 0}
-  teacherTable3: {fileID: 0}
-  teacherTable4: {fileID: 0}
   studentTable: {fileID: 0}
-  eyesStudent: {fileID: 0}
-  eyesTeacher: {fileID: 0}
+  neckStudent: {fileID: 0}
+  neckTeacher: {fileID: 0}
+  mirror: {fileID: 0}
 --- !u!4 &929843472
 Transform:
   m_ObjectHideFlags: 0
@@ -16401,6 +16327,40 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8508805}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1099794656
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1101712054
 GameObject:
   m_ObjectHideFlags: 0
@@ -17048,7 +17008,7 @@ GameObject:
   - component: {fileID: 1175803475}
   - component: {fileID: 1175803474}
   m_Layer: 0
-  m_Name: Teacher Calibration Controller (2)
+  m_Name: teacherCalibrationController2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17137,26 +17097,17 @@ MonoBehaviour:
   studentCalibrationController2: {fileID: 0}
   studentCalibrationController3: {fileID: 0}
   studentCalibrationController4: {fileID: 0}
+  teacherBody0: {fileID: 0}
+  teacherBody1: {fileID: 0}
+  teacherBody2: {fileID: 0}
+  teacherBody3: {fileID: 0}
+  teacherBody4: {fileID: 0}
   isStudent: 0
   avatarToResize: {fileID: 1767427658}
-  teacherReference: {fileID: 0}
-  teacherReference1: {fileID: 0}
-  teacherReference2: {fileID: 0}
-  teacherReference3: {fileID: 0}
-  teacherReference4: {fileID: 0}
-  teacherBox: {fileID: 0}
-  teacherBox1: {fileID: 0}
-  teacherBox2: {fileID: 0}
-  teacherBox3: {fileID: 0}
-  teacherBox4: {fileID: 0}
-  teacherTable: {fileID: 0}
-  teacherTable1: {fileID: 0}
-  teacherTable2: {fileID: 0}
-  teacherTable3: {fileID: 0}
-  teacherTable4: {fileID: 0}
   studentTable: {fileID: 0}
-  eyesStudent: {fileID: 0}
-  eyesTeacher: {fileID: 0}
+  neckStudent: {fileID: 0}
+  neckTeacher: {fileID: 0}
+  mirror: {fileID: 0}
 --- !u!4 &1175803475
 Transform:
   m_ObjectHideFlags: 0
@@ -20199,7 +20150,7 @@ GameObject:
   - component: {fileID: 1467011024}
   - component: {fileID: 1467011023}
   m_Layer: 0
-  m_Name: Student Calibration Controller (3)
+  m_Name: studentCalibrationController3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20288,26 +20239,17 @@ MonoBehaviour:
   studentCalibrationController2: {fileID: 0}
   studentCalibrationController3: {fileID: 0}
   studentCalibrationController4: {fileID: 0}
+  teacherBody0: {fileID: 0}
+  teacherBody1: {fileID: 0}
+  teacherBody2: {fileID: 0}
+  teacherBody3: {fileID: 0}
+  teacherBody4: {fileID: 0}
   isStudent: 1
   avatarToResize: {fileID: 899018978}
-  teacherReference: {fileID: 0}
-  teacherReference1: {fileID: 0}
-  teacherReference2: {fileID: 0}
-  teacherReference3: {fileID: 0}
-  teacherReference4: {fileID: 0}
-  teacherBox: {fileID: 0}
-  teacherBox1: {fileID: 0}
-  teacherBox2: {fileID: 0}
-  teacherBox3: {fileID: 0}
-  teacherBox4: {fileID: 0}
-  teacherTable: {fileID: 0}
-  teacherTable1: {fileID: 0}
-  teacherTable2: {fileID: 0}
-  teacherTable3: {fileID: 0}
-  teacherTable4: {fileID: 0}
   studentTable: {fileID: 0}
-  eyesStudent: {fileID: 0}
-  eyesTeacher: {fileID: 0}
+  neckStudent: {fileID: 0}
+  neckTeacher: {fileID: 0}
+  mirror: {fileID: 0}
 --- !u!4 &1467011024
 Transform:
   m_ObjectHideFlags: 0
@@ -20404,7 +20346,7 @@ GameObject:
   - component: {fileID: 1475174946}
   - component: {fileID: 1475174945}
   m_Layer: 0
-  m_Name: Student Calibration Controller (1)
+  m_Name: studentCalibrationController1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20493,26 +20435,17 @@ MonoBehaviour:
   studentCalibrationController2: {fileID: 0}
   studentCalibrationController3: {fileID: 0}
   studentCalibrationController4: {fileID: 0}
+  teacherBody0: {fileID: 0}
+  teacherBody1: {fileID: 0}
+  teacherBody2: {fileID: 0}
+  teacherBody3: {fileID: 0}
+  teacherBody4: {fileID: 0}
   isStudent: 1
   avatarToResize: {fileID: 2130936959}
-  teacherReference: {fileID: 0}
-  teacherReference1: {fileID: 0}
-  teacherReference2: {fileID: 0}
-  teacherReference3: {fileID: 0}
-  teacherReference4: {fileID: 0}
-  teacherBox: {fileID: 0}
-  teacherBox1: {fileID: 0}
-  teacherBox2: {fileID: 0}
-  teacherBox3: {fileID: 0}
-  teacherBox4: {fileID: 0}
-  teacherTable: {fileID: 0}
-  teacherTable1: {fileID: 0}
-  teacherTable2: {fileID: 0}
-  teacherTable3: {fileID: 0}
-  teacherTable4: {fileID: 0}
   studentTable: {fileID: 0}
-  eyesStudent: {fileID: 0}
-  eyesTeacher: {fileID: 0}
+  neckStudent: {fileID: 0}
+  neckTeacher: {fileID: 0}
+  mirror: {fileID: 0}
 --- !u!4 &1475174946
 Transform:
   m_ObjectHideFlags: 0
@@ -21543,7 +21476,7 @@ GameObject:
   - component: {fileID: 1592053507}
   - component: {fileID: 1592053506}
   m_Layer: 0
-  m_Name: Teacher Calibration Controller (3)
+  m_Name: teacherCalibrationController3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21632,26 +21565,17 @@ MonoBehaviour:
   studentCalibrationController2: {fileID: 0}
   studentCalibrationController3: {fileID: 0}
   studentCalibrationController4: {fileID: 0}
+  teacherBody0: {fileID: 0}
+  teacherBody1: {fileID: 0}
+  teacherBody2: {fileID: 0}
+  teacherBody3: {fileID: 0}
+  teacherBody4: {fileID: 0}
   isStudent: 0
   avatarToResize: {fileID: 899018978}
-  teacherReference: {fileID: 0}
-  teacherReference1: {fileID: 0}
-  teacherReference2: {fileID: 0}
-  teacherReference3: {fileID: 0}
-  teacherReference4: {fileID: 0}
-  teacherBox: {fileID: 0}
-  teacherBox1: {fileID: 0}
-  teacherBox2: {fileID: 0}
-  teacherBox3: {fileID: 0}
-  teacherBox4: {fileID: 0}
-  teacherTable: {fileID: 0}
-  teacherTable1: {fileID: 0}
-  teacherTable2: {fileID: 0}
-  teacherTable3: {fileID: 0}
-  teacherTable4: {fileID: 0}
   studentTable: {fileID: 0}
-  eyesStudent: {fileID: 0}
-  eyesTeacher: {fileID: 0}
+  neckStudent: {fileID: 0}
+  neckTeacher: {fileID: 0}
+  mirror: {fileID: 0}
 --- !u!4 &1592053507
 Transform:
   m_ObjectHideFlags: 0
@@ -23613,12 +23537,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1764252004}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1764252006 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1824519365176864, guid: a8b466cf32c6b7a49832b2d706b33923,
-    type: 3}
-  m_PrefabInstance: {fileID: 1764252004}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1767427635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24274,11 +24192,11 @@ PrefabInstance:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 487559941}
+      objectReference: {fileID: 1099794656}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 338499640}
+      objectReference: {fileID: 263038415}
     - target: {fileID: 4000013889601590, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -24309,7 +24227,7 @@ GameObject:
   - component: {fileID: 1775645020}
   - component: {fileID: 1775645019}
   m_Layer: 0
-  m_Name: Student Calibration Controller (2)
+  m_Name: studentCalibrationController2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24398,26 +24316,17 @@ MonoBehaviour:
   studentCalibrationController2: {fileID: 0}
   studentCalibrationController3: {fileID: 0}
   studentCalibrationController4: {fileID: 0}
+  teacherBody0: {fileID: 0}
+  teacherBody1: {fileID: 0}
+  teacherBody2: {fileID: 0}
+  teacherBody3: {fileID: 0}
+  teacherBody4: {fileID: 0}
   isStudent: 1
   avatarToResize: {fileID: 1767427658}
-  teacherReference: {fileID: 0}
-  teacherReference1: {fileID: 0}
-  teacherReference2: {fileID: 0}
-  teacherReference3: {fileID: 0}
-  teacherReference4: {fileID: 0}
-  teacherBox: {fileID: 0}
-  teacherBox1: {fileID: 0}
-  teacherBox2: {fileID: 0}
-  teacherBox3: {fileID: 0}
-  teacherBox4: {fileID: 0}
-  teacherTable: {fileID: 0}
-  teacherTable1: {fileID: 0}
-  teacherTable2: {fileID: 0}
-  teacherTable3: {fileID: 0}
-  teacherTable4: {fileID: 0}
   studentTable: {fileID: 0}
-  eyesStudent: {fileID: 0}
-  eyesTeacher: {fileID: 0}
+  neckStudent: {fileID: 0}
+  neckTeacher: {fileID: 0}
+  mirror: {fileID: 0}
 --- !u!4 &1775645020
 Transform:
   m_ObjectHideFlags: 0
@@ -24621,7 +24530,7 @@ GameObject:
   - component: {fileID: 1790229345}
   - component: {fileID: 1790229344}
   m_Layer: 0
-  m_Name: Teacher Calibration Controller (1)
+  m_Name: teacherCalibrationController1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24710,26 +24619,17 @@ MonoBehaviour:
   studentCalibrationController2: {fileID: 0}
   studentCalibrationController3: {fileID: 0}
   studentCalibrationController4: {fileID: 0}
+  teacherBody0: {fileID: 0}
+  teacherBody1: {fileID: 0}
+  teacherBody2: {fileID: 0}
+  teacherBody3: {fileID: 0}
+  teacherBody4: {fileID: 0}
   isStudent: 0
   avatarToResize: {fileID: 1967477514}
-  teacherReference: {fileID: 0}
-  teacherReference1: {fileID: 0}
-  teacherReference2: {fileID: 0}
-  teacherReference3: {fileID: 0}
-  teacherReference4: {fileID: 0}
-  teacherBox: {fileID: 0}
-  teacherBox1: {fileID: 0}
-  teacherBox2: {fileID: 0}
-  teacherBox3: {fileID: 0}
-  teacherBox4: {fileID: 0}
-  teacherTable: {fileID: 0}
-  teacherTable1: {fileID: 0}
-  teacherTable2: {fileID: 0}
-  teacherTable3: {fileID: 0}
-  teacherTable4: {fileID: 0}
   studentTable: {fileID: 0}
-  eyesStudent: {fileID: 0}
-  eyesTeacher: {fileID: 0}
+  neckStudent: {fileID: 0}
+  neckTeacher: {fileID: 0}
+  mirror: {fileID: 0}
 --- !u!4 &1790229345
 Transform:
   m_ObjectHideFlags: 0
@@ -27130,7 +27030,7 @@ GameObject:
   - component: {fileID: 1992415294}
   - component: {fileID: 1992415293}
   m_Layer: 0
-  m_Name: Student Calibration Controller
+  m_Name: studentCalibrationController0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27219,26 +27119,17 @@ MonoBehaviour:
   studentCalibrationController2: {fileID: 1775645018}
   studentCalibrationController3: {fileID: 1467011022}
   studentCalibrationController4: {fileID: 929843470}
+  teacherBody0: {fileID: 0}
+  teacherBody1: {fileID: 0}
+  teacherBody2: {fileID: 0}
+  teacherBody3: {fileID: 0}
+  teacherBody4: {fileID: 0}
   isStudent: 1
   avatarToResize: {fileID: 871151245}
-  teacherReference: {fileID: 2128405024}
-  teacherReference1: {fileID: 1762953544}
-  teacherReference2: {fileID: 1451302860}
-  teacherReference3: {fileID: 298677050}
-  teacherReference4: {fileID: 1627594409}
-  teacherBox: {fileID: 1808788973}
-  teacherBox1: {fileID: 817706464}
-  teacherBox2: {fileID: 1478392312}
-  teacherBox3: {fileID: 1612662567}
-  teacherBox4: {fileID: 1197619827}
-  teacherTable: {fileID: 2047628118}
-  teacherTable1: {fileID: 551747089}
-  teacherTable2: {fileID: 1764252006}
-  teacherTable3: {fileID: 711163652}
-  teacherTable4: {fileID: 224074442}
   studentTable: {fileID: 891213700}
-  eyesStudent: {fileID: 1355803616}
-  eyesTeacher: {fileID: 1285173291}
+  neckStudent: {fileID: 0}
+  neckTeacher: {fileID: 0}
+  mirror: {fileID: 0}
 --- !u!4 &1992415294
 Transform:
   m_ObjectHideFlags: 0
@@ -27247,7 +27138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992415292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.907193, y: 1.3384302, z: 0.29117703}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
