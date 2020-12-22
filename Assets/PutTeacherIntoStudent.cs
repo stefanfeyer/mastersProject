@@ -41,17 +41,17 @@ public class PutTeacherIntoStudent : MonoBehaviour
         //teacherZero.transform.position = deltaStudentTeacher;
         if(deltaStudentTeacher.magnitude >= stopDistance){
             teacherZero.GetComponent<Animator>().speed = 0;
-            teacher1.GetComponent<Animator>().speed = 0;
-            teacher2.GetComponent<Animator>().speed = 0;
-            teacher3.GetComponent<Animator>().speed = 0;
-            teacher4.GetComponent<Animator>().speed = 0;
+            if(teacher1!=null){teacher1.GetComponent<Animator>().speed = 0;}
+            if(teacher2!=null){teacher2.GetComponent<Animator>().speed = 0;}
+            if(teacher3!=null){teacher3.GetComponent<Animator>().speed = 0;}
+            if(teacher4!=null){teacher4.GetComponent<Animator>().speed = 0;}
         }
         else{
             teacherZero.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
-            teacher1.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
-            teacher2.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
-            teacher3.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
-            teacher4.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
+            if(teacher1!=null){teacher1.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
+            if(teacher2!=null){teacher2.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
+            if(teacher3!=null){teacher3.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
+            if(teacher4!=null){teacher4.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
         }   
     }
 }

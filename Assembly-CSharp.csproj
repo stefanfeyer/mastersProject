@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <CscToolPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f6\Editor\Data\Tools\RoslynScripts</CscToolPath>
-    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{5D26E8CA-4B0A-8665-6D84-9C9991AFD2CA}</ProjectGuid>
+    <ProjectGuid>{cae8265d-0a4b-6586-6d84-9c9991afd2ca}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -46,14 +44,6 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f6\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f6\Editor\Data\Managed/UnityEditor.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\HTC.UnityPlugin\ColliderEvent\ColliderEventCaster.cs" />
      <Compile Include="Assets\HTC.UnityPlugin\ColliderEvent\ColliderEventData.cs" />
@@ -226,6 +216,26 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\AnimationRecorderHelper.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\BigNumber\BigInteger.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\FbxExporter\FbxConnectionObj.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\FbxExporter\FbxConnectionsManager.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\FbxExporter\FbxDataNode.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\FbxExporter\FbxDefinitionManager.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\FbxExporter\FbxExporter.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\FbxExporter\FbxHelper.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\FbxExporter\FbxObjectNode.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\FbxExporter\FbxObjectSubNode.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\FbxExporter\FbxObjectsManager.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\FbxExporter\testFBX.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\General\ExportHelper.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\General\TransformTracker.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\MayaExporter\MayaAnimationRecorder.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\MayaExporter\MayaNodeDataContainer.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\UnityAnimSaver\UnityAnimationRecorder.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\UnityAnimSaver\UnityBlendShapeAnimation.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\UnityAnimSaver\UnityCurveContainer.cs" />
+     <Compile Include="Assets\Unity Runtime Recorder\Scripts\UnityAnimSaver\UnityObjectAnimation.cs" />
      <Compile Include="Assets\UnityLitJson-Example\JsonExample.cs" />
      <Compile Include="Assets\UnityLitJson\Extensions.cs" />
      <Compile Include="Assets\UnityLitJson\IJsonWrapper.cs" />
@@ -270,38 +280,8 @@
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
- <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Recorder.Editor">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Recorder">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <Reference Include="UnityEngine">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -480,8 +460,11 @@
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEditor.dll</HintPath>
+ </Reference>
  <Reference Include="Valve.Newtonsoft.Json">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/FEYER/mastersProject/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -840,32 +823,76 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{E82981B4-CB0B-6715-B8E4-48F38C6E6EFF}</Project>
+      <Project>{b48129e8-0bcb-1567-b8e4-48f38c6e6eff}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.Editor.csproj">
+      <Project>{7c95cd34-ded0-ce6f-cfd4-e367683a3c7e}</Project>
+      <Name>Unity.Timeline.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VSCode.Editor.csproj">
+      <Project>{a0d89053-50ef-4f30-ca39-c8e566046348}</Project>
+      <Name>Unity.VSCode.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Recorder.Editor.csproj">
+      <Project>{df81d181-a3be-f0c7-a121-09ee0c6b0508}</Project>
+      <Name>Unity.Recorder.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
+      <Project>{918962b7-f138-c02f-5b09-15cc8ce6150b}</Project>
+      <Name>Unity.TextMeshPro.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Recorder.csproj">
+      <Project>{e0fef9a2-d141-db5a-f559-72bfc837534d}</Project>
+      <Name>Unity.Recorder</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{78fe798c-ca8c-a769-f3a5-88fdaa14a246}</Project>
+      <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.csproj">
+      <Project>{6987b4f7-4dfd-85be-5df1-d85b65d910a2}</Project>
+      <Name>Unity.Timeline</Name>
+    </ProjectReference>
     <ProjectReference Include="SteamVR_Actions.csproj">
-      <Project>{7F0693C9-8475-843D-76C6-54B39D04751A}</Project>
+      <Project>{c993067f-7584-3d84-76c6-54b39d04751a}</Project>
       <Name>SteamVR_Actions</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.CollabProxy.Editor.csproj">
+      <Project>{d84a2ae6-00c8-d3da-619f-f4d8b60a8d53}</Project>
+      <Name>Unity.CollabProxy.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Rider.Editor.csproj">
+      <Project>{b77f233f-55d4-5744-f0e9-c569a610a2d9}</Project>
+      <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="SteamVR_Input_Editor.csproj">
-      <Project>{E0A8BF5B-BFA6-8C3B-1BF7-834FABDFBDD8}</Project>
+      <Project>{5bbfa8e0-a6bf-3b8c-1bf7-834fabdfbdd8}</Project>
       <Name>SteamVR_Input_Editor</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR_Editor.csproj">
-      <Project>{4CD27DA8-8597-0CB6-3BBD-6C3169346DE7}</Project>
+      <Project>{a87dd24c-9785-b60c-3bbd-6c3169346de7}</Project>
       <Name>SteamVR_Editor</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR.csproj">
-      <Project>{34B89BCC-686A-F22E-F48D-921D7A525579}</Project>
+      <Project>{cc9bb834-6a68-2ef2-f48d-921d7a525579}</Project>
       <Name>SteamVR</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{5919b380-2e3f-9565-6f3f-76ad9e5c947a}</Project>
+      <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
     <ProjectReference Include="SteamVR_Windows_EditorHelper.csproj">
-      <Project>{512D4591-2C71-60AB-733D-573F1D1770F5}</Project>
+      <Project>{91452d51-712c-ab60-733d-573f1d1770f5}</Project>
       <Name>SteamVR_Windows_EditorHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{a2bdc8e6-3bae-719a-a7b1-d69a9b23a50e}</Project>
+      <Name>UnityEditor.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

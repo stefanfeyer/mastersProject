@@ -85,9 +85,10 @@ namespace RootMotion.Demos
                     GameObject[] boxes = {teacherBox,teacherBox1,teacherBox2,teacherBox3,teacherBox4};
                     GameObject[] tables = {teacherTable,teacherTable1,teacherTable2,teacherTable3,teacherTable4};
                     GameObject[] studentCalibrationControllers = {studentCalibrationController1,studentCalibrationController2,studentCalibrationController3,studentCalibrationController4};
-                    
-                    
-
+         
+                    teacherTable.transform.parent = new GameObject().transform;
+                    teacherTable.transform.localScale *=scale;
+                    teacherBox.transform.position *= scale;
                     foreach (var item in teacherReferences)
                     {
                         if (item != null)
@@ -95,6 +96,8 @@ namespace RootMotion.Demos
                             item.transform.localScale *= scale;//new Vector3(1f, scale, 1f);
                         }
                     }
+
+                    teacherTable.transform.parent = teacherReference.transform;
 
                     foreach (var item in callibrationControllers)
                     {
@@ -121,7 +124,7 @@ namespace RootMotion.Demos
                         {
                             Debug.Log("TABLE");
                             item.transform.localScale *= (1 / scale);
-                            item.transform.position *= (1 / scale);
+                            item.transform.position *= (1 / scale );
                         }
                     }
 
