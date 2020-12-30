@@ -22,6 +22,7 @@ namespace RootMotion.Demos
         public VRIKCalibrator.CalibrationData data = new VRIKCalibrator.CalibrationData();
 
         public bool showTrackers = false;
+        public bool showMirror = false;
 
         public GameObject teacherCalibrationController;
         public GameObject teacherCalibrationController1;
@@ -127,7 +128,7 @@ namespace RootMotion.Demos
                     //teacherTable3.transform.localScale *= 1 / scale;
                     //teacherTable4.transform.localScale *= 1 / scale;
 
-                    avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+                    //avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
                     studentTable.GetComponent<SteamVR_TrackedObject>().enabled = false;
                     
                     
@@ -136,7 +137,11 @@ namespace RootMotion.Demos
                     //avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
 
                     removeTrackerRendering();
-                    removeMirror();
+                    if (!showMirror)
+                    {
+                        removeMirror();    
+                    }
+                    
                         
                 }
                 //data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
@@ -179,7 +184,7 @@ namespace RootMotion.Demos
         void calibrate(){
             Debug.Log("calibrate teacher or student");
             data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
-            avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
+            //avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
         }
 
         void removeTrackerRendering(){

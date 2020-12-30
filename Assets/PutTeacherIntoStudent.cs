@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// this script should be called animationSpeedController
 public class PutTeacherIntoStudent : MonoBehaviour
 {
     public GameObject studentZero;
