@@ -1,28 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// this script should be called animationSpeedController
 public class PutTeacherIntoStudent : MonoBehaviour
 {
     public GameObject studentZero;
     public GameObject studentHip;
     public GameObject teacherZero;
     public GameObject teacherHip;
+    public GameObject teacherZeroProps;
 
-    public GameObject teacher1;
-    public GameObject teacher2;
-    public GameObject teacher3;
-    public GameObject teacher4;
-    
+    public GameObject exoTeacherBody1;
+    public GameObject exoTeacherBody2;
+    public GameObject exoTeacherBody3;
+    public GameObject exoTeacherBody4;
+    public GameObject exoTeacherProps1;
+    public GameObject exoTeacherProps2;
+    public GameObject exoTeacherProps3;
+    public GameObject exoTeacherProps4;
+
     public bool enableSpeedMechanic = true;
     // Start is called before the first frame update
 
+    private GameObject[] teacherBodies;
+    private GameObject[] teacherProps;
+
     void Start()
     {
-        
+        teacherBodies = new GameObject[]{exoTeacherBody1, exoTeacherBody2, exoTeacherBody3, exoTeacherBody4};
+        teacherProps = new GameObject[]{exoTeacherProps1,exoTeacherProps2,exoTeacherProps3,exoTeacherProps4};
+        foreach (var item in teacherBodies)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Animator>().speed = 0;
+            }
+        }
+        foreach (var item in teacherProps)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Animator>().speed = 0;
+            }
+        }
     }
 
-    float stopDistance = 0.3f;
+
+    float stopDistance = 0f;
     float fullSpeedDistance = 0.15f;
 
     // Update is called once per frame
@@ -30,7 +54,11 @@ public class PutTeacherIntoStudent : MonoBehaviour
     {
         if (enableSpeedMechanic == false)
         {
-            stopDistance = 5f;
+            stopDistance = 50f;
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            stopDistance = 0.3f;
         }
         Vector3 studentHipPositionOnFloor = new Vector3(studentHip.transform.position.x, 0, studentHip.transform.position.z);
         Vector3 teacherHipPositionOnFloor = new Vector3(teacherHip.transform.position.x, 0, teacherHip.transform.position.z);
@@ -41,17 +69,56 @@ public class PutTeacherIntoStudent : MonoBehaviour
         //teacherZero.transform.position = deltaStudentTeacher;
         if(deltaStudentTeacher.magnitude >= stopDistance){
             teacherZero.GetComponent<Animator>().speed = 0;
-            if(teacher1!=null){teacher1.GetComponent<Animator>().speed = 0;}
-            if(teacher2!=null){teacher2.GetComponent<Animator>().speed = 0;}
-            if(teacher3!=null){teacher3.GetComponent<Animator>().speed = 0;}
-            if(teacher4!=null){teacher4.GetComponent<Animator>().speed = 0;}
+            teacherZeroProps.GetComponent<Animator>().speed = 0;
+            foreach (var item in teacherBodies)
+            {
+                if (item != null)
+                {
+                    item.GetComponent<Animator>().speed = 0;
+                }
+            }
+            foreach (var item in teacherProps)
+            {
+                if (item != null)
+                {
+                    item.GetComponent<Animator>().speed = 0;
+                }
+            }
+            //if(exoTeacherBody1!=null){exoTeacherBody1.GetComponent<Animator>().speed = 0;}
+            //if(exoTeacherBody2!=null){exoTeacherBody2.GetComponent<Animator>().speed = 0;}
+            //if(exoTeacherBody3!=null){exoTeacherBody3.GetComponent<Animator>().speed = 0;}
+            //if(exoTeacherBody4!=null){exoTeacherBody4.GetComponent<Animator>().speed = 0;}
+            //if(exoTeacherProps1!=null){exoTeacherBody1.GetComponent<Animator>().speed = 0;}
+            //if(exoTeacherProps2!=null){exoTeacherBody2.GetComponent<Animator>().speed = 0;}
+            //if(exoTeacherProps3!=null){exoTeacherBody3.GetComponent<Animator>().speed = 0;}
+            //if(exoTeacherProps4!=null){exoTeacherBody4.GetComponent<Animator>().speed = 0;}
         }
-        else{
+        else
+        {
             teacherZero.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
-            if(teacher1!=null){teacher1.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
-            if(teacher2!=null){teacher2.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
-            if(teacher3!=null){teacher3.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
-            if(teacher4!=null){teacher4.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
+            teacherZeroProps.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
+            foreach (var item in teacherBodies)
+            {
+                if (item != null)
+                {
+                    item.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
+                }
+            }
+            foreach (var item in teacherProps)
+            {
+                if (item != null)
+                {
+                    item.GetComponent<Animator>().speed  = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
+                }
+            }
+            //if(exoTeacherBody1!=null){exoTeacherBody1.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
+            //if(exoTeacherBody2!=null){exoTeacherBody2.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
+            //if(exoTeacherBody3!=null){exoTeacherBody3.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
+            //if(exoTeacherBody4!=null){exoTeacherBody4.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
+            //if(exoTeacherProps1!=null){exoTeacherBody1.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
+            //if(exoTeacherProps2!=null){exoTeacherBody2.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
+            //if(exoTeacherProps3!=null){exoTeacherBody3.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
+            //if(exoTeacherProps4!=null){exoTeacherBody4.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));}
         }   
     }
 }
