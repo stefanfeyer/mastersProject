@@ -48,6 +48,7 @@ namespace RootMotion.Demos
         
 
         public GameObject studentTable;
+        public GameObject studentScale;
 
         public GameObject neckStudent;
         public GameObject neckTeacher;
@@ -130,7 +131,7 @@ namespace RootMotion.Demos
 
                     //avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
                     studentTable.GetComponent<SteamVR_TrackedObject>().enabled = false;
-                    
+                    studentScale.GetComponent<SteamVR_TrackedObject>().enabled = false;                    
                     
                     //teacherCalibrationController.GetComponent<VRIKCalibrationController>().data = data;
                     //teacherCalibrationController.GetComponent<VRIKCalibrationController>().calibrate();

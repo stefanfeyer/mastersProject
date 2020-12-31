@@ -33,7 +33,7 @@ public class recorderController : MonoBehaviour
     }
 
     void startRecording(){
-        bodyRecorder.fileName = fileName + "Student";
+        bodyRecorder.fileName = fileName + "Body";
         bodyRecorder.StartRecording();
         propsRecorder.fileName = fileName + "Props";
         propsRecorder.StartRecording();

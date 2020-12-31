@@ -17,7 +17,7 @@ public class trackedObjectIdent : MonoBehaviour
     // B8:  LHR-89131158 BOX
     // B9:  LHR-31D0CDF2 LHand
     // B10: LHR-CAC69A3C RHand
-    // B12: LHR-2B0A3940 free
+    // B12: LHR-2B0A3940 Scale
     // B13: LHR-57C1EE09 free
     // B14: LHR-6C32F5E5 upper hip
     // B15: LHR-60970C40 left shoulder
@@ -54,6 +54,8 @@ public class trackedObjectIdent : MonoBehaviour
 
     // tanv: tight shoulder steamVrTrackedObject
     public GameObject studentUpperHip;
+    // scale
+    public GameObject scale;
 
     // tanv: upper hip steamVrTrackedObject
     void Start()
@@ -109,6 +111,10 @@ public class trackedObjectIdent : MonoBehaviour
                 case "LHR-6C32F5E5":
                     studentUpperHip.GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int) i);
                     Debug.Log("Found device with ID LHR-6C32F5E5 (B14, upper hip). I assing upper hip with device index: " +i);
+                    break;
+                case "LHR-2B0A3940":
+                    scale.GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int) i);
+                    Debug.Log("Found device with ID LHR-2B0A3940 (B12, scale). I assing scale with device index: " +i);
                     break;
                 case "LHR-249568A0":
                     Debug.Log("Found device with ID LHR-249568A0 (Valve Index). It has device index: " +i);
