@@ -252,6 +252,7 @@
      <Compile Include="Assets\UnityLitJson\Platform.cs" />
      <Compile Include="Assets\UnityLitJson\Unity\UnityTypeBindings.cs" />
      <Compile Include="Assets\logger.cs" />
+     <Compile Include="Assets\lookingAt.cs" />
      <Compile Include="Assets\putStudentIntoTeacher.cs" />
      <Compile Include="Assets\recorderController.cs" />
      <Compile Include="Assets\scaleToStudent.cs" />
@@ -260,6 +261,7 @@
      <Compile Include="Assets\shiftIt.cs" />
      <Compile Include="Assets\shiftValues.cs" />
      <Compile Include="Assets\trackedObjectIdent.cs" />
+     <Compile Include="Assets\whoAmI.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
