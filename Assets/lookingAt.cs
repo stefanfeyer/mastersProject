@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class lookingAt : MonoBehaviour
 {
+    public string rayCastHitName;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class lookingAt : MonoBehaviour
         Physics.Raycast(transform.position, transform.forward, out hit, 100.0f);
         
         
-        Debug.Log(hit.transform.gameObject.GetComponent<whoAmI>().id);
+        //Debug.Log(hit.transform.gameObject.GetComponent<whoAmI>().id);
+        rayCastHitName = hit.transform.gameObject.GetComponent<whoAmI>().id;
     }
 }
