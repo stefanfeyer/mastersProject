@@ -19,6 +19,7 @@ public class logging : MonoBehaviour
     private string theLog = "";
     private int currentAnimationFrame = 0;
     private int totalAnimationFrames = 0;
+    private Boolean isLogging = false;
 
     StreamWriter file;
 
@@ -26,29 +27,40 @@ public class logging : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startTime = DateTime.Now;
-        addHeaderToLog();
+    
     }
 
     // Update is called once per frame
     void Update()
     {
-        int oldAnimationFrame = currentAnimationFrame;
-        if (getCurrentAnimationFrame() > oldAnimationFrame)
-        {
-            createLogEntry();    
-        }
-        
-
-        // get the frames the movements do start
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log(currentAnimationFrame);
+        // on key down S also the animation starts
+        if(Input.GetKeyDown(KeyCode.S)){
+            Debug.Log("Logging start");
+            startTime = DateTime.Now;
+            addHeaderToLog();
+            isLogging = true;
         }
 
-        if (totalAnimationFrames >= currentAnimationFrame)
+        if (isLogging)
         {
-            storeData();
+            int oldAnimationFrame = currentAnimationFrame;
+
+            if (getCurrentAnimationFrame() > oldAnimationFrame)
+            {
+                createLogEntry();    
+            }
+
+            // get the frames the movements do start
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log(currentAnimationFrame);
+            }
+
+            if (totalAnimationFrames >= currentAnimationFrame)
+            {
+                isLogging = false;
+                storeData();
+            }
         }
     }
 
