@@ -252,6 +252,8 @@
      <Compile Include="Assets\UnityLitJson\Platform.cs" />
      <Compile Include="Assets\UnityLitJson\Unity\UnityTypeBindings.cs" />
      <Compile Include="Assets\logger.cs" />
+     <Compile Include="Assets\logging.cs" />
+     <Compile Include="Assets\lookingAt.cs" />
      <Compile Include="Assets\putStudentIntoTeacher.cs" />
      <Compile Include="Assets\recorderController.cs" />
      <Compile Include="Assets\scaleToStudent.cs" />
@@ -260,6 +262,8 @@
      <Compile Include="Assets\shiftIt.cs" />
      <Compile Include="Assets\shiftValues.cs" />
      <Compile Include="Assets\trackedObjectIdent.cs" />
+     <Compile Include="Assets\whoAmI.cs" />
+     <None Include="Assets\CrowArt - PBR Cardboard Box\CC_Assets\RL_Readme_Auto_Setup_1.1_for_Unity.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
@@ -468,7 +472,7 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEditor.dll</HintPath>
  </Reference>
  <Reference Include="Valve.Newtonsoft.Json">
- <HintPath>C:/FEYER/mastersProject/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
