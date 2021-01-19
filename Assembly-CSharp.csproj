@@ -256,6 +256,7 @@
      <Compile Include="Assets\lookingAt.cs" />
      <Compile Include="Assets\putStudentIntoTeacher.cs" />
      <Compile Include="Assets\recorderController.cs" />
+     <Compile Include="Assets\riskMetrics.cs" />
      <Compile Include="Assets\scaleToStudent.cs" />
      <Compile Include="Assets\setPosition.cs" />
      <Compile Include="Assets\setPositionRecorder.cs" />
