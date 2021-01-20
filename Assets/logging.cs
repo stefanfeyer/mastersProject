@@ -13,7 +13,7 @@ public class logging : MonoBehaviour
     public GameObject rayCast;
     public GameObject neckHead;
 
-    private string state = "start";
+    private string state = "start;";
     public string fileName = "testFile.txt";
 
     private string path = @"C:\FEYER\logs\";
@@ -28,7 +28,7 @@ public class logging : MonoBehaviour
     DateTime startTime;
     // Start is called before the first frame update
 
-    // !!! TODO yxc: check right foot distance, log neckHead, 5 more value entries than header entries. fix dat!
+    // !!! TODO yxc: check right foot distance, log neckHead, 5 more value entries than header entries. log hip - box distance. log total animationframes. fix dat!
     void Start()
     {
         // rechts/links händer?
@@ -50,12 +50,14 @@ public class logging : MonoBehaviour
             startTime = DateTime.Now;
             createLogEntry();
         }
+
+        // kill recording and store the data
         if (Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("Logging end");
-            startTime = DateTime.Now;
             addHeaderToLog();
             storeData();
+            isLogging = false;
         }
 
         if (isLogging)
@@ -73,7 +75,7 @@ public class logging : MonoBehaviour
                 Debug.Log(currentAnimationFrame);
             }
 
-            if (totalAnimationFrames >= currentAnimationFrame)
+            if (currentAnimationFrame  >= totalAnimationFrames)
             {
                 isLogging = false;
                 addHeaderToLog();
@@ -88,7 +90,7 @@ public class logging : MonoBehaviour
     }
     private void addLine()
     {
-        theLog = theLog + getElaplsedTimeInMs() + getCurrentAnimationFrameString() + getState() + getAccuracyDistance() + getAccuracyAngle() + getRiskMetrics() + studentBodyValues() + teacherBodyValues() + studentPropsValues() + teacherPropsValues() + "\n";
+        theLog = theLog + getElaplsedTimeInMs() + getCurrentAnimationFrameString() + getState() + getAccuracyDistance() + getAccuracyAngle() + getRiskMetrics() + getLookingAt() + studentBodyValues() + teacherBodyValues() + studentPropsValues() + teacherPropsValues() + "\n";
     }
 
     private int getCurrentAnimationFrame(){
@@ -170,7 +172,7 @@ public class logging : MonoBehaviour
     {
         if (firstTimeStudentTeacherValues)
         {
-            foreach (Transform child in studentBody.transform)
+            foreach (Transform child in teacherBody.transform)
             {
                 header = header + "teacher" + child.name + "PosX;" + "teacher" + child.name + "PosY;" + "teacher" + child.name + "PosZ;" + "teacher" + child.name + "RotX;" + "teacher" + child.name + "RotY;" + "teacher" + child.name + "RotZ;";
             }
@@ -268,7 +270,7 @@ public class logging : MonoBehaviour
         + ";"
         + calculateSpineTwist(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject)
         + ";";
-        //student
+        //teacher
         string teacherRiskMetrics = ""
         + calculateSpineBendAngle(teacherBody.transform.Find("Hip").gameObject, teacherBody.transform.Find("upperHipTracker").gameObject)
         + ";"
