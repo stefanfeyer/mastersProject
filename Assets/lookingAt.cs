@@ -23,6 +23,11 @@ public class lookingAt : MonoBehaviour
         
         
         //Debug.Log(hit.transform.gameObject.GetComponent<whoAmI>().id);
-        rayCastHitName = hit.transform.gameObject.GetComponent<whoAmI>().id;
+        if (hit.transform.gameObject.GetComponent<whoAmI>())
+        {
+            Debug.Log(hit.transform.gameObject.GetComponent<whoAmI>().id);
+            rayCastHitName = hit.transform.gameObject.GetComponent<whoAmI>().id;
+        }
+        
     }
 }

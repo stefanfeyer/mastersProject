@@ -254,6 +254,7 @@
      <Compile Include="Assets\logger.cs" />
      <Compile Include="Assets\logging.cs" />
      <Compile Include="Assets\lookingAt.cs" />
+     <Compile Include="Assets\makeTeacherHeadTransparent.cs" />
      <Compile Include="Assets\putStudentIntoTeacher.cs" />
      <Compile Include="Assets\recorderController.cs" />
      <Compile Include="Assets\riskMetrics.cs" />

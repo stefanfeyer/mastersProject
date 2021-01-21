@@ -54,25 +54,19 @@ namespace RootMotion.Demos
         public GameObject neckTeacher;
 
         public GameObject mirror;
+
+        public GameObject scriptHolder;
  
         void LateUpdate()
-        {
-           
+        {           
             if (Input.GetKeyDown(KeyCode.C))
             {
-                
+                Debug.Log("C-block in calibration controller");
                 // Calibrate the character, store data of the calibration
                 if (isStudent)
                 {
                     data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
                     scale = neckStudent.transform.position.y / neckTeacher.transform.position.y;
-                    //Debug.Log("teacherEye:");
-                    //Debug.Log(eyesTeacher.transform.position.y);
-                    //Debug.Log("studentEye:");
-                    //Debug.Log(eyesStudent.transform.position.y);
-                    //Debug.Log("scale");
-                    //Debug.Log(scale);
-                    //scale = avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
                     
                     GameObject[] teacherReferences = {teacherBody0,teacherBody1,teacherBody2,teacherBody3,teacherBody4};
                     GameObject[] callibrationControllers = {teacherCalibrationController,teacherCalibrationController1,teacherCalibrationController2,teacherCalibrationController3,teacherCalibrationController4};                    
@@ -104,51 +98,15 @@ namespace RootMotion.Demos
                         }
                     }
                     
-                    
-                    //teacherReference.transform.localScale = new Vector3(1f, scale, 1f);
-                    //teacherReference1.transform.localScale = new Vector3(1f, scale, 1f);
-                    //teacherReference2.transform.localScale = new Vector3(1f, scale, 1f);
-                    //teacherReference3.transform.localScale = new Vector3(1f, scale, 1f);
-                    //teacherReference4.transform.localScale = new Vector3(1f, scale, 1f);
-
-                    //teacherCalibrationController.GetComponent<VRIKCalibrationController>().calibrate();
-                    //teacherCalibrationController1.GetComponent<VRIKCalibrationController>().calibrate();
-                    //teacherCalibrationController2.GetComponent<VRIKCalibrationController>().calibrate();
-                    //teacherCalibrationController3.GetComponent<VRIKCalibrationController>().calibrate();
-                    //teacherCalibrationController4.GetComponent<VRIKCalibrationController>().calibrate();
-
-                    //teacherBox.transform.localScale *= 1 / scale;
-                    //teacherBox1.transform.localScale *= 1 / scale;
-                    //teacherBox2.transform.localScale *= 1 / scale;
-                    //teacherBox3.transform.localScale *= 1 / scale;
-                    //teacherBox4.transform.localScale *= 1 / scale;
-
-                    //teacherTable.transform.localScale *= 1 / scale;
-                    //teacherTable1.transform.localScale *= 1 / scale;
-                    //teacherTable2.transform.localScale *= 1 / scale;
-                    //teacherTable3.transform.localScale *= 1 / scale;
-                    //teacherTable4.transform.localScale *= 1 / scale;
-
-                    //avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
                     studentTable.GetComponent<SteamVR_TrackedObject>().enabled = false;
                     studentScale.GetComponent<SteamVR_TrackedObject>().enabled = false;                    
-                    
-                    //teacherCalibrationController.GetComponent<VRIKCalibrationController>().data = data;
-                    //teacherCalibrationController.GetComponent<VRIKCalibrationController>().calibrate();
-                    //avatarToResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
 
                     removeTrackerRendering();
                     if (!showMirror)
                     {
                         removeMirror();    
-                    }
-                    
-                        
+                    }                        
                 }
-                //data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
-                
-                //toResize.GetComponent<VRIKAvatarScaleCalibrationSteamVR>().resize();
-                //data = VRIKCalibrator.Calibrate(ik, settings, headTracker, bodyTracker, leftHandTracker, rightHandTracker, leftFootTracker, rightFootTracker);
 
             }
 

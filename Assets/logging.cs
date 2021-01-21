@@ -13,7 +13,7 @@ public class logging : MonoBehaviour
     public GameObject rayCast;
     public GameObject neckHead;
 
-    private string state = "start;";
+    private string state = "init";
     public string fileName = "testFile.txt";
 
     private string path = @"C:\FEYER\logs\";
@@ -22,13 +22,16 @@ public class logging : MonoBehaviour
     private int totalAnimationFrames = 0;
     private Boolean isLogging = false;
     private string header = "";
+    private Vector3 hipUpwardVector;
 
     StreamWriter file;
+
+    public GameObject studentCalibrationController;
 
     DateTime startTime;
     // Start is called before the first frame update
 
-    // !!! TODO yxc: check right foot distance, log neckHead, 5 more value entries than header entries. log hip - box distance. log total animationframes. fix dat!
+    // !!! TODO yxc: log hip - box distance. fix dat!
     void Start()
     {
         // rechts/links händer?
@@ -60,6 +63,16 @@ public class logging : MonoBehaviour
             isLogging = false;
         }
 
+        // store the calibration data, check if it is really happening after the calibration
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("C-block in logging");
+            calcHipUpwardVector(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("upperHipTracker").gameObject);
+            state = "calibration";
+            createLogEntry();
+            state = "init";
+        }
+
         if (isLogging)
         {
             int oldAnimationFrame = currentAnimationFrame;
@@ -75,6 +88,8 @@ public class logging : MonoBehaviour
                 Debug.Log(currentAnimationFrame);
             }
 
+            
+
             if (currentAnimationFrame  >= totalAnimationFrames)
             {
                 isLogging = false;
@@ -85,12 +100,11 @@ public class logging : MonoBehaviour
     }
 
     private void createLogEntry(){
-        Debug.Log("creating log entry for frame: " + currentAnimationFrame);
         addLine();
     }
     private void addLine()
     {
-        theLog = theLog + getElaplsedTimeInMs() + getCurrentAnimationFrameString() + getState() + getAccuracyDistance() + getAccuracyAngle() + getRiskMetrics() + getLookingAt() + studentBodyValues() + teacherBodyValues() + studentPropsValues() + teacherPropsValues() + "\n";
+        theLog = theLog + getElaplsedTimeInMs() + getCurrentAnimationFrameString() + getTotalAnimationFrameString() + getState() + getAccuracyDistance() + getAccuracyAngle() + getRiskMetrics() + getLookingAt() + studentHeadValues() + studentBodyValues() + teacherBodyValues() + studentPropsValues() + teacherPropsValues() + "\n";
     }
 
     private int getCurrentAnimationFrame(){
@@ -108,13 +122,26 @@ public class logging : MonoBehaviour
     }
 
     private bool firstTimeAF = true;
-    private string getCurrentAnimationFrameString(){
+    private string getCurrentAnimationFrameString()
+    {
         if (firstTimeAF)
         {
             header = header + "currentAnimationFrame;";
             firstTimeAF = false;
         }
         return currentAnimationFrame + ";";
+
+    }
+
+    private bool firstTimeTA = true;
+    private string getTotalAnimationFrameString()
+    {
+        if (firstTimeTA)
+        {
+            header = header + "totalAnimationFrame;";
+            firstTimeTA = false;
+        }
+        return totalAnimationFrames + ";";
 
     }
 
@@ -128,18 +155,18 @@ public class logging : MonoBehaviour
 
         if (currentAnimationFrame >= 58)
         {
-            state = "lift;";
+            state = "lift";
         }
         if (currentAnimationFrame >= 268)
         {
-            state = "carry;";
+            state = "carry";
         }
         if (currentAnimationFrame >= 700)
         {
-            state = "place;";
+            state = "place";
         }
         Debug.Log(state);
-        return state;
+        return state + ";";
         
     }
 
@@ -225,6 +252,17 @@ public class logging : MonoBehaviour
 
     }
 
+    private bool firstTimeStudentHead = true;
+    private string studentHeadValues()
+    {
+        if (firstTimeStudentHead)
+        {
+            header = header + "studentHeadPosX;studentHeadPosY;studentHeadPosZ;studentHeadRotX;studentHeadRotY;studentHeadRotZ;";
+            firstTimeStudentHead = false;
+        }
+        return transformToString(neckHead.transform);
+    }
+
     private string transformToString(Transform t){
         
         Vector3 pos = t.position;
@@ -283,12 +321,16 @@ public class logging : MonoBehaviour
         return "" + studentRiskMetrics + teacherRiskMetrics;
     }
 
+    private void calcHipUpwardVector(GameObject _lowerHip, GameObject _upperHip){
+        hipUpwardVector = _lowerHip.transform.position - _upperHip.transform.position;
+    }
+
     float calculateSpineBendAngle(GameObject _lowerHip, GameObject _upperHip)
     {
         GameObject refPointBendAngle = new GameObject();
         float a, b, c;
-        Vector3 upward = new Vector3(0, 1f, 0); //Magnitude for the reference point
-        refPointBendAngle.transform.position = _lowerHip.transform.position + upward;
+        //Vector3 upward = new Vector3(0, 1f, 0); // straight upward vector. but on calibration, the upward vector is set by the value of the body
+        refPointBendAngle.transform.position = _lowerHip.transform.position + hipUpwardVector;
         //Distance of the segments that form a triangle (necessary for LawOfCosines)
         b = Vector3.Distance(_lowerHip.transform.position, refPointBendAngle.transform.position);
         a = Vector3.Distance(_lowerHip.transform.position, _upperHip.transform.position);
@@ -402,6 +444,8 @@ public class logging : MonoBehaviour
 
         return accuracyValues;
     }
+
+    
 
     private void storeData(){
         file = new System.IO.StreamWriter(path + fileName, true);
