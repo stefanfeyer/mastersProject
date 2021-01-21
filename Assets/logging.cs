@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+    
 
 public class logging : MonoBehaviour
 {
@@ -23,15 +24,13 @@ public class logging : MonoBehaviour
     private Boolean isLogging = false;
     private string header = "";
     private Vector3 hipUpwardVector;
-
+    private float hipRotationAtCalibration;
     StreamWriter file;
-
-    public GameObject studentCalibrationController;
 
     DateTime startTime;
     // Start is called before the first frame update
 
-    // !!! TODO yxc: log hip - box distance. fix dat!
+    // !!! TODO yxc: log hip - box distance. log upward vector. store in arry. log every frame.fix dat!
     void Start()
     {
         // rechts/links händer?
@@ -49,7 +48,7 @@ public class logging : MonoBehaviour
 
         // debug
         if(Input.GetKeyDown(KeyCode.L)){
-            Debug.Log("Logging start");
+            Debug.Log("created single log entry");
             startTime = DateTime.Now;
             createLogEntry();
         }
@@ -57,20 +56,25 @@ public class logging : MonoBehaviour
         // kill recording and store the data
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Debug.Log("Logging end");
+            Debug.Log("Logging killed");
             addHeaderToLog();
             storeData();
             isLogging = false;
         }
 
         // store the calibration data, check if it is really happening after the calibration
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.V))
         {
-            Debug.Log("C-block in logging");
             calcHipUpwardVector(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("upperHipTracker").gameObject);
+            calcHipRotationAtCalibration();
             state = "calibration";
-            createLogEntry();
+            //createLogEntry();
             state = "init";
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            calculateSpineTwist(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject);
         }
 
         if (isLogging)
@@ -99,7 +103,7 @@ public class logging : MonoBehaviour
         }
     }
 
-    private void createLogEntry(){
+    public void createLogEntry(){
         addLine();
     }
     private void addLine()
@@ -165,7 +169,6 @@ public class logging : MonoBehaviour
         {
             state = "place";
         }
-        Debug.Log(state);
         return state + ";";
         
     }
@@ -182,7 +185,6 @@ public class logging : MonoBehaviour
             foreach (Transform child in studentBody.transform)
             {
                 header = header + "student" + child.name + "PosX;"+ "student" + child.name + "PosY;"+ "student" + child.name + "PosZ;"+ "student" + child.name + "RotX;"+ "student" + child.name + "RotY;"+ "student" + child.name + "RotZ;";
-                Debug.Log("logged studentBody header");
             }
             firstTimeStudentBodyValues = false;
         }
@@ -221,7 +223,6 @@ public class logging : MonoBehaviour
             foreach (Transform child in studentProps.transform)
             {
                 header = header + "student" + child.name + "PosX;" + "student" + child.name + "PosY;" + "student" + child.name + "PosZ;" + "student" + child.name + "RotX;" + "student" + child.name + "RotY;" + "student" + child.name + "RotZ;";
-                Debug.Log("logged studentProps header");
             }
             firstTimeStudentPropsValues = false;
         }
@@ -322,7 +323,24 @@ public class logging : MonoBehaviour
     }
 
     private void calcHipUpwardVector(GameObject _lowerHip, GameObject _upperHip){
-        hipUpwardVector = _lowerHip.transform.position - _upperHip.transform.position;
+        hipUpwardVector = _upperHip.transform.position - _lowerHip.transform.position;
+    }
+
+    private void calcHipRotationAtCalibration(){
+        hipRotationAtCalibration = calculateSpineTwist(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject);
+        // check that it is 0 when upright
+        Debug.Log("hipRotationAtCalibration: " + hipRotationAtCalibration);
+    }
+
+    private bool firstTimeHipUpwardVektor = true;
+    private string getUpwardVector(){
+        if (firstTimeHipUpwardVektor)
+        {
+            header = header + "hipUpwardVectorAtCalibration";
+            firstTimeHipUpwardVektor = false;
+        }
+        
+        return hipUpwardVector + ";";
     }
 
     float calculateSpineBendAngle(GameObject _lowerHip, GameObject _upperHip)
@@ -338,7 +356,7 @@ public class logging : MonoBehaviour
         float angle = lawOfCosines(a, b, c);
         float angleindegrees = angle * 180 / Mathf.PI;
         Destroy(refPointBendAngle);
-
+        
         return angleindegrees;
     }
 
@@ -368,6 +386,7 @@ public class logging : MonoBehaviour
         return pelvisDistance;
     }
 
+
     float calculateSpineTwist(GameObject _lowerHip, GameObject _leftShoulder, GameObject _rightShoulder)
     {
         GameObject leftHipReference = new GameObject();
@@ -384,8 +403,8 @@ public class logging : MonoBehaviour
         Destroy(leftHipReference);
         Destroy(rightHipReference);
 
-        rotationAngle = Vector3.Angle(hipVector, shoulderVector);
-
+        rotationAngle = Vector3.Angle(hipVector, shoulderVector) ;
+        
         return rotationAngle;
     }
 

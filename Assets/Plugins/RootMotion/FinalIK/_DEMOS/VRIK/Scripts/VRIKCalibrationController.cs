@@ -2,9 +2,10 @@
 using System.Collections;
 using RootMotion.FinalIK;
 using Valve.VR;
+using System.IO;
+using System;
 
-namespace RootMotion.Demos
-{
+namespace RootMotion.Demos{
 
     public class VRIKCalibrationController : MonoBehaviour
     {
@@ -58,7 +59,7 @@ namespace RootMotion.Demos
         public GameObject scriptHolder;
  
         void LateUpdate()
-        {           
+        {    
             if (Input.GetKeyDown(KeyCode.C))
             {
                 Debug.Log("C-block in calibration controller");
@@ -99,7 +100,7 @@ namespace RootMotion.Demos
                     }
                     
                     studentTable.GetComponent<SteamVR_TrackedObject>().enabled = false;
-                    studentScale.GetComponent<SteamVR_TrackedObject>().enabled = false;                    
+                    studentScale.GetComponent<SteamVR_TrackedObject>().enabled = false;                 
 
                     removeTrackerRendering();
                     if (!showMirror)
