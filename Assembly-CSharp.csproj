@@ -251,6 +251,7 @@
      <Compile Include="Assets\UnityLitJson\ParserToken.cs" />
      <Compile Include="Assets\UnityLitJson\Platform.cs" />
      <Compile Include="Assets\UnityLitJson\Unity\UnityTypeBindings.cs" />
+     <Compile Include="Assets\dontDoIt.cs" />
      <Compile Include="Assets\logger.cs" />
      <Compile Include="Assets\logging.cs" />
      <Compile Include="Assets\lookingAt.cs" />
@@ -474,7 +475,7 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEditor.dll</HintPath>
  </Reference>
  <Reference Include="Valve.Newtonsoft.Json">
- <HintPath>C:/Users/stefa/OneDrive/Master Arbeit/project/code/mastersProject/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/FEYER/mastersProject/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

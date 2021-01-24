@@ -24,7 +24,8 @@ public class logging : MonoBehaviour
     private Boolean isLogging = false;
     private string header = "";
     private Vector3 hipUpwardVector;
-    private float hipRotationAtCalibration;
+    private Vector3 shoulderVectorAtCalibration;
+    
     StreamWriter file;
 
     DateTime startTime;
@@ -39,6 +40,7 @@ public class logging : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //debug(studentBody.transform.Find("Hip").gameObject);
         if (Input.GetKeyDown(KeyCode.S))
         {
             Debug.Log("Logging start");
@@ -66,7 +68,8 @@ public class logging : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             calcHipUpwardVector(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("upperHipTracker").gameObject);
-            calcHipRotationAtCalibration();
+            // if you have time, implement that
+            //calcShoulderVectorAtCalibration(studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject);
             state = "calibration";
             //createLogEntry();
             state = "init";
@@ -74,6 +77,7 @@ public class logging : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
+            //calculateSpineBendAngle(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("upperHipTracker").gameObject);
             calculateSpineTwist(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject);
         }
 
@@ -326,10 +330,9 @@ public class logging : MonoBehaviour
         hipUpwardVector = _upperHip.transform.position - _lowerHip.transform.position;
     }
 
-    private void calcHipRotationAtCalibration(){
-        hipRotationAtCalibration = calculateSpineTwist(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject);
-        // check that it is 0 when upright
-        Debug.Log("hipRotationAtCalibration: " + hipRotationAtCalibration);
+    private void calcShoulderVectorAtCalibration(GameObject _leftShoulder, GameObject _rightShoulder){
+        shoulderVectorAtCalibration = _leftShoulder.transform.position - _rightShoulder.transform.position;
+        Debug.Log("shoulderVectorAtCalibration: " + shoulderVectorAtCalibration);
     }
 
     private bool firstTimeHipUpwardVektor = true;
@@ -357,6 +360,7 @@ public class logging : MonoBehaviour
         float angleindegrees = angle * 180 / Mathf.PI;
         Destroy(refPointBendAngle);
         
+        Debug.Log("spine Bend: " + angleindegrees);
         return angleindegrees;
     }
 
@@ -389,21 +393,32 @@ public class logging : MonoBehaviour
 
     float calculateSpineTwist(GameObject _lowerHip, GameObject _leftShoulder, GameObject _rightShoulder)
     {
-        GameObject leftHipReference = new GameObject();
-        GameObject rightHipReference = new GameObject();
-        leftHipReference.transform.parent = _lowerHip.transform;
-        rightHipReference.transform.parent = _lowerHip.transform;
+        // exclude z rotation of tracker
+        GameObject _lowerHipModifiedCopy = new GameObject();        
+        _lowerHipModifiedCopy.transform.parent = _lowerHip.transform;
+        _lowerHipModifiedCopy.transform.localPosition = new Vector3(0,0,0);
+        _lowerHipModifiedCopy.transform.localRotation = Quaternion.Euler(0, 0, -_lowerHip.transform.eulerAngles.z);
+
+        GameObject leftHipReference = new GameObject();;
+        GameObject rightHipReference = new GameObject();;
+        leftHipReference.transform.parent = _lowerHipModifiedCopy.transform;
+        rightHipReference.transform.parent = _lowerHipModifiedCopy.transform;
         leftHipReference.transform.localPosition = new Vector3(-1f, 0, 0);
         rightHipReference.transform.localPosition = new Vector3(1f, 0, 0);
+        leftHipReference.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        rightHipReference.transform.localRotation = new Quaternion(0, 0, 0, 0);
 
         float rotationAngle;
         Vector3 hipVector = leftHipReference.transform.position - rightHipReference.transform.position;
-        Vector3 shoulderVector = _leftShoulder.transform.position - _rightShoulder.transform.position;
+        Vector3 shoulderVector = _leftShoulder.transform.position - _rightShoulder.transform.position; 
 
+        
         Destroy(leftHipReference);
         Destroy(rightHipReference);
+        Destroy(_lowerHipModifiedCopy);
 
         rotationAngle = Vector3.Angle(hipVector, shoulderVector) ;
+        Debug.Log("spineTwist: " + rotationAngle);
         
         return rotationAngle;
     }
