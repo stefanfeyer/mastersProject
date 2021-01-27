@@ -71,24 +71,28 @@ public class logging : MonoBehaviour
             // if you have time, implement that
             //calcShoulderVectorAtCalibration(studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject);
             state = "calibration";
-            //createLogEntry();
+            createLogEntry();
             state = "init";
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
             //calculateSpineBendAngle(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("upperHipTracker").gameObject);
-            calculateSpineTwist(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject);
+            //calculateSpineTwist(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject);
         }
 
         if (isLogging)
         {
             int oldAnimationFrame = currentAnimationFrame;
 
+            // logging only per animation frame
             if (getCurrentAnimationFrame() > oldAnimationFrame)
             {
                 createLogEntry();    
             }
+
+            // log every frame
+            createLogEntry();
 
             // get the frames the movements do start
             if (Input.GetKeyDown(KeyCode.Space))
@@ -96,8 +100,7 @@ public class logging : MonoBehaviour
                 Debug.Log(currentAnimationFrame);
             }
 
-            
-
+            // end logging if last animation frame is played
             if (currentAnimationFrame  >= totalAnimationFrames)
             {
                 isLogging = false;
