@@ -264,6 +264,7 @@
      <Compile Include="Assets\setPositionRecorder.cs" />
      <Compile Include="Assets\shiftIt.cs" />
      <Compile Include="Assets\shiftValues.cs" />
+     <Compile Include="Assets\studyManager.cs" />
      <Compile Include="Assets\trackedObjectIdent.cs" />
      <Compile Include="Assets\whoAmI.cs" />
      <None Include="Assets\CrowArt - PBR Cardboard Box\CC_Assets\RL_Readme_Auto_Setup_1.1_for_Unity.txt" />
