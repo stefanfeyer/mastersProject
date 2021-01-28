@@ -25,6 +25,10 @@ namespace RootMotion.Demos{
         public bool showTrackers = false;
         public bool showMirror = false;
 
+        public VRIK femaleAvatar;
+        public VRIK maleAvatar;
+        public string sex = "m";
+
         public GameObject teacherCalibrationController;
         public GameObject teacherCalibrationController1;
         public GameObject teacherCalibrationController2;
@@ -55,13 +59,20 @@ namespace RootMotion.Demos{
         public GameObject neckTeacher;
 
         public GameObject mirror;
-
-        public GameObject scriptHolder;
  
         void LateUpdate()
         {    
             if (Input.GetKeyDown(KeyCode.C))
             {
+                if (sex == "m")
+                {
+                    ik = maleAvatar;
+                    Destroy(femaleAvatar.gameObject);
+                } else if (sex == "f")
+                {
+                    ik = femaleAvatar;
+                    Destroy(maleAvatar.gameObject);
+                }
                 Debug.Log("C-block in calibration controller");
                 // Calibrate the character, store data of the calibration
                 if (isStudent)

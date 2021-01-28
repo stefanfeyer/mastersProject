@@ -13,6 +13,16 @@ public class logging : MonoBehaviour
     public GameObject teacherProps;
     public GameObject rayCast;
     public GameObject neckHead;
+    public GameObject scriptHolder;
+    
+    [HideInInspector] 
+    public int taskId;
+
+    [HideInInspector]
+    public string participantId;
+
+    [HideInInspector]
+    public string perspectiveId;
 
     private string state = "init";
     public string fileName = "testFile.txt";
@@ -25,6 +35,10 @@ public class logging : MonoBehaviour
     private string header = "";
     private Vector3 hipUpwardVector;
     private Vector3 shoulderVectorAtCalibration;
+    private bool isSpressed = false;
+
+    private string[] logArray = new string[100000];
+    private int logArrayIndex = 1;
     
     StreamWriter file;
 
@@ -35,17 +49,25 @@ public class logging : MonoBehaviour
     void Start()
     {
         // rechts/links händer?
+        taskId = scriptHolder.GetComponent<studyManager>().taskId;
+        participantId = scriptHolder.GetComponent<studyManager>().participantId;
+        perspectiveId = scriptHolder.GetComponent<studyManager>().perspectiveId;
+        fileName = participantId + "_" + perspectiveId + "_" + taskId + ".txt";
     }
 
     // Update is called once per frame
     void Update()
     {
-        //debug(studentBody.transform.Find("Hip").gameObject);
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Debug.Log("Logging start");
-            startTime = DateTime.Now;
-            isLogging = true;
+            // prevent s is pressed doubled
+            if (!isSpressed)
+            {
+                Debug.Log("Logging start");
+                startTime = DateTime.Now;
+                isLogging = true;
+                isSpressed = true;
+            }
         }
 
         // debug
@@ -86,12 +108,10 @@ public class logging : MonoBehaviour
             int oldAnimationFrame = currentAnimationFrame;
 
             // logging only per animation frame
-            if (getCurrentAnimationFrame() > oldAnimationFrame)
-            {
-                createLogEntry();    
-            }
+            // if (getCurrentAnimationFrame() > oldAnimationFrame){createLogEntry();}
 
             // log every frame
+            //getCurrentAnimationFrame();
             createLogEntry();
 
             // get the frames the movements do start
@@ -115,7 +135,14 @@ public class logging : MonoBehaviour
     }
     private void addLine()
     {
-        theLog = theLog + getElaplsedTimeInMs() + getCurrentAnimationFrameString() + getTotalAnimationFrameString() + getState() + getAccuracyDistance() + getAccuracyAngle() + getRiskMetrics() + getLookingAt() + studentHeadValues() + studentBodyValues() + teacherBodyValues() + studentPropsValues() + teacherPropsValues() + "\n";
+        string logLine = getElaplsedTimeInMs() + getCurrentAnimationFrameString() + getTotalAnimationFrameString() + getState() + getAccuracyDistance() + getAccuracyAngle() + getRiskMetrics() + getHipBoxDistance() + getLookingAt() + studentHeadValues() + studentBodyValues() + teacherBodyValues() + studentPropsValues() + teacherPropsValues() + "\n";
+        //theLog = theLog + getElaplsedTimeInMs() + getCurrentAnimationFrameString() + getTotalAnimationFrameString() + getState() + getAccuracyDistance() + getAccuracyAngle() + getRiskMetrics() + getLookingAt() + studentHeadValues() + studentBodyValues() + teacherBodyValues() + studentPropsValues() + teacherPropsValues() + "\n";
+        logArray[logArrayIndex] = logLine;
+        logArrayIndex++;
+        if (logArrayIndex % 1800 == 0)
+        {
+            Debug.Log("LogArrayIndex is at " + logArrayIndex + " of 100.000 frame slots.");
+        }
     }
 
     private int getCurrentAnimationFrame(){
@@ -129,7 +156,6 @@ public class logging : MonoBehaviour
             return currentAnimationFrame;
         }
         return currentAnimationFrame;
-        
     }
 
     private bool firstTimeAF = true;
@@ -156,32 +182,11 @@ public class logging : MonoBehaviour
 
     }
 
-    private bool firstTimeState = true;
-    private string getState(){
-        if (firstTimeState)
-        {
-            header = header + "subTaskId;";
-            firstTimeState = false;
-        }
-
-        if (currentAnimationFrame >= 58)
-        {
-            state = "lift";
-        }
-        if (currentAnimationFrame >= 268)
-        {
-            state = "carry";
-        }
-        if (currentAnimationFrame >= 700)
-        {
-            state = "place";
-        }
-        return state + ";";
-        
-    }
+    
 
     private void addHeaderToLog(){
-        theLog = header + "\n" + theLog;
+        // theLog = header + "\n" + theLog;
+        logArray[0] = header + "\n";
     }
 
     
@@ -454,6 +459,22 @@ public class logging : MonoBehaviour
         return accuracyValues;
     }
 
+    private bool firstTimeHipBoxDistance = true;
+    private string getHipBoxDistance()
+    {
+        if (firstTimeHipBoxDistance)
+        {
+            header = header + "studentHipBoxDistance;teacherHipBoxDistance";
+            firstTimeHipBoxDistance = false;
+        }
+        string hipBoxDistance = ""
+        + Vector3.Distance(studentBody.transform.Find("Hip").transform.position, studentProps.transform.Find("Box").transform.position)
+        + ";"
+        + Vector3.Distance(teacherBody.transform.Find("Hip").transform.position, teacherProps.transform.Find("Box").transform.position)
+        + ";";
+        return hipBoxDistance;
+    }
+
     private bool firstTimeAccAngle = true;
     private string getAccuracyAngle()
     {
@@ -485,12 +506,101 @@ public class logging : MonoBehaviour
     
 
     private void storeData(){
+        Debug.Log("started storing");
         file = new System.IO.StreamWriter(path + fileName, true);
-        file.Write(theLog);
+        int i = 0;
+        foreach (string _logLine in logArray)
+        {
+            if (_logLine != "")
+            {
+                file.Write(_logLine);    
+            }
+            if (i % 1000 == 0)
+            {
+                Debug.Log("stored " + i / 1000 + "%");
+            }
+            i++;
+        }
         file.Flush();
         file.Close();
+        //file = new System.IO.StreamWriter(path + fileName, true);
+        //file.Write(theLog);
+        //file.Flush();
+        //file.Close();
         Debug.Log("stored the file!");
     }
 
+    private bool firstTimeState = true;
+    private string getState()
+    {
+        if (firstTimeState)
+        {
+            header = header + "subTaskId;";
+            firstTimeState = false;
+        }
+
+        switch (taskId)
+        {
+            case 1:
+                getStateTask1();
+                break;
+            case 2:
+                getStateTask2();
+                break;
+            case 3:
+                getStateTask3();
+                break;
+        }
+        return state;
+
+    }
+
+    private void getStateTask1()
+    {
+        if (currentAnimationFrame >= 58)
+        {
+            state = "lift";
+        }
+        if (currentAnimationFrame >= 268)
+        {
+            state = "carry";
+        }
+        if (currentAnimationFrame >= 700)
+        {
+            state = "place";
+        }
+    }
+
+    private void getStateTask2()
+    {
+        if (currentAnimationFrame >= 58)
+        {
+            state = "lift";
+        }
+        if (currentAnimationFrame >= 268)
+        {
+            state = "carry";
+        }
+        if (currentAnimationFrame >= 700)
+        {
+            state = "place";
+        }
+    }
+
+    private void getStateTask3()
+    {
+        if (currentAnimationFrame >= 58)
+        {
+            state = "lift";
+        }
+        if (currentAnimationFrame >= 268)
+        {
+            state = "carry";
+        }
+        if (currentAnimationFrame >= 700)
+        {
+            state = "place";
+        }
+    }
 
 }

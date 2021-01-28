@@ -4,41 +4,34 @@ using UnityEngine;
 
 public class studyManager : MonoBehaviour
 {
-    public enum TaskEnum
-    {
-        Task1,
-        Task2,
-        Task3
-    } 
-    public enum PerspectiveEnum
-    {
-        Ego,
-        Exo,
-        EgoExo
-    } 
-    public enum SexEnum
-    {
-        Male,
-        Female
-    } 
-    public TaskEnum task = new TaskEnum();
-    public PerspectiveEnum perspective = new PerspectiveEnum();
-    public SexEnum sex = new SexEnum();
+    // 1, 2, 3
+    public int taskId = 1;
 
-    public Animation task1Animation;
-    public Animation task2Animation;
-    public Animation task3Animation;
+    // ego, exo, egoexo
+    public string perspectiveId = "ego";
+    
+    // T1, T2, T3 ...
+    public string participantId = "T1";
+
+    public Animation task1AnimationBody;
+    public Animation task2AnimationBody;
+    public Animation task3AnimationBody;
+    public Animation task1AnimationProps;
+    public Animation task2AnimationProps;
+    public Animation task3AnimationProps;
+
     public GameObject maleCharacter;
     public GameObject femaleCharacter;
     public GameObject scriptholder;
 
     private Animator teacherAnimator;
     private Animator studentAnimator;
-    private logging loggingScript;
 
     void Start()
     {
-
+        scriptholder.GetComponent<logging>().taskId = taskId;
+        scriptholder.GetComponent<logging>().participantId = participantId;
+        scriptholder.GetComponent<logging>().perspectiveId = perspectiveId;
     }
 
     // Update is called once per frame
