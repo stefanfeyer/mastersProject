@@ -121,12 +121,12 @@ public class logging : MonoBehaviour
             }
 
             // end logging if last animation frame is played
-            if (currentAnimationFrame  >= totalAnimationFrames)
-            {
-                isLogging = false;
-                addHeaderToLog();
-                storeData();
-            }
+            //if (currentAnimationFrame  >= totalAnimationFrames)
+            //{
+            //    isLogging = false;
+            //    addHeaderToLog();
+            //    storeData();
+            //}
         }
     }
 
@@ -301,6 +301,7 @@ public class logging : MonoBehaviour
             header = header + "lookingAt;";
             firstTimeLookingAt = false;
         }
+        //Debug.Log(rayCast.GetComponent<lookingAt>().rayCastHitName);
         return rayCast.GetComponent<lookingAt>().rayCastHitName + ";";
     }
 
@@ -340,7 +341,7 @@ public class logging : MonoBehaviour
 
     private void calcShoulderVectorAtCalibration(GameObject _leftShoulder, GameObject _rightShoulder){
         shoulderVectorAtCalibration = _leftShoulder.transform.position - _rightShoulder.transform.position;
-        Debug.Log("shoulderVectorAtCalibration: " + shoulderVectorAtCalibration);
+        //Debug.Log("shoulderVectorAtCalibration: " + shoulderVectorAtCalibration);
     }
 
     private bool firstTimeHipUpwardVektor = true;
@@ -368,7 +369,7 @@ public class logging : MonoBehaviour
         float angleindegrees = angle * 180 / Mathf.PI;
         Destroy(refPointBendAngle);
         
-        Debug.Log("spine Bend: " + angleindegrees);
+        //Debug.Log("spine Bend: " + angleindegrees);
         return angleindegrees;
     }
 
@@ -426,7 +427,7 @@ public class logging : MonoBehaviour
         Destroy(_lowerHipModifiedCopy);
 
         rotationAngle = Vector3.Angle(hipVector, shoulderVector) ;
-        Debug.Log("spineTwist: " + rotationAngle);
+        //Debug.Log("spineTwist: " + rotationAngle);
         
         return rotationAngle;
     }
@@ -455,7 +456,7 @@ public class logging : MonoBehaviour
         + ";"
         + Vector3.Distance(studentProps.transform.Find("Box").transform.position, teacherProps.transform.Find("Box").transform.position)
         + ";";
-
+        //Debug.Log("box distance: " + Vector3.Distance(studentProps.transform.Find("Box").transform.position, teacherProps.transform.Find("Box").transform.position));
         return accuracyValues;
     }
 
@@ -499,7 +500,8 @@ public class logging : MonoBehaviour
         + ";"
         + Vector3.Angle(studentProps.transform.Find("Box").transform.position, teacherProps.transform.Find("Box").transform.position)
         + ";";
-
+        Quaternion relative = Quaternion.Inverse(studentProps.transform.Find("Box").transform.rotation) * teacherProps.transform.Find("Box").transform.rotation;
+        Debug.Log("box angle: " + relative.eulerAngles);
         return accuracyValues;
     }
 
