@@ -34,7 +34,6 @@ public class logging : MonoBehaviour
     private Boolean isLogging = false;
     private string header = "";
     private Vector3 hipUpwardVector;
-    private Vector3 shoulderVectorAtCalibration;
     private bool isSpressed = false;
 
     private string[] logArray = new string[100000];
@@ -86,21 +85,12 @@ public class logging : MonoBehaviour
             isLogging = false;
         }
 
-        // store the calibration data, check if it is really happening after the calibration
+        // store the calibration data
         if (Input.GetKeyDown(KeyCode.V))
         {
-            calcHipUpwardVector(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("upperHipTracker").gameObject);
-            // if you have time, implement that
-            //calcShoulderVectorAtCalibration(studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject);
             state = "calibration";
             createLogEntry();
             state = "init";
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            //calculateSpineBendAngle(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("upperHipTracker").gameObject);
-            //calculateSpineTwist(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject);
         }
 
         if (isLogging)
@@ -121,12 +111,12 @@ public class logging : MonoBehaviour
             }
 
             // end logging if last animation frame is played
-            //if (currentAnimationFrame  >= totalAnimationFrames)
-            //{
-            //    isLogging = false;
-            //    addHeaderToLog();
-            //    storeData();
-            //}
+            if (currentAnimationFrame  >= totalAnimationFrames)
+            {
+                isLogging = false;
+                addHeaderToLog();
+                storeData();
+            }
         }
     }
 
@@ -309,7 +299,7 @@ public class logging : MonoBehaviour
     private string getRiskMetrics(){
         if (firstTimeRiskMetrics)
         {
-            header = header + "studentSpineBendAngle;studentFootDistance;studentSquatDistance;studentSpineTwistAngle;teacherSpineBendAngle;teacherFootDistance;teacherSquatDistance;teacherSpineTwistAngle;";
+            header = header + "studentSpineBendAngle;studentFootDistance;studentSquatDistance;teacherSpineBendAngle;teacherFootDistance;teacherSquatDistance;";
             firstTimeRiskMetrics = false;
         }
         //student
@@ -319,8 +309,6 @@ public class logging : MonoBehaviour
         + calculateDistanceBetweenFeet(studentBody.transform.Find("LeftFootTracker").gameObject, studentBody.transform.Find("RightFootTracker").gameObject)
         + ";"
         + calculateSquatDistance(studentBody.transform.Find("Hip").gameObject)
-        + ";"
-        + calculateSpineTwist(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("LeftShoulderTracker").gameObject, studentBody.transform.Find("RightShoulderTracker").gameObject)
         + ";";
         //teacher
         string teacherRiskMetrics = ""
@@ -329,37 +317,15 @@ public class logging : MonoBehaviour
         + calculateDistanceBetweenFeet(teacherBody.transform.Find("LeftFootTracker").gameObject, teacherBody.transform.Find("RightFootTracker").gameObject)
         + ";"
         + calculateSquatDistance(teacherBody.transform.Find("Hip").gameObject)
-        + ";"
-        + calculateSpineTwist(teacherBody.transform.Find("Hip").gameObject, teacherBody.transform.Find("LeftShoulderTracker").gameObject, teacherBody.transform.Find("RightShoulderTracker").gameObject)
         + ";";
         return "" + studentRiskMetrics + teacherRiskMetrics;
-    }
-
-    private void calcHipUpwardVector(GameObject _lowerHip, GameObject _upperHip){
-        hipUpwardVector = _upperHip.transform.position - _lowerHip.transform.position;
-    }
-
-    private void calcShoulderVectorAtCalibration(GameObject _leftShoulder, GameObject _rightShoulder){
-        shoulderVectorAtCalibration = _leftShoulder.transform.position - _rightShoulder.transform.position;
-        //Debug.Log("shoulderVectorAtCalibration: " + shoulderVectorAtCalibration);
-    }
-
-    private bool firstTimeHipUpwardVektor = true;
-    private string getUpwardVector(){
-        if (firstTimeHipUpwardVektor)
-        {
-            header = header + "hipUpwardVectorAtCalibration";
-            firstTimeHipUpwardVektor = false;
-        }
-        
-        return hipUpwardVector + ";";
     }
 
     float calculateSpineBendAngle(GameObject _lowerHip, GameObject _upperHip)
     {
         GameObject refPointBendAngle = new GameObject();
         float a, b, c;
-        //Vector3 upward = new Vector3(0, 1f, 0); // straight upward vector. but on calibration, the upward vector is set by the value of the body
+        Vector3 hipUpwardVector = new Vector3(0, 0.2f, 0); // straight upward vector. but on calibration, the upward vector is set by the value of the body
         refPointBendAngle.transform.position = _lowerHip.transform.position + hipUpwardVector;
         //Distance of the segments that form a triangle (necessary for LawOfCosines)
         b = Vector3.Distance(_lowerHip.transform.position, refPointBendAngle.transform.position);
@@ -397,39 +363,6 @@ public class logging : MonoBehaviour
         pelvisDistance = _lowerHip.transform.position.y;
 
         return pelvisDistance;
-    }
-
-
-    float calculateSpineTwist(GameObject _lowerHip, GameObject _leftShoulder, GameObject _rightShoulder)
-    {
-        // exclude z rotation of tracker
-        GameObject _lowerHipModifiedCopy = new GameObject();        
-        _lowerHipModifiedCopy.transform.parent = _lowerHip.transform;
-        _lowerHipModifiedCopy.transform.localPosition = new Vector3(0,0,0);
-        _lowerHipModifiedCopy.transform.localRotation = Quaternion.Euler(0, 0, -_lowerHip.transform.eulerAngles.z);
-
-        GameObject leftHipReference = new GameObject();;
-        GameObject rightHipReference = new GameObject();;
-        leftHipReference.transform.parent = _lowerHipModifiedCopy.transform;
-        rightHipReference.transform.parent = _lowerHipModifiedCopy.transform;
-        leftHipReference.transform.localPosition = new Vector3(-1f, 0, 0);
-        rightHipReference.transform.localPosition = new Vector3(1f, 0, 0);
-        leftHipReference.transform.localRotation = new Quaternion(0, 0, 0, 0);
-        rightHipReference.transform.localRotation = new Quaternion(0, 0, 0, 0);
-
-        float rotationAngle;
-        Vector3 hipVector = leftHipReference.transform.position - rightHipReference.transform.position;
-        Vector3 shoulderVector = _leftShoulder.transform.position - _rightShoulder.transform.position; 
-
-        
-        Destroy(leftHipReference);
-        Destroy(rightHipReference);
-        Destroy(_lowerHipModifiedCopy);
-
-        rotationAngle = Vector3.Angle(hipVector, shoulderVector) ;
-        //Debug.Log("spineTwist: " + rotationAngle);
-        
-        return rotationAngle;
     }
 
     private bool firstTimeAccDist = true;
@@ -486,22 +419,23 @@ public class logging : MonoBehaviour
         }
 
         string accuracyValues = ""
-        + Vector3.Angle(studentBody.transform.Find("Hip").transform.position, teacherBody.transform.Find("Hip").transform.position)
+        + Quaternion.Angle(studentBody.transform.Find("Hip").transform.rotation, teacherBody.transform.Find("Hip").transform.rotation)
         + ";"
-        + Vector3.Angle(studentBody.transform.Find("LeftHandTracker").transform.position, teacherBody.transform.Find("LeftHandTracker").transform.position)
+        + Quaternion.Angle(studentBody.transform.Find("LeftHandTracker").transform.rotation, teacherBody.transform.Find("LeftHandTracker").transform.rotation)
         + ";"
-        + Vector3.Angle(studentBody.transform.Find("RightHandTracker").transform.position, teacherBody.transform.Find("RightHandTracker").transform.position)
+        + Quaternion.Angle(studentBody.transform.Find("RightHandTracker").transform.rotation, teacherBody.transform.Find("RightHandTracker").transform.rotation)
         + ";"
-        + Vector3.Angle(studentBody.transform.Find("LeftFootTracker").transform.position, teacherBody.transform.Find("LeftFootTracker").transform.position)
+        + Quaternion.Angle(studentBody.transform.Find("LeftFootTracker").transform.rotation, teacherBody.transform.Find("LeftFootTracker").transform.rotation)
         + ";"
-        + Vector3.Angle(studentBody.transform.Find("RightFootTracker").transform.position, teacherBody.transform.Find("RightFootTracker").transform.position)
+        + Quaternion.Angle(studentBody.transform.Find("RightFootTracker").transform.rotation, teacherBody.transform.Find("RightFootTracker").transform.rotation)
         + ";"
-        + Vector3.Angle(neckHead.transform.position, teacherBody.transform.Find("Head").transform.position)
+        + Quaternion.Angle(neckHead.transform.rotation, teacherBody.transform.Find("Head").transform.rotation)
         + ";"
-        + Vector3.Angle(studentProps.transform.Find("Box").transform.position, teacherProps.transform.Find("Box").transform.position)
+        + Quaternion.Angle(studentProps.transform.Find("Box").transform.rotation, teacherProps.transform.Find("Box").transform.rotation)
         + ";";
-        Quaternion relative = Quaternion.Inverse(studentProps.transform.Find("Box").transform.rotation) * teacherProps.transform.Find("Box").transform.rotation;
-        Debug.Log("box angle: " + relative.eulerAngles);
+        
+        //Debug.Log("box angle: " + Quaternion.Angle(studentProps.transform.Find("Box").transform.rotation, teacherProps.transform.Find("Box").transform.rotation));
+        
         return accuracyValues;
     }
 
