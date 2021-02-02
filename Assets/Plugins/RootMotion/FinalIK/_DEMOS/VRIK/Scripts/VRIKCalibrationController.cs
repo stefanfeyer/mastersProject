@@ -46,6 +46,12 @@ namespace RootMotion.Demos{
         public GameObject teacherBody3;
         public GameObject teacherBody4;
 
+        public GameObject teacherProps0;
+        public GameObject teacherProps1;
+        public GameObject teacherProps2;
+        public GameObject teacherProps3;
+        public GameObject teacherProps4;
+
         public bool isStudent;
         public GameObject avatarToResize;
         
@@ -81,8 +87,9 @@ namespace RootMotion.Demos{
                     scale = neckStudent.transform.position.y / neckTeacher.transform.position.y;
                     
                     GameObject[] teacherReferences = {teacherBody0,teacherBody1,teacherBody2,teacherBody3,teacherBody4};
-                    GameObject[] callibrationControllers = {teacherCalibrationController,teacherCalibrationController1,teacherCalibrationController2,teacherCalibrationController3,teacherCalibrationController4};                    
-                    GameObject[] studentCalibrationControllers = {studentCalibrationController1,studentCalibrationController2,studentCalibrationController3,studentCalibrationController4};
+                    GameObject[] callibrationControllers = {teacherCalibrationController,teacherCalibrationController1,teacherCalibrationController2,teacherCalibrationController3,teacherCalibrationController4};
+                    GameObject[] studentCalibrationControllers = { studentCalibrationController1, studentCalibrationController2, studentCalibrationController3, studentCalibrationController4 };
+                    GameObject[] teacherProps = { teacherProps0, teacherProps1, teacherProps2, teacherProps3, teacherProps4 };
          
                     foreach (var item in teacherReferences)
                     {
@@ -109,7 +116,16 @@ namespace RootMotion.Demos{
                             item.GetComponent<VRIKCalibrationController>().calibrate();
                         }
                     }
-                    
+
+                    foreach (GameObject item in teacherProps)
+                    {
+                        if (item != null)
+                        {
+                            item.transform.Find("Table").transform.localScale = new Vector3(0, 0, 0);
+                            item.transform.Find("Scale").transform.localScale = new Vector3(0, 0, 0);
+                        }
+                    }
+
                     studentTable.GetComponent<SteamVR_TrackedObject>().enabled = false;
                     studentScale.GetComponent<SteamVR_TrackedObject>().enabled = false;                 
 
