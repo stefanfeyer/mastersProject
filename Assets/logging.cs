@@ -47,11 +47,8 @@ public class logging : MonoBehaviour
     // !!! TODO yxc: log hip - box distance. log upward vector. store in arry. log every frame.fix dat!
     void Start()
     {
-        // rechts/links händer?
-        taskId = scriptHolder.GetComponent<studyManager>().taskId;
-        participantId = scriptHolder.GetComponent<studyManager>().participantId;
-        perspectiveId = scriptHolder.GetComponent<studyManager>().perspectiveId;
-        fileName = participantId + "_" + perspectiveId + "_" + taskId + ".txt";
+        scriptHolder.GetComponent<studyManager>().studySetup();
+        fileName = participantId + "_" + perspectiveId + "_T" + taskId + ".txt";
     }
 
     // Update is called once per frame
