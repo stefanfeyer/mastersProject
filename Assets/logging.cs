@@ -7,28 +7,26 @@ using System;
 
 public class logging : MonoBehaviour
 {
+    [Header("1, 2, 3")]
+    public int taskId = 1;
+
+    [Header("ego, exo, egoexo")]
+    public string perspectiveId = "ego";
+    
+    [Header("PT1, PT2, PT3")]
+    public string participantId = "PT1";
     public GameObject studentBody;
     public GameObject teacherBody;
     public GameObject studentProps;
     public GameObject teacherProps;
     public GameObject rayCast;
     public GameObject neckHead;
-    public GameObject scriptHolder;
-    
-    [HideInInspector] 
-    public int taskId;
-
-    [HideInInspector]
-    public string participantId;
-
-    [HideInInspector]
-    public string perspectiveId;
 
     private string state = "init";
-    public string fileName = "testFile.txt";
+    private string fileName;
 
     private string path = @"C:\FEYER\logs\";
-    private string theLog = "";
+    //private string theLog = "";
     private int currentAnimationFrame = 0;
     private int totalAnimationFrames = 0;
     private Boolean isLogging = false;
@@ -47,8 +45,8 @@ public class logging : MonoBehaviour
     // !!! TODO yxc: log hip - box distance. log upward vector. store in arry. log every frame.fix dat!
     void Start()
     {
-        scriptHolder.GetComponent<studyManager>().studySetup();
-        fileName = participantId + "_" + perspectiveId + "_T" + taskId + ".txt";
+        
+        
     }
 
     // Update is called once per frame
@@ -98,7 +96,7 @@ public class logging : MonoBehaviour
             // if (getCurrentAnimationFrame() > oldAnimationFrame){createLogEntry();}
 
             // log every frame
-            //getCurrentAnimationFrame();
+            getCurrentAnimationFrame();
             createLogEntry();
 
             // get the frames the movements do start
@@ -439,7 +437,8 @@ public class logging : MonoBehaviour
     
 
     private void storeData(){
-        Debug.Log("started storing");
+        fileName = participantId + "_" + perspectiveId + "_T" + taskId + ".txt";
+        Debug.Log("started storing file: " + path + fileName);
         file = new System.IO.StreamWriter(path + fileName, true);
         int i = 0;
         foreach (string _logLine in logArray)
@@ -448,9 +447,9 @@ public class logging : MonoBehaviour
             {
                 file.Write(_logLine);    
             }
-            if (i % 1000 == 0)
+            if (i % 10000 == 0)
             {
-                Debug.Log("stored " + i / 1000 + "%");
+                Debug.Log("stored " + i / 10000 + "0%");
             }
             i++;
         }
@@ -484,7 +483,7 @@ public class logging : MonoBehaviour
                 getStateTask3();
                 break;
         }
-        return state;
+        return state + ";";
 
     }
 
@@ -522,6 +521,43 @@ public class logging : MonoBehaviour
 
     private void getStateTask3()
     {
+        /*
+        441
+        1027
+        1343
+        1554
+        1974
+        2253
+        2535
+        2858
+        3336
+        3834
+        
+        4181
+        4350
+        4724
+        4976
+        5205
+        5437
+        5968
+        6199
+        6874
+        7178
+        
+        7619
+        7845
+        7971
+        8293
+        8572
+        8956
+        9202
+        9386
+        9556
+        9815
+        
+        10316
+
+        */
         if (currentAnimationFrame >= 58)
         {
             state = "lift";

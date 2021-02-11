@@ -45,13 +45,17 @@ public class studyManager : MonoBehaviour
         
     }
 
+ /* 
     public void studySetup(){
-        GameObject[] propsAnimators = new GameObject[] { teacher0Porps, teacher1Porps, teacher2Porps, teacher3Porps, teacher4Porps };
-        GameObject[] bodyAnimators = new GameObject[] { teacher0Body, teacher1Body, teacher2Body, teacher3Body, teacher4Body };
+        Debug.Log("Study Setup: " + taskId + participantId + perspectiveId);
+        
         scriptHolder.GetComponent<logging>().taskId = taskId;
         scriptHolder.GetComponent<logging>().participantId = participantId;
         scriptHolder.GetComponent<logging>().perspectiveId = perspectiveId;
 
+       
+        GameObject[] propsAnimators = new GameObject[] { teacher0Porps, teacher1Porps, teacher2Porps, teacher3Porps, teacher4Porps };
+        GameObject[] bodyAnimators = new GameObject[] { teacher0Body, teacher1Body, teacher2Body, teacher3Body, teacher4Body };
         foreach (GameObject item in bodyAnimators)
         {
             if (item != null)
@@ -93,7 +97,8 @@ public class studyManager : MonoBehaviour
                 }
             }
         }
+    
     }
-
+*/
 
 }
