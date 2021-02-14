@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-    
+
 
 public class logging : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class logging : MonoBehaviour
 
     [Header("ego, exo, egoexo")]
     public string perspectiveId = "ego";
-    
+
     [Header("PT1, PT2, PT3")]
     public string participantId = "PT1";
     public GameObject studentBody;
@@ -36,7 +36,7 @@ public class logging : MonoBehaviour
 
     private string[] logArray = new string[100000];
     private int logArrayIndex = 1;
-    
+
     StreamWriter file;
 
     DateTime startTime;
@@ -45,8 +45,8 @@ public class logging : MonoBehaviour
     // !!! TODO yxc: log hip - box distance. log upward vector. store in arry. log every frame.fix dat!
     void Start()
     {
-        
-        
+
+
     }
 
     // Update is called once per frame
@@ -65,7 +65,8 @@ public class logging : MonoBehaviour
         }
 
         // debug
-        if(Input.GetKeyDown(KeyCode.L)){
+        if (Input.GetKeyDown(KeyCode.L))
+        {
             Debug.Log("created single log entry");
             startTime = DateTime.Now;
             createLogEntry();
@@ -106,7 +107,7 @@ public class logging : MonoBehaviour
             }
 
             // end logging if last animation frame is played
-            if (currentAnimationFrame  >= totalAnimationFrames)
+            if (currentAnimationFrame >= totalAnimationFrames)
             {
                 isLogging = false;
                 addHeaderToLog();
@@ -115,7 +116,8 @@ public class logging : MonoBehaviour
         }
     }
 
-    public void createLogEntry(){
+    public void createLogEntry()
+    {
         addLine();
     }
     private void addLine()
@@ -130,7 +132,8 @@ public class logging : MonoBehaviour
         }
     }
 
-    private int getCurrentAnimationFrame(){
+    private int getCurrentAnimationFrame()
+    {
         if (teacherBody != null)
         {
             Animator teacherAnimator = teacherBody.GetComponent<Animator>();
@@ -167,21 +170,23 @@ public class logging : MonoBehaviour
 
     }
 
-    
 
-    private void addHeaderToLog(){
+
+    private void addHeaderToLog()
+    {
         // theLog = header + "\n" + theLog;
         logArray[0] = header + "\n";
     }
 
-    
+
     private bool firstTimeStudentBodyValues = true;
-    private string studentBodyValues(){
+    private string studentBodyValues()
+    {
         if (firstTimeStudentBodyValues)
         {
             foreach (Transform child in studentBody.transform)
             {
-                header = header + "student" + child.name + "PosX;"+ "student" + child.name + "PosY;"+ "student" + child.name + "PosZ;"+ "student" + child.name + "RotX;"+ "student" + child.name + "RotY;"+ "student" + child.name + "RotZ;";
+                header = header + "student" + child.name + "PosX;" + "student" + child.name + "PosY;" + "student" + child.name + "PosZ;" + "student" + child.name + "RotX;" + "student" + child.name + "RotY;" + "student" + child.name + "RotZ;";
             }
             firstTimeStudentBodyValues = false;
         }
@@ -261,16 +266,18 @@ public class logging : MonoBehaviour
         return transformToString(neckHead.transform);
     }
 
-    private string transformToString(Transform t){
-        
+    private string transformToString(Transform t)
+    {
+
         Vector3 pos = t.position;
         Quaternion rot = t.rotation;
-        string output = pos.x + ";" + pos.y + ";" + pos.z+ ";" + rot.x+ ";" + rot.y+ ";" + rot.z;
+        string output = pos.x + ";" + pos.y + ";" + pos.z + ";" + rot.x + ";" + rot.y + ";" + rot.z;
         return output;
     }
 
     private bool firstTimeElapsedTime = true;
-    private string getElaplsedTimeInMs(){
+    private string getElaplsedTimeInMs()
+    {
         if (firstTimeElapsedTime)
         {
             header = header + "elapsedTime;";
@@ -280,7 +287,8 @@ public class logging : MonoBehaviour
     }
 
     private bool firstTimeLookingAt = true;
-    private string getLookingAt(){
+    private string getLookingAt()
+    {
         if (firstTimeLookingAt)
         {
             header = header + "lookingAt;";
@@ -291,15 +299,16 @@ public class logging : MonoBehaviour
     }
 
     private bool firstTimeRiskMetrics = true;
-    private string getRiskMetrics(){
+    private string getRiskMetrics()
+    {
         if (firstTimeRiskMetrics)
         {
             header = header + "studentSpineBendAngle;studentFootDistance;studentSquatDistance;teacherSpineBendAngle;teacherFootDistance;teacherSquatDistance;";
             firstTimeRiskMetrics = false;
         }
         //student
-        string studentRiskMetrics = "" 
-        + calculateSpineBendAngle(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("upperHipTracker").gameObject) 
+        string studentRiskMetrics = ""
+        + calculateSpineBendAngle(studentBody.transform.Find("Hip").gameObject, studentBody.transform.Find("upperHipTracker").gameObject)
         + ";"
         + calculateDistanceBetweenFeet(studentBody.transform.Find("LeftFootTracker").gameObject, studentBody.transform.Find("RightFootTracker").gameObject)
         + ";"
@@ -329,7 +338,7 @@ public class logging : MonoBehaviour
         float angle = lawOfCosines(a, b, c);
         float angleindegrees = angle * 180 / Mathf.PI;
         Destroy(refPointBendAngle);
-        
+
         //Debug.Log("spine Bend: " + angleindegrees);
         return angleindegrees;
     }
@@ -361,13 +370,14 @@ public class logging : MonoBehaviour
     }
 
     private bool firstTimeAccDist = true;
-    private string getAccuracyDistance(){
+    private string getAccuracyDistance()
+    {
         if (firstTimeAccDist)
         {
             header = header + "hipDistance;leftHandDistance;rightHandDistance;leftFootDistance;rightFootDistance;headDistance;boxDistance;";
-            firstTimeAccDist = false;    
+            firstTimeAccDist = false;
         }
-        
+
 
         string accuracyValues = ""
         + Vector3.Distance(studentBody.transform.Find("Hip").transform.position, teacherBody.transform.Find("Hip").transform.position)
@@ -428,15 +438,16 @@ public class logging : MonoBehaviour
         + ";"
         + Quaternion.Angle(studentProps.transform.Find("Box").transform.rotation, teacherProps.transform.Find("Box").transform.rotation)
         + ";";
-        
+
         //Debug.Log("box angle: " + Quaternion.Angle(studentProps.transform.Find("Box").transform.rotation, teacherProps.transform.Find("Box").transform.rotation));
-        
+
         return accuracyValues;
     }
 
-    
 
-    private void storeData(){
+
+    private void storeData()
+    {
         fileName = participantId + "_" + perspectiveId + "_T" + taskId + ".txt";
         Debug.Log("started storing file: " + path + fileName);
         file = new System.IO.StreamWriter(path + fileName, true);
@@ -445,7 +456,7 @@ public class logging : MonoBehaviour
         {
             if (_logLine != "")
             {
-                file.Write(_logLine);    
+                file.Write(_logLine);
             }
             if (i % 10000 == 0)
             {
@@ -487,89 +498,148 @@ public class logging : MonoBehaviour
 
     }
 
+    private String getStafeForFrame(Tuple<String, int>[] listOfTuples, int frame)
+    {
+        var item = Array.FindLastIndex(listOfTuples, it => it.Item2 < frame);
+        if( item == -1){
+            return listOfTuples[0].Item1;
+        }
+        return listOfTuples[item + 1].Item1;
+        
+    }
+
     private void getStateTask1()
     {
-        if (currentAnimationFrame >= 58)
-        {
-            state = "lift";
-        }
-        if (currentAnimationFrame >= 268)
-        {
-            state = "carry";
-        }
-        if (currentAnimationFrame >= 700)
-        {
-            state = "place";
-        }
+        state = getStafeForFrame(listOfTuplesT1, currentAnimationFrame);
     }
 
     private void getStateTask2()
     {
-        if (currentAnimationFrame >= 58)
-        {
-            state = "lift";
-        }
-        if (currentAnimationFrame >= 268)
-        {
-            state = "carry";
-        }
-        if (currentAnimationFrame >= 700)
-        {
-            state = "place";
-        }
+        state = getStafeForFrame(listOfTuplesT2, currentAnimationFrame);
     }
 
     private void getStateTask3()
     {
-        /*
-        441
-        1027
-        1343
-        1554
-        1974
-        2253
-        2535
-        2858
-        3336
-        3834
-        
-        4181
-        4350
-        4724
-        4976
-        5205
-        5437
-        5968
-        6199
-        6874
-        7178
-        
-        7619
-        7845
-        7971
-        8293
-        8572
-        8956
-        9202
-        9386
-        9556
-        9815
-        
-        10316
-
-        */
-        if (currentAnimationFrame >= 58)
-        {
-            state = "lift";
-        }
-        if (currentAnimationFrame >= 268)
-        {
-            state = "carry";
-        }
-        if (currentAnimationFrame >= 700)
-        {
-            state = "place";
-        }
+        state = getStafeForFrame(listOfTuplesT3, currentAnimationFrame);
     }
 
+    private Tuple<String, int>[] listOfTuplesT1 = {
+       new Tuple<String, int>("lift", 0),
+       new Tuple<String, int>("lift", 427),
+       new Tuple<String, int>("carry", 854),
+       new Tuple<String, int>("place", 1058),
+       new Tuple<String, int>("push", 1278),
+       new Tuple<String, int>("fold", 1544),
+       new Tuple<String, int>("walk", 1977),
+       new Tuple<String, int>("fold", 2210),
+       new Tuple<String, int>("pull", 2432),
+       new Tuple<String, int>("pick", 2629),
+       new Tuple<String, int>("carry", 3136),
+       new Tuple<String, int>("lower", 3366),
+       new Tuple<String, int>("lift", 3785),
+       new Tuple<String, int>("carry", 4247),
+       new Tuple<String, int>("place", 4517),
+       new Tuple<String, int>("turn", 4733),
+       new Tuple<String, int>("push", 5101),
+       new Tuple<String, int>("pull", 5214),
+       new Tuple<String, int>("turn", 5541),
+       new Tuple<String, int>("fold", 5806),
+       new Tuple<String, int>("pull", 6075),
+       new Tuple<String, int>("walk", 6503),
+       new Tuple<String, int>("pull", 6741),
+       new Tuple<String, int>("turn", 7007),
+       new Tuple<String, int>("push", 7270),
+       new Tuple<String, int>("fold", 7623),
+       new Tuple<String, int>("push", 7772),
+       new Tuple<String, int>("walk", 8233),
+       new Tuple<String, int>("walk", 8632),
+       new Tuple<String, int>("turn", 8879),
+       new Tuple<String, int>("pick", 9124),
+       new Tuple<String, int>("carry", 9527),
+       new Tuple<String, int>("lower", 9884),
+       new Tuple<String, int>("lift", 10156),
+       new Tuple<String, int>("lower", 10449),
+       new Tuple<String, int>("lower", int.MaxValue),
+       new Tuple<String, int>("lower", int.MaxValue),
+    };
+
+    private Tuple<String, int>[] listOfTuplesT2 =   {
+        new Tuple<String, int>("lift", 0),
+        new Tuple<String, int>("lift", 405),
+        new Tuple<String, int>("carry", 973),
+        new Tuple<String, int>("lower", 1285),
+        new Tuple<String, int>("lift", 1572),
+        new Tuple<String, int>("carry", 2052),
+        new Tuple<String, int>("place", 2295),
+        new Tuple<String, int>("push", 2722),
+        new Tuple<String, int>("walk", 3042),
+        new Tuple<String, int>("pull", 3394),
+        new Tuple<String, int>("push", 3640),
+        new Tuple<String, int>("walk", 4047),
+        new Tuple<String, int>("fold", 4331),
+        new Tuple<String, int>("turn", 4572),
+        new Tuple<String, int>("fold", 4772),
+        new Tuple<String, int>("turn", 5014),
+        new Tuple<String, int>("push", 5354),
+        new Tuple<String, int>("turn", 5687),
+        new Tuple<String, int>("pull", 5851),
+        new Tuple<String, int>("fold", 6204),
+        new Tuple<String, int>("turn", 6502),
+        new Tuple<String, int>("walk", 6984),
+        new Tuple<String, int>("pull", 7283),
+        new Tuple<String, int>("fold", 7502),
+        new Tuple<String, int>("push", 7849),
+        new Tuple<String, int>("walk", 8181),
+        new Tuple<String, int>("pull", 8559),
+        new Tuple<String, int>("pick", 8741),
+        new Tuple<String, int>("place", 8996),
+        new Tuple<String, int>("pick", 9146),
+        new Tuple<String, int>("carry", 9768),
+        new Tuple<String, int>("lower", 10096),
+        new Tuple<String, int>("lift", 10400),
+        new Tuple<String, int>("carry", 10983),
+        new Tuple<String, int>("lower", 11320),
+        new Tuple<String, int>("lower", int.MaxValue),
+        new Tuple<String, int>("lower", int.MaxValue),
+    };
+
+    private Tuple<String, int>[] listOfTuplesT3 =   {
+        new Tuple<String, int>("lift", 0),
+        new Tuple<String, int>("lift", 447),
+        new Tuple<String, int>("carry", 1026),
+        new Tuple<String, int>("place", 1303),
+        new Tuple<String, int>("fold", 1554),
+        new Tuple<String, int>("walk", 1957),
+        new Tuple<String, int>("turn", 2274),
+        new Tuple<String, int>("fold", 2519),
+        new Tuple<String, int>("push", 2830),
+        new Tuple<String, int>("walk", 3315),
+        new Tuple<String, int>("pull", 3622),
+        new Tuple<String, int>("fold", 3898),
+        new Tuple<String, int>("turn", 4183),
+        new Tuple<String, int>("push", 4436),
+        new Tuple<String, int>("walk", 4725),
+        new Tuple<String, int>("fold", 5003),
+        new Tuple<String, int>("turn", 5260),
+        new Tuple<String, int>("pick", 5497),
+        new Tuple<String, int>("carry", 5946),
+        new Tuple<String, int>("lower", 6233),
+        new Tuple<String, int>("lift", 6505),
+        new Tuple<String, int>("lower", 6884),
+        new Tuple<String, int>("lift", 7175),
+        new Tuple<String, int>("carry", 7635),
+        new Tuple<String, int>("place", 7869),
+        new Tuple<String, int>("push", 8066),
+        new Tuple<String, int>("pull", 8297),
+        new Tuple<String, int>("turn", 8596),
+        new Tuple<String, int>("walk", 8970),
+        new Tuple<String, int>("pull", 9211),
+        new Tuple<String, int>("push", 9427),
+        new Tuple<String, int>("pull", 9577),
+        new Tuple<String, int>("pick", 9821),
+        new Tuple<String, int>("carry", 10317),
+        new Tuple<String, int>("lower", 10679),
+        new Tuple<String, int>("lower", int.MaxValue),
+        new Tuple<String, int>("lower", int.MaxValue),
+    };
 }

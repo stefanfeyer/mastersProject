@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Plaid_Punk_Shirt_Pbr
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP
+  m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: a18fecd2aa2d39c4484ca5e6446b5226, type: 3}
+        m_Texture: {fileID: 2800000, guid: cc50866c9f53a1346bbdd3b2cd9af178, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -36,19 +36,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 2afc1606e4e758649895da08e6a81337, type: 3}
+        m_Texture: {fileID: 2800000, guid: 930ece02f2c8f8c44af1ca5b12073574, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c17adc83d54c6b1459fa0c06991d7033, type: 3}
+        m_Texture: {fileID: 2800000, guid: 77b9c9302ea2a0343836cba1d20bf5e8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 6f6c8d8c2d373034a8d510c17c10df76, type: 3}
+        m_Texture: {fileID: 2800000, guid: 28dbbc7c8996b154490b3d83ade1939f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 068ba08a923e38d4cb8f9836c676efdf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 193565716b03199478b3be37039136e7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
