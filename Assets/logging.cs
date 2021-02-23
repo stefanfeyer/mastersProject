@@ -340,7 +340,7 @@ public class logging : MonoBehaviour
         Destroy(refPointBendAngle);
 
         //Debug.Log("spine Bend: " + angleindegrees);
-        return angleindegrees;
+        return 180-angleindegrees;
     }
 
     float lawOfCosines(float a, float b, float c)
