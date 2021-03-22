@@ -19,6 +19,8 @@ TagManager:
   - StudentTable
   - StudentBox
   - tracker
+  - birdViewCam
+  - hdmCam
   layers:
   - Default
   - TransparentFX

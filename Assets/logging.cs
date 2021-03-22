@@ -263,7 +263,7 @@ public class logging : MonoBehaviour
             header = header + "studentHeadPosX;studentHeadPosY;studentHeadPosZ;studentHeadRotX;studentHeadRotY;studentHeadRotZ;";
             firstTimeStudentHead = false;
         }
-        return transformToString(neckHead.transform);
+        return transformToString(neckHead.transform) + ";"; // missing ;
     }
 
     private string transformToString(Transform t)
@@ -340,7 +340,7 @@ public class logging : MonoBehaviour
         Destroy(refPointBendAngle);
 
         //Debug.Log("spine Bend: " + angleindegrees);
-        return 180-angleindegrees;
+        return angleindegrees;//return 180-angleindegrees;
     }
 
     float lawOfCosines(float a, float b, float c)
@@ -403,7 +403,7 @@ public class logging : MonoBehaviour
     {
         if (firstTimeHipBoxDistance)
         {
-            header = header + "studentHipBoxDistance;teacherHipBoxDistance";
+            header = header + "studentHipBoxDistance;teacherHipBoxDistance;";
             firstTimeHipBoxDistance = false;
         }
         string hipBoxDistance = ""
