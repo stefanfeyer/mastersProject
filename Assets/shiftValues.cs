@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class shiftValues : MonoBehaviour
 {
+    public float shiftY = 0.05f;
     public float shiftXChar1 = -0.2f;
     public float shiftZChar1 = 1.5f;
 
@@ -16,8 +17,6 @@ public class shiftValues : MonoBehaviour
 
     public float shiftXChar4 = -1.3f;
     public float shiftZChar4 = -0.75f;
-
-
     
     // Start is called before the first frame update
     void Start()

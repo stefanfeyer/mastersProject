@@ -6,6 +6,7 @@ public class shiftIt : MonoBehaviour
 {
     public int charId;
     private float shiftX;
+    private float shiftY;
     private float shiftZ;
     public GameObject source;
 
@@ -19,6 +20,7 @@ public class shiftIt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        shiftY = shiftValues.shiftY;
         
         switch (charId)
         {
@@ -43,7 +45,7 @@ public class shiftIt : MonoBehaviour
             
         }
 
-        this.transform.position = new Vector3(source.transform.position.x + shiftX, source.transform.position.y, source.transform.position.z + shiftZ);
+        this.transform.position = new Vector3(source.transform.position.x + shiftX, source.transform.position.y + shiftValues.shiftY, source.transform.position.z + shiftZ);
         this.transform.rotation = source.transform.rotation;           
     }
 }
