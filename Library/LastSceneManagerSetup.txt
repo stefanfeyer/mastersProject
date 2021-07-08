@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/perspectives/egoT3.unity
+- path: Assets/perspectives/egoExo-Experiment.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
