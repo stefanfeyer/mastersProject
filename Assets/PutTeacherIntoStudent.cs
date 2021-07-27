@@ -24,6 +24,12 @@ public class PutTeacherIntoStudent : MonoBehaviour
     public bool enableSpeedMechanic = true;
     // Start is called before the first frame update
 
+    public float etdMin = 0.15f;
+    public float etdMax = 0.3f;
+    public enum easingFunctionEum {linear, sine, digital, exponential};
+    public easingFunctionEum easingFunction;
+
+
     private GameObject[] teacherBodies;
     private GameObject[] teacherProps;
 
@@ -48,19 +54,23 @@ public class PutTeacherIntoStudent : MonoBehaviour
     }
 
 
-    float stopDistance = 0f;
-    float fullSpeedDistance = 0.15f;
+    
 
     // Update is called once per frame
     void Update()
     {
+        float stopDistance = 0f;
+        //0.15 it was
+        float fullSpeedDistance = etdMin;
         if (enableSpeedMechanic == false)
         {
+            // this disables the speed mechanic by setting the etdMax to unreachable value
             stopDistance = 50f;
         }
         if (Input.GetKeyUp(KeyCode.S))
         {
-            stopDistance = 0.3f;
+            // 0.3 it was. starts the animation by setting the stop distance to greater than 0
+            stopDistance = etdMax;
         }
         Vector3 studentHipPositionOnFloor = new Vector3(studentHip.transform.position.x, 0, studentHip.transform.position.z);
         Vector3 teacherHipPositionOnFloor = new Vector3(teacherHip.transform.position.x, 0, teacherHip.transform.position.z);
@@ -91,24 +101,128 @@ public class PutTeacherIntoStudent : MonoBehaviour
         }
         else
         {
-            scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadTransparent();
-            teacherZero.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
-            teacherZeroProps.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
-            foreach (var item in teacherBodies)
+            switch (easingFunction)
             {
-                if (item != null)
-                {
-                    item.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
-                }
+                case easingFunctionEum.linear: 
+                    linearSpeed(stopDistance, fullSpeedDistance, deltaStudentTeacher.magnitude);
+                    break;
+                case easingFunctionEum.sine:
+                    sineSpeed(stopDistance, fullSpeedDistance, deltaStudentTeacher.magnitude);
+                    break;
+                case easingFunctionEum.digital: 
+                    digitalSpeed(stopDistance, fullSpeedDistance, deltaStudentTeacher.magnitude);
+                    break;
+                case easingFunctionEum.exponential:
+                    exponentialSpeed(stopDistance, fullSpeedDistance, deltaStudentTeacher.magnitude);
+                    break;
+                default:
+                    linearSpeed(stopDistance, fullSpeedDistance, deltaStudentTeacher.magnitude);
+                    break;
             }
-            foreach (var item in teacherProps)
-            {
-                if (item != null)
-                {
-                    item.GetComponent<Animator>().speed  = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
-                }
-            }
+
+            // the original stuff
+            //scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadTransparent();
+            //teacherZero.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
+            //teacherZeroProps.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
+            //foreach (var item in teacherBodies)
+            //{
+            //    if (item != null)
+            //    {
+            //        item.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
+            //    }
+            //}
+            //foreach (var item in teacherProps)
+            //{
+            //    if (item != null)
+            //    {
+            //        item.GetComponent<Animator>().speed  = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
+            //    }
+            //}
             
         }   
+    }
+
+    private void linearSpeed(float stopDistance, float fullSpeedDistance, float deltaStudentTeacherMagnitude){
+        scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadTransparent();
+        teacherZero.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance)));
+        teacherZeroProps.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance)));
+        foreach (var item in teacherBodies)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance)));
+            }
+        }
+        foreach (var item in teacherProps)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance)));
+            }
+        }
+    }
+
+    private void digitalSpeed(float stopDistance, float fullSpeedDistance, float deltaStudentTeacherMagnitude){
+        scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadTransparent();
+        teacherZero.GetComponent<Animator>().speed = 1.0f;
+        teacherZeroProps.GetComponent<Animator>().speed = 1.0f;
+        foreach (var item in teacherBodies)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Animator>().speed = 1.0f;
+            }
+        }
+        foreach (var item in teacherProps)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Animator>().speed = 1.0f;
+            }
+        }
+    }
+
+    private void sineSpeed(float stopDistance, float fullSpeedDistance, float deltaStudentTeacherMagnitude){
+        //plot[sin(1.5x^3), {x,0,1}] -> wolfram alpha
+        scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadTransparent();
+        float linearInterpolatedValue = (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance));
+        teacherZero.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Sin(1.5f*Mathf.Pow(linearInterpolatedValue, 3)));
+        teacherZeroProps.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Sin(1.5f*Mathf.Pow(linearInterpolatedValue, 3)));
+        foreach (var item in teacherBodies)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Sin(1.5f*Mathf.Pow(linearInterpolatedValue, 3)));
+            }
+        }
+        foreach (var item in teacherProps)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Sin(1.5f*Mathf.Pow(linearInterpolatedValue, 3)));
+            }
+        }
+    }
+
+    private void exponentialSpeed(float stopDistance, float fullSpeedDistance, float deltaStudentTeacherMagnitude){
+        //plot[exp(x^5)-1, {x,0,1}] -> wolfram alpha
+        scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadTransparent();
+        float linearInterpolatedValue = (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance));
+        teacherZero.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Exp(Mathf.Pow(linearInterpolatedValue, 5))-1);
+        teacherZeroProps.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Exp(Mathf.Pow(linearInterpolatedValue, 5))-1);
+        foreach (var item in teacherBodies)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Exp(Mathf.Pow(linearInterpolatedValue, 5))-1);
+            }
+        }
+        foreach (var item in teacherProps)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Exp(Mathf.Pow(linearInterpolatedValue, 5))-1);
+            }
+        }
     }
 }

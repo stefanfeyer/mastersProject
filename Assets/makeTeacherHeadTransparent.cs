@@ -66,7 +66,7 @@ public class makeTeacherHeadTransparent : MonoBehaviour
         {
             makeHeadTransparent();
             makeTeethTransparent();
-            makeHairTransparent();
+            //makeHairTransparent();
             makeEyesTransparent();
             makeTongueTransparent();
             Debug.Log("makeTransparent");
@@ -80,7 +80,7 @@ public class makeTeacherHeadTransparent : MonoBehaviour
         {
             makeHeadVisible();
             makeTeethVisible();
-            makeHairVisible();
+            //makeHairVisible();
             makeEyesVisible();
             makeTongueVisible();
             Debug.Log("makeVisible");
