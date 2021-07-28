@@ -54,14 +54,13 @@ public class PutTeacherIntoStudent : MonoBehaviour
     }
 
 
+    bool isRunning = false;
     
-
     // Update is called once per frame
     void Update()
     {
-        float stopDistance = 0f;
-        //0.15 it was
         float fullSpeedDistance = etdMin;
+        float stopDistance = etdMax;
         if (enableSpeedMechanic == false)
         {
             // this disables the speed mechanic by setting the etdMax to unreachable value
@@ -70,7 +69,7 @@ public class PutTeacherIntoStudent : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.S))
         {
             // 0.3 it was. starts the animation by setting the stop distance to greater than 0
-            stopDistance = etdMax;
+            isRunning = !isRunning;
         }
         Vector3 studentHipPositionOnFloor = new Vector3(studentHip.transform.position.x, 0, studentHip.transform.position.z);
         Vector3 teacherHipPositionOnFloor = new Vector3(teacherHip.transform.position.x, 0, teacherHip.transform.position.z);
@@ -79,7 +78,9 @@ public class PutTeacherIntoStudent : MonoBehaviour
         Vector3 deltaStudentTeacher = studentHipPositionOnFloor - (teacherHipPositionOnFloor - teacherZeroPositionOnFloor);
         // the original with hip distance: Vector3 deltaStudentTeacher = studentHip.transform.position - (teacherHip.transform.position - teacherZero.transform.position);
         //teacherZero.transform.position = deltaStudentTeacher;
-        if(deltaStudentTeacher.magnitude >= stopDistance){
+       
+        if(deltaStudentTeacher.magnitude >= stopDistance && isRunning){
+    
             scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadVisible();
             teacherZero.GetComponent<Animator>().speed = 0;
             teacherZeroProps.GetComponent<Animator>().speed = 0;
@@ -101,18 +102,23 @@ public class PutTeacherIntoStudent : MonoBehaviour
         }
         else
         {
+            
             switch (easingFunction)
             {
                 case easingFunctionEum.linear: 
+                    Debug.Log("easing function: linear");
                     linearSpeed(stopDistance, fullSpeedDistance, deltaStudentTeacher.magnitude);
                     break;
                 case easingFunctionEum.sine:
+                    Debug.Log("easing function: sine");
                     sineSpeed(stopDistance, fullSpeedDistance, deltaStudentTeacher.magnitude);
                     break;
                 case easingFunctionEum.digital: 
+                    Debug.Log("easing function: digital");
                     digitalSpeed(stopDistance, fullSpeedDistance, deltaStudentTeacher.magnitude);
                     break;
                 case easingFunctionEum.exponential:
+                    Debug.Log("easing function: exponential");
                     exponentialSpeed(stopDistance, fullSpeedDistance, deltaStudentTeacher.magnitude);
                     break;
                 default:
@@ -122,6 +128,7 @@ public class PutTeacherIntoStudent : MonoBehaviour
 
             // the original stuff
             //scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadTransparent();
+            //Debug.Log("speed: " + Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance))) );
             //teacherZero.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
             //teacherZeroProps.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacher.magnitude / fullSpeedDistance)));
             //foreach (var item in teacherBodies)
@@ -143,6 +150,7 @@ public class PutTeacherIntoStudent : MonoBehaviour
     }
 
     private void linearSpeed(float stopDistance, float fullSpeedDistance, float deltaStudentTeacherMagnitude){
+        
         scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadTransparent();
         teacherZero.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance)));
         teacherZeroProps.GetComponent<Animator>().speed = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance)));
@@ -185,21 +193,22 @@ public class PutTeacherIntoStudent : MonoBehaviour
     private void sineSpeed(float stopDistance, float fullSpeedDistance, float deltaStudentTeacherMagnitude){
         //plot[sin(1.5x^3), {x,0,1}] -> wolfram alpha
         scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadTransparent();
-        float linearInterpolatedValue = (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance));
-        teacherZero.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Sin(1.5f*Mathf.Pow(linearInterpolatedValue, 3)));
-        teacherZeroProps.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Sin(1.5f*Mathf.Pow(linearInterpolatedValue, 3)));
+        float linearInterpolatedValue = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance)));
+        float speed = Mathf.Sin(1.5f * Mathf.Pow(linearInterpolatedValue, 3));
+        teacherZero.GetComponent<Animator>().speed = speed;
+        teacherZeroProps.GetComponent<Animator>().speed = speed;
         foreach (var item in teacherBodies)
         {
             if (item != null)
             {
-                item.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Sin(1.5f*Mathf.Pow(linearInterpolatedValue, 3)));
+                item.GetComponent<Animator>().speed = speed;
             }
         }
         foreach (var item in teacherProps)
         {
             if (item != null)
             {
-                item.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Sin(1.5f*Mathf.Pow(linearInterpolatedValue, 3)));
+                item.GetComponent<Animator>().speed = speed;
             }
         }
     }
@@ -207,21 +216,22 @@ public class PutTeacherIntoStudent : MonoBehaviour
     private void exponentialSpeed(float stopDistance, float fullSpeedDistance, float deltaStudentTeacherMagnitude){
         //plot[exp(x^5)-1, {x,0,1}] -> wolfram alpha
         scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadTransparent();
-        float linearInterpolatedValue = (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance));
-        teacherZero.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Exp(Mathf.Pow(linearInterpolatedValue, 5))-1);
-        teacherZeroProps.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Exp(Mathf.Pow(linearInterpolatedValue, 5))-1);
+        float linearInterpolatedValue = Mathf.Min(1f, (stopDistance / fullSpeedDistance - (deltaStudentTeacherMagnitude / fullSpeedDistance)));
+        float speed = Mathf.Exp(Mathf.Pow(linearInterpolatedValue, 5)-1);
+        teacherZero.GetComponent<Animator>().speed = speed;
+        teacherZeroProps.GetComponent<Animator>().speed = speed;
         foreach (var item in teacherBodies)
         {
             if (item != null)
             {
-                item.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Exp(Mathf.Pow(linearInterpolatedValue, 5))-1);
+                item.GetComponent<Animator>().speed = speed;
             }
         }
         foreach (var item in teacherProps)
         {
             if (item != null)
             {
-                item.GetComponent<Animator>().speed = Mathf.Min(1f, Mathf.Exp(Mathf.Pow(linearInterpolatedValue, 5))-1);
+                item.GetComponent<Animator>().speed = speed;
             }
         }
     }
