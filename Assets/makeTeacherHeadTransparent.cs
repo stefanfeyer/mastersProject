@@ -89,7 +89,8 @@ public class makeTeacherHeadTransparent : MonoBehaviour
     }
 
     private void makeHeadTransparent(){
-        Material[] headMaterialsArray = new Material[] { transparentMaterial, bodyMaterial, armMaterial, legMaterial, nailsMaterial, transparentMaterial };
+        //Material[] headMaterialsArray = new Material[] { transparentMaterial, bodyMaterial, armMaterial, legMaterial, nailsMaterial, transparentMaterial };
+        Material[] headMaterialsArray = new Material[] { transparentMaterial, transparentMaterial, bodyMaterial, armMaterial, legMaterial, transparentMaterial };
         teacherAvatar.transform.Find("CC_Base_Body").gameObject.GetComponent<SkinnedMeshRenderer>().materials = headMaterialsArray;
     }
 
