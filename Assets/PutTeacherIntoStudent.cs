@@ -24,14 +24,16 @@ public class PutTeacherIntoStudent : MonoBehaviour
     public bool enableSpeedMechanic = true;
     // Start is called before the first frame update
 
-    public float etdMin = 0.15f;
-    public float etdMax = 0.3f;
+    public float etdMin = 0.0001f;
+    public float etdMax = 0.1f;
     public enum easingFunctionEum {linear, sine, digital, exponential};
     public easingFunctionEum easingFunction;
 
 
     private GameObject[] teacherBodies;
     private GameObject[] teacherProps;
+
+    private bool animationHalt = true;
 
     void Start()
     {
@@ -54,7 +56,7 @@ public class PutTeacherIntoStudent : MonoBehaviour
     }
 
 
-    bool isRunning = false;
+    
     
     // Update is called once per frame
     void Update()
@@ -66,11 +68,14 @@ public class PutTeacherIntoStudent : MonoBehaviour
             // this disables the speed mechanic by setting the etdMax to unreachable value
             stopDistance = 50f;
         }
+
         if (Input.GetKeyUp(KeyCode.S))
         {
             // 0.3 it was. starts the animation by setting the stop distance to greater than 0
-            isRunning = !isRunning;
+            animationHalt = !animationHalt;
+            Debug.Log("s pressed " + animationHalt);
         }
+
         Vector3 studentHipPositionOnFloor = new Vector3(studentHip.transform.position.x, 0, studentHip.transform.position.z);
         Vector3 teacherHipPositionOnFloor = new Vector3(teacherHip.transform.position.x, 0, teacherHip.transform.position.z);
         Vector3 teacherZeroPositionOnFloor = new Vector3(teacherZero.transform.position.x, 0, teacherZero.transform.position.z);
@@ -78,31 +83,17 @@ public class PutTeacherIntoStudent : MonoBehaviour
         Vector3 deltaStudentTeacher = studentHipPositionOnFloor - (teacherHipPositionOnFloor - teacherZeroPositionOnFloor);
         // the original with hip distance: Vector3 deltaStudentTeacher = studentHip.transform.position - (teacherHip.transform.position - teacherZero.transform.position);
         //teacherZero.transform.position = deltaStudentTeacher;
-       
-        if(deltaStudentTeacher.magnitude >= stopDistance && isRunning){
-    
-            scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadVisible();
-            teacherZero.GetComponent<Animator>().speed = 0;
-            teacherZeroProps.GetComponent<Animator>().speed = 0;
-            foreach (var item in teacherBodies)
-            {
-                if (item != null)
-                {
-                    item.GetComponent<Animator>().speed = 0;
-                }
-            }
-            foreach (var item in teacherProps)
-            {
-                if (item != null)
-                {
-                    item.GetComponent<Animator>().speed = 0;
-                }
-            }
-            
+       if (animationHalt)
+       {
+           stopAnimation();
+       }
+       else
+       {
+        if(deltaStudentTeacher.magnitude >= stopDistance) {
+            stopAnimation();
         }
         else
         {
-            
             switch (easingFunction)
             {
                 case easingFunctionEum.linear: 
@@ -125,6 +116,9 @@ public class PutTeacherIntoStudent : MonoBehaviour
                     linearSpeed(stopDistance, fullSpeedDistance, deltaStudentTeacher.magnitude);
                     break;
             }
+        }
+
+        
 
             // the original stuff
             //scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadTransparent();
@@ -146,7 +140,27 @@ public class PutTeacherIntoStudent : MonoBehaviour
             //    }
             //}
             
-        }   
+       }   
+    }
+
+    private void stopAnimation(){
+        scriptHolder.GetComponent<makeTeacherHeadTransparent>().makeTeacherAvatarHeadVisible();
+            teacherZero.GetComponent<Animator>().speed = 0;
+            teacherZeroProps.GetComponent<Animator>().speed = 0;
+            foreach (var item in teacherBodies)
+            {
+                if (item != null)
+                {
+                    item.GetComponent<Animator>().speed = 0;
+                }
+            }
+            foreach (var item in teacherProps)
+            {
+                if (item != null)
+                {
+                    item.GetComponent<Animator>().speed = 0;
+                }
+            }
     }
 
     private void linearSpeed(float stopDistance, float fullSpeedDistance, float deltaStudentTeacherMagnitude){
