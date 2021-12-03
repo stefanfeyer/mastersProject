@@ -25,7 +25,8 @@ public class PutTeacherIntoStudent : MonoBehaviour
     // Start is called before the first frame update
 
     public float etdMin = 0.0001f;
-    public float etdMax = 0.1f;
+    public enum etdMaxEnum {a1000, a1250, a1500, a1875, a2250, a2813, a3375, a4219, a5063};
+    public etdMaxEnum etdMax;
     public enum easingFunctionEum {linear, sine, digital, exponential};
     public easingFunctionEum easingFunction;
 
@@ -62,7 +63,41 @@ public class PutTeacherIntoStudent : MonoBehaviour
     void Update()
     {
         float fullSpeedDistance = etdMin;
-        float stopDistance = etdMax;
+        float stopDistance = 0f;
+        switch (etdMax)
+            {
+                case etdMaxEnum.a1000: 
+                    stopDistance = 0.1f;
+                    break;
+                case etdMaxEnum.a1250: 
+                    stopDistance = 0.125f;
+                    break;
+                case etdMaxEnum.a1500: 
+                    stopDistance = 0.15f;
+                    break;
+                case etdMaxEnum.a1875: 
+                    stopDistance = 0.1875f;
+                    break;
+                case etdMaxEnum.a2250: 
+                    stopDistance = 0.225f;
+                    break;
+                case etdMaxEnum.a2813: 
+                    stopDistance = 0.2813f;
+                    break;
+                case etdMaxEnum.a3375: 
+                    stopDistance = 0.3375f;
+                    break;
+                case etdMaxEnum.a4219: 
+                    stopDistance = 0.4219f;
+                    break;
+                case etdMaxEnum.a5063: 
+                    stopDistance = 0.5063f;
+                    break;
+                default:
+                    stopDistance = 0.1f;
+                    break;
+            }
+        Debug.Log("stopDistance: " + stopDistance);
         if (enableSpeedMechanic == false)
         {
             // this disables the speed mechanic by setting the etdMax to unreachable value
